@@ -5,82 +5,131 @@
       <picture>
         <source
           media="(min-width: 600px)"
-          srcset="~/assets/images/login/background-desktop.webp"
+          srcset="~/assets/images/login/new_background.webp"
         >
         <source
           media="(min-width: 600px)"
-          srcset="~/assets/images/login/background-desktop@2x.webp 1.5x"
+          srcset="~/assets/images/login/new_background.webp 1.5x"
         >
         <source
           media="(min-width: 600px)"
-          srcset="~/assets/images/login/background-desktop@2x.webp 2x"
+          srcset="~/assets/images/login/new_background.webp 2x"
         >
         <source
           media="(max-width: 599px)"
-          srcset="~/assets/images/login/background-desktop@2x.webp 1.5x"
+          srcset="~/assets/images/login/new_background.webp 1.5x"
         >
         <source
           media="(max-width: 599px)"
-          srcset="~/assets/images/login/background-desktop@3x.webp 2x"
+          srcset="~/assets/images/login/new_background.webp 2x"
         >
         <img
           class="login-background-image"
-          src="~/assets/images/login/background-desktop@2x.webp"
+          src="~/assets/images/login/new_background.webp"
         >
       </picture>
     </div>
     <div class="login-wrapper">
-      <picture>
-        <img
-          class="login-logo"
-          src="~/assets/icons/ximena_logo.svg"
-          alt="Logo_Ximena_Hoyos"
-        >
-      </picture>
-      <div
-        class="login-container-form"
-      >
-        <div
-          class="login-header-title"
-        >
-          Ingresa con
-        </div>
-
-        <div class="rrss-btns--container">
-          <FacebookButton />
-
-          <GoogleButton />
-        </div>
-
-        <NuxtLink
-          to="/perfil/terminos-y-condiciones"
-        >
-          <p
-            class="terms-and-conditions"
-          >
-            Terminos y Condiciones
-          </p>
-        </NuxtLink>
-
-        <div class="bottom-bar" />
-      </div>
-    </div>
-  </div>
+		<div class="login-row">
+			<div class="login-column">
+				<picture>
+					<img
+					class="login-cover"
+					src="~/assets/images/login/ximena.png"
+					alt="Logo_Ximena_Hoyos"
+					>
+				</picture>
+			</div>
+			<div class="login-column">
+				<div class="login-grid">
+					<div class="login-op1" @click="goToAbout">
+						<picture>
+							<img
+								class="login-card"
+								src="~/assets/images/login/OP01.jpg"
+								alt="Logo_Ximena_Hoyos"
+							>
+						</picture>
+					</div>
+					<div class="login-op2" @click="goToTraining">
+						<picture>
+							<img
+							class="login-card"
+							src="~/assets/images/login/OP02.jpg"
+							alt="Logo_Ximena_Hoyos"
+							>
+						</picture>
+					</div>
+					<div class="login-op3" @click="goToRecipes">
+						<picture>
+							<img
+							class="login-card"
+							src="~/assets/images/login/OP03.jpg"
+							alt="Logo_Ximena_Hoyos"
+							>
+						</picture>
+					</div>
+					<div class="login-op4" @click="goToTips">
+						<picture>
+							<img
+							class="login-card"
+							src="~/assets/images/login/OP04.jpg"
+							alt="Logo_Ximena_Hoyos"
+							>
+						</picture>
+					</div>
+				</div>
+				<div class="login-social-selector">
+					<div class="login-selector-grid">
+						<div class="login-facebook">
+							<picture>
+								<img
+								class="login-selector-icon"
+								src="~/assets/images/login/facebook.png"
+								alt="facebook"
+								>
+							</picture>
+						</div>
+						<div class="login-google">
+							<picture>
+								<img
+								class="login-selector-icon"
+								src="~/assets/images/login/google_icon.png"
+								alt="google"
+								>
+							</picture>
+						</div>
+					</div>
+					<button
+						class="login-enter-button"
+						@click="signIn"
+					>
+						<p class="login-enter-text-button">ENTRAR</p>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 </template>
 
 <script>
 /* eslint-disable no-tabs */
 import { compose, getPropertysValue, setNewProperty } from 'functionallibrary'
 import { mapActions, mapGetters } from 'vuex'
-import FacebookButton from '~/components/Buttons/Facebook.button'
-import GoogleButton from '~/components/Buttons/Google.button'
+// import VueToggleImage from '@ivahid/vue-toggle-image'
+import '@ivahid/vue-toggle-image/dist/vue-toggle-image.css'
+// import firebase from 'firebase'
+// import FacebookButton from '~/components/Buttons/Facebook.button'
+// import GoogleButton from '~/components/Buttons/Google.button'
 
 export default {
 	name: 'PaginaInicioSesion',
 	auth: false,
 	components: {
-		FacebookButton,
-		GoogleButton
+		// FacebookButton,
+		// GoogleButton,
+		// VueToggleImage
 	},
 	layout: 'headless',
 	data: () => ({
@@ -172,7 +221,31 @@ export default {
 				setNewProperty('email', facebookData.email),
 				setNewProperty('origin', 'Facebook')
 			)({})
+		},
+		goToAbout () {
+			this.$router.push('/perfil')
+		},
+		goToTraining () {
+			this.$router.push('/entrenamientos')
+		},
+		goToRecipes () {
+			this.$router.push('/recetas')
+		},
+		goToTips () {
+			this.$router.push('/tips')
+		},
+		async signIn () {
+			await this.$auth.loginWith('facebook')
 		}
+		/* googleSignIn () {
+			this.provider = new firebase.auth.GoogleAuthProvider()
+			firebase.auth().signInWithPopup(this.provider).then((result) => {
+				this.$router.push('/perfil')
+			}).catch((e) => {
+				this.$notify.error(e.message)
+				console.log(e)
+			})
+		} */
 	}
 }
 </script>
@@ -204,11 +277,23 @@ export default {
 		@apply self-end;
 		@apply z-10;
 		@apply pb-4;
-		max-width: 480px;
+		display: table;
 
 		@media screen and (min-width: 600px) {
 			@apply self-auto;
 		}
+	}
+
+	&-row::after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+
+	&-column {
+		float: left;
+		width: 50%;
+		margin: 0 auto;
 	}
 
 	&-logo {
@@ -216,10 +301,119 @@ export default {
 		@apply m-auto mb-6;
 	}
 
+	&-cover {
+		height: 700px;
+		margin: auto;
+		float: right;
+	}
+
+	&-grid {
+		margin: 0 auto;
+		margin-top: 150px;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-auto-rows: minmax(100px, auto);
+		width: 500px;
+	}
+
+	&-op1 {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	&-op2 {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
+	&-op3 {
+		grid-column: 1;
+		grid-row: 2;
+	}
+
+	&-op4 {
+		grid-column: 2;
+		grid-row: 2;
+	}
+
+	&-card {
+		height: 200px;
+	}
+
+	&-selector-icon {
+		height: 30px;
+	}
+
+	&-card:hover {
+		opacity: 0.6;
+		cursor: pointer;
+	}
+
+	&-social-selector {
+		margin: 0 auto;
+		flex-direction: row;
+		display: flex;
+		justify-content: center;
+	}
+
+	&-selector-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-auto-rows: minmax(50px, auto);
+		width: 200px;
+		border-radius: 5px;
+		background-color: #242424;
+		padding: 5px;
+		margin: 0 auto;
+	}
+
+	&-selector-grid:hover {
+		cursor: pointer;
+	}
+
+	&-facebook {
+		margin: 0 auto;
+		border-radius: 20px;
+		background-color: #93e600;
+		padding: 10px;
+	}
+
+	&-google {
+		padding: 10px;
+		margin: 0 auto;
+		border-radius: 10px;
+		background-color: transparent;
+	}
+
+	&-enter-button {
+		@apply w-full;
+		@apply flex justify-around items-center;
+		@apply text-gray-base;
+		@apply bg-gray-light;
+		@apply rounded-lg;
+		@apply py-4 px-4 mb-4;
+		background-color: #93e600;
+		display: inline-block;
+		margin-left: 25px;
+		height: 50px;
+		width: 150px;
+		border-radius: 22px;
+		margin: 0 auto;
+	}
+
+	&-enter-text-button {
+		@apply text-gray-heavy font-bold;
+		font-family: 'Poppins' !important;
+		font-size: 18px !important;
+		margin-bottom: 0px !important;
+		color: #242424;
+	}
+
 	&-container-form {
 		@apply bg-black-base;
 		@apply rounded-3xl;
 		@apply pt-10 px-10 pb-8;
+		float: right;
 
 		.rrss-btns--container {
 			@apply grid gap-4;
