@@ -51,6 +51,7 @@ export default {
 
 	router: {
 		middleware: [
+			'auth',
 			'detectingDevice',
 			'firstDataToLoad',
 			'redirectTo'
