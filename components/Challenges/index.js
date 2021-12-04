@@ -292,6 +292,10 @@ export const IntroductionChallengeDetails = Vue.component('IntroductionChallenge
 				/>
         	{ this.coursepaid === 0
 					? <button
+						type="button"
+						class="introduction-btn x-btn x-btn__green"
+					>Iniciar reto</button>
+					: <button
 						onClick={ this.handlePayment }
 						type="button"
 						class="introduction-btn x-btn x-btn__green"
@@ -300,10 +304,6 @@ export const IntroductionChallengeDetails = Vue.component('IntroductionChallenge
 							{this.prices}
 						</span>
 					</button>
-					: <button
-						type="button"
-						class="introduction-btn x-btn x-btn__green"
-					>Iniciar reto</button>
 				}
 			</div>
 		)
@@ -345,7 +345,7 @@ export const WorkoutByDay = Vue.component('WorkoutByDay', {
 	render () {
 		return (
 			<NuxtLink
-				event={ this.coursepaid === 0 ? '' : 'click' }
+				event={ this.coursepaid === 0 ? 'click' : '' }
 				to={ this.goToRoutine }
 				class="workout-day--container"
 			>
@@ -359,7 +359,7 @@ export const WorkoutByDay = Vue.component('WorkoutByDay', {
 				</div>
 
 				<div class="done">
-					{this.done !== 0 ? <Icon icon="mdi-check"/> : <Icon icon="mdi-lock"/>}
+					{this.done !== 0 ? <Icon icon="mdi-lock"/> : <Icon icon="mdi-check"/>}
 				</div>
 			</NuxtLink>
 		)

@@ -11,14 +11,22 @@
 import { defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
-	setup () {
-
-	},
 	props: {
 		productTitle: {
 			default: '',
 			type: String
+		},
+		image: {
+			default: '',
+			type: String
+		},
+		price: {
+			default: 0,
+			type: Float32Array
 		}
+	},
+	setup () {
+
 	}
 })
 </script>

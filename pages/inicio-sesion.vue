@@ -224,6 +224,7 @@ export default {
 		},
 		goToAbout () {
 			this.$router.push('/perfil')
+			console.log('cargando pagina')
 		},
 		goToTraining () {
 			this.$router.push('/entrenamientos')
