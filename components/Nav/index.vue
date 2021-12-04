@@ -96,7 +96,8 @@ export default {
 	},
 	methods: {
 		goToStore () {
-			window.open(`https://tienda.ximehoyos.com/tienda/ximenahoyos?tokenRedirection=${this.$store.state.tokenMaki}`, '_blank')
+			this.$router.push('/tienda')
+			// window.open(`https://tienda.ximehoyos.com/tienda/ximenahoyos?tokenRedirection=${this.$store.state.tokenMaki}`, '_blank')
 			// window.location.href =
 		}
 	}
