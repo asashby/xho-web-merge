@@ -1,5 +1,6 @@
 /* eslint-disable no-tabs */
 import { isEmpty, getPropertysValue } from 'functionallibrary'
+import Vue from 'vue'
 
 const alreadyInTheState = (state, prop) => {
 	return !(isEmpty(state[prop]))
@@ -14,6 +15,8 @@ const buildArrayOfItems = (init, end) => {
 }
 
 export const state = () => ({
+	products: [],
+	cart: {},
 	ages: buildArrayOfItems(18, 80),
 	company: {},
 	isMovil: false,
@@ -84,10 +87,65 @@ export const actions = {
 	},
 	setLoading ({ commit, state }) {
 		commit('SET_LOADING', state.loading)
+	},
+	async nuxtServerInit ({ dispatch }) {
+		await dispatch('getProducts')
+	},
+
+	async getProducts ({ commit }) {
+		const products = await Vue.prototype.$commerce.products.list()
+
+		if (products) {
+			commit('setProducts', products.data)
+		}
+	},
+
+	async retrieveCart ({ commit }) {
+		const cart = await Vue.prototype.$commerce.cart.retrieve()
+
+		if (cart) {
+			commit('setCart', cart)
+		}
+	},
+
+	async addProductToCart ({ commit }, id, count) {
+		const addProduct = await Vue.prototype.$commerce.cart.add(id, count)
+
+		if (addProduct) {
+			commit('setCart', addProduct.cart)
+		}
+	},
+
+	async removeProductFromCart ({ commit }, payload) {
+		const removeProduct = await Vue.prototype.$commerce.cart.remove(payload)
+
+		if (removeProduct) {
+			commit('setCart', removeProduct.cart)
+		}
+	},
+
+	async clearCart ({ commit }) {
+		const clear = await Vue.prototype.$commerce.cart.empty()
+
+		if (clear) {
+			commit('clearCart')
+		}
 	}
 }
 
 export const mutations = {
+	setProducts (state, payload) {
+		state.products = payload
+	},
+
+	setCart (state, payload) {
+		state.cart = payload
+	},
+
+	clearCart (state) {
+		state.cart = {}
+	},
+
 	SET_MENU_DATA (state, menuData) {
 		state.menu = [].concat(menuData)
 	},
@@ -118,6 +176,20 @@ export const mutations = {
 }
 
 export const getters = {
+	products (state) {
+		return state.products
+	},
+
+	cart (state) {
+		return state.cart
+	},
+
+	cartSubtotal (state) {
+		if (state.cart.subtotal) {
+			return state.cart.subtotal.formatted
+		}
+	},
+
 	termsAndConditionsData (state) {
 		return getPropertysValue('company.data.helpCenter.description', state)
 	},
