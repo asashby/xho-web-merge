@@ -1,6 +1,6 @@
 /* eslint-disable no-tabs */
 import { isEmpty, getPropertysValue } from 'functionallibrary'
-import Vue from 'vue'
+// import Vue from 'vue'
 
 const alreadyInTheState = (state, prop) => {
 	return !(isEmpty(state[prop]))
@@ -90,9 +90,9 @@ export const actions = {
 	},
 	async nuxtServerInit ({ dispatch }) {
 		await dispatch('getProducts')
-	},
+	}
 
-	async getProducts ({ commit }) {
+	/* async getProducts ({ commit }) {
 		const products = await Vue.prototype.$commerce.products.list()
 
 		if (products) {
@@ -130,11 +130,11 @@ export const actions = {
 		if (clear) {
 			commit('clearCart')
 		}
-	}
+	} */
 }
 
 export const mutations = {
-	setProducts (state, payload) {
+	/* setProducts (state, payload) {
 		state.products = payload
 	},
 
@@ -144,7 +144,7 @@ export const mutations = {
 
 	clearCart (state) {
 		state.cart = {}
-	},
+	}, */
 
 	SET_MENU_DATA (state, menuData) {
 		state.menu = [].concat(menuData)
@@ -176,7 +176,7 @@ export const mutations = {
 }
 
 export const getters = {
-	products (state) {
+	/* products (state) {
 		return state.products
 	},
 
@@ -188,7 +188,7 @@ export const getters = {
 		if (state.cart.subtotal) {
 			return state.cart.subtotal.formatted
 		}
-	},
+	}, */
 
 	termsAndConditionsData (state) {
 		return getPropertysValue('company.data.helpCenter.description', state)

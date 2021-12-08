@@ -81,24 +81,24 @@
 				</div>
 				<div class="login-social-selector">
 					<div class="login-selector-grid">
-						<div class="login-facebook">
+						<button class="login-facebook">
 							<picture>
 								<img
-								class="login-selector-icon"
-								src="~/assets/images/login/facebook.png"
-								alt="facebook"
-								>
+									class="login-selector-icon"
+									src="~/assets/icons/facebook.svg"
+									alt="facebook"
+									>
 							</picture>
-						</div>
-						<div class="login-google">
+						</button>
+						<button class="login-google">
 							<picture>
 								<img
-								class="login-selector-icon"
-								src="~/assets/images/login/google_icon.png"
-								alt="google"
-								>
+									class="login-selector-icon"
+									src="~/assets/icons/google.svg"
+									alt="google"
+									>
 							</picture>
-						</div>
+						</button>
 					</div>
 					<button
 						class="login-enter-button"
@@ -355,14 +355,15 @@ export default {
 		flex-direction: row;
 		display: flex;
 		justify-content: center;
+		width: 400px;
 	}
 
 	&-selector-grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-auto-rows: minmax(50px, auto);
-		width: 200px;
-		border-radius: 5px;
+		width: 125px;
+		border-radius: 22px;
 		background-color: #242424;
 		padding: 5px;
 		margin: 0 auto;
@@ -375,15 +376,20 @@ export default {
 	&-facebook {
 		margin: 0 auto;
 		border-radius: 20px;
-		background-color: #93e600;
 		padding: 10px;
+	}
+	&-facebook:focus {
+		background-color: #93e600;
 	}
 
 	&-google {
 		padding: 10px;
 		margin: 0 auto;
 		border-radius: 10px;
-		background-color: transparent;
+	}
+
+	&-google:focus {
+		background-color: #93e600;
 	}
 
 	&-enter-button {

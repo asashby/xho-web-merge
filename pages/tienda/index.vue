@@ -1,21 +1,29 @@
 <template>
     <div>
-        <client-only>
-            <Slider
-                class="banner"
-                :duration="5000"
-                :speed="2000">
-                <SliderItem class="banner-item">
-                    <img class="banner-image" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/promo.jpg?alt=media&token=5d9c801e-a810-4bdf-9993-d19b4ce87831" alt="">
-                </SliderItem>
-                <SliderItem class="banner-item">
-                    <img class="banner-image" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/promo2.jpg?alt=media&token=e98fb3ae-9add-401b-b4dc-44d06ac68398" alt="">
-                </SliderItem>
-                <SliderItem class="banner-item">
-                    <img class="banner-image" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/promo3.jpg?alt=media&token=d8c95639-c157-4749-8372-bf4d95f1f33c" alt="">
-                </SliderItem>
-            </Slider>
-        </client-only>
+        <div class="slider-wrapper">
+            <div class="empty-column">
+
+            </div>
+            <client-only class="slider-column">
+                <Slider
+                    class="banner"
+                    duration="8000"
+                    :speed="500"
+                    animation="fade"
+                    indicators="false"
+                    interval="5000">
+                    <SliderItem class="banner-item">
+                        <img class="banner-image" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/promo.jpg?alt=media&token=5d9c801e-a810-4bdf-9993-d19b4ce87831" alt="">
+                    </SliderItem>
+                    <SliderItem class="banner-item">
+                        <img class="banner-image" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/promo2.jpg?alt=media&token=e98fb3ae-9add-401b-b4dc-44d06ac68398" alt="">
+                    </SliderItem>
+                    <SliderItem class="banner-item">
+                        <img class="banner-image" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/promo3.jpg?alt=media&token=d8c95639-c157-4749-8372-bf4d95f1f33c" alt="">
+                    </SliderItem>
+                </Slider>
+            </client-only>
+        </div>
         <div class="shop-body-wrapper">
             <div class="categories-wrapper">
                 <p class="shop-category-title">
@@ -41,7 +49,9 @@
                 <div class="item-card" v-for="product in products" :key="product.id">
                     <div class="item-image-container">
                         <img class="item-image" :src="product.image" alt="">
-                        <button class="add-item-button">
+                        <button
+                            class="add-item-button"
+                            @click="openProductDetails(product)">
                             <p class="text-button">VER</p>
                         </button>
                     </div>
@@ -55,6 +65,11 @@
 import { defineComponent } from '@vue/composition-api'
 import products from '@/api/productsData'
 import { Slider, SliderItem } from 'vue-easy-slider'
+
+function openProductDetails (product) {
+	localStorage.setItem('selectedProduct', product.title)
+	this.$router.push('/tienda/product_details')
+}
 
 export default defineComponent({
 	name: 'Product',
@@ -79,6 +94,9 @@ export default defineComponent({
 			return products
 		}
 	},
+	methods: {
+		openProductDetails
+	},
 	mounted () {
 		this.$store.dispatch('fetchProducts')
 	}
@@ -86,6 +104,24 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 
+    .slider-wrapper{
+        margin-top: 0;
+        height: 470px;
+        background-image: url("https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/bg%20(1).png?alt=media&token=c02a4e91-ec77-44f6-b7af-7f1ab49cbbed");
+        background-size: contain;
+        background-repeat:   no-repeat;
+        background-position: center center;
+    }
+    .empty-column{
+        float: left;
+        width: 50%;
+        margin: 0 auto;
+    }
+    .slider-column{
+        float: left;
+        width: 50%;
+        margin: 0 auto;
+    }
     .shop-body-wrapper{
         padding: 75px;
     }
@@ -155,6 +191,7 @@ export default defineComponent({
         bottom: 0;
         left: 0;
         right: 0;
+        outline: none;
     }
     .add-item-button:hover{
         background-color: #3BA6A8;
@@ -182,12 +219,14 @@ export default defineComponent({
         height: 300px;
         object-fit: cover;
         margin: 0 auto;
+        border-radius: 12px;
     }
     .banner{
-        margin-top: 100px;
-        height: 450px;
+        height: 450px !important;
+        z-index: 1 !important;
     }
     .banner-item{
-        height: 450px;
+        margin-top: 90px;
+        height: 450px !important;
     }
 </style>

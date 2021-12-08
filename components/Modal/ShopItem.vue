@@ -11,8 +11,15 @@
 import { defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
+	name: 'ProductDetails',
+	components: {
+	},
 	props: {
 		productTitle: {
+			default: '',
+			type: String
+		},
+		description: {
 			default: '',
 			type: String
 		},
@@ -22,7 +29,15 @@ export default defineComponent({
 		},
 		price: {
 			default: 0,
-			type: Float32Array
+			type: Number
+		},
+		sku: {
+			default: '',
+			type: String
+		},
+		category: {
+			default: '',
+			type: String
 		}
 	},
 	setup () {
