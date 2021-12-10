@@ -67,7 +67,14 @@ import products from '@/api/productsData'
 import { Slider, SliderItem } from 'vue-easy-slider'
 
 function openProductDetails (product) {
-	localStorage.setItem('selectedProduct', product.title)
+	localStorage.setItem('selectedProductId', product.id)
+	localStorage.setItem('selectedProductTitle', product.title)
+	localStorage.setItem('selectedProductPrice', product.price)
+	localStorage.setItem('selectedProductDescription', product.description)
+	localStorage.setItem('selectedProductImage', product.image)
+	localStorage.setItem('selectedProductSku', product.sku)
+	localStorage.setItem('selectedProductCategory', product.category)
+	this.$store.commit('setSelectedProduct', product)
 	this.$router.push('/tienda/product_details')
 }
 

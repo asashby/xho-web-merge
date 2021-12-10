@@ -33,11 +33,13 @@
         Tienda
       </a>
 
-      <v-btn
-        icon
-      >
-        <img src="~/assets/icons/bag.svg">
-      </v-btn>
+      <NuxtLink to="/tienda/cart">
+		<v-btn
+			icon
+		>
+			<img src="~/assets/icons/bag.svg">
+		</v-btn>
+      </NuxtLink>
 
       <v-app-bar-nav-icon
         v-if="!hideMenu"
