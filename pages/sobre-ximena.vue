@@ -4,7 +4,7 @@
       <picture>
         <source
           media="(min-width: 960px)"
-          :srcset="bannerImage"
+          srcset="~/assets/images/menu/ximena-hoyos2.jpg"
         >
         <source :srcset="bannerMobileImage">
         <img :src="bannerMobileImage" class="principal-background--container-img">
@@ -13,8 +13,8 @@
       <div class="principal-background--container-rrss">
         <div class="name-container">
           <span>Sobre</span>
-          <h1>Ximena</h1>
-          <h1>Hoyos</h1>
+          <h1 class="ximena-name-dark">Ximena</h1>
+          <h1 class="ximena-name-dark">Hoyos</h1>
         </div>
 
         <div class="principal-background--container-rrss_components">
@@ -46,20 +46,59 @@
 
       <div class="principal-ximena--container-name">
         <span>Sobre</span>
-        <h1>Ximena</h1>
-        <h1>Hoyos</h1>
+        <h1 class="ximena-name">Ximena</h1>
+        <h1 class="ximena-name">Hoyos</h1>
       </div>
-
-      <div class="principal-ximena--container-summary">
-				<div class="principal-ximena--container-summary_content">
-					<picture>
-						<img :src="ximenaCircular" class="principal-ximena--container-summary_avatar">
-					</picture>
-				</div>
-        <p
-          class="principal-ximena--container-summary_personal-info"
-          v-html="description"
-        />
+      <div class="principal-ximena--container-div-summary">
+		<div class="principal-ximena--container-summary">
+					<div class="principal-ximena--container-summary_content">
+						<picture>
+							<img :src="ximenaCircular" class="principal-ximena--container-summary_avatar">
+						</picture>
+					</div>
+			<p
+			class="principal-ximena--container-summary_personal-info"
+			v-html="description"
+			/>
+		</div>
+		<div class="principal-ximena--container-access-menu">
+			<div class="principal-ximena--container-op1" @click="goToAbout">
+				<picture>
+					<img
+						class="login-card"
+						src="~/assets/images/login/OP01.jpg"
+						alt="Logo_Ximena_Hoyos"
+					>
+				</picture>
+			</div>
+			<div class="principal-ximena--container-op2" @click="goToTraining">
+				<picture>
+					<img
+					class="login-card"
+					src="~/assets/images/login/OP02.jpg"
+					alt="Logo_Ximena_Hoyos"
+					>
+				</picture>
+			</div>
+			<div class="principal-ximena--container-op3" @click="goToRecipes">
+				<picture>
+					<img
+					class="login-card"
+					src="~/assets/images/login/OP03.jpg"
+					alt="Logo_Ximena_Hoyos"
+					>
+				</picture>
+			</div>
+			<div class="principal-ximena--container-op4" @click="goToTips">
+				<picture>
+					<img
+					class="login-card"
+					src="~/assets/images/login/OP04.jpg"
+					alt="Logo_Ximena_Hoyos"
+					>
+				</picture>
+			</div>
+		</div>
       </div>
     </section>
 
@@ -113,18 +152,29 @@ export default {
 		}),
 		rrssImages
 	},
+	methods: {
+		goToAbout () {
+			this.$router.push('/sobre-ximena')
+		},
+		goToTraining () {
+			this.$router.push('/entrenamientos')
+		},
+		goToRecipes () {
+			this.$router.push('/recetas')
+		},
+		goToTips () {
+			this.$router.push('/tips')
+		}
+	},
 	mounted
 }
 </script>
 
 <style lang="scss" scoped>
 .principal--main-container {
-	@apply pb-4;
-
-	@media screen and (min-width:1024px) {
-		@apply mx-auto;
-		max-width: $maxWidth;
-	}
+	width: 100%;
+	padding-left: 150px;
+	padding-right: 150px;
 
 	.principal-background--container {
 		@apply bg-gray-heavy;
@@ -181,14 +231,15 @@ export default {
 	}
 
 	.principal-ximena--container {
-		@apply relative;
-		@apply pt-16 px-2;
 		@apply text-gray-light;
-		@apply flex flex-col items-center;
+		width: 100%;
+
+		&-div-summary{
+			display: inline-flex;
+			align-items: center;
+		}
 
 		@media screen and (min-width: 960px) {
-			@apply mx-auto pt-2;
-			max-width: 632px;
 		}
 
 		&-rrss {
@@ -203,12 +254,13 @@ export default {
 			}
 
 			.rrss-component {
-				@apply w-16 h-16;
+				height: 40px !important;
+				width: 40px !important;
 				@apply rounded;
-				@apply mx-2;
 
 				img {
-					@apply w-full h-full;
+					height: 40px !important;
+					width: 40px !important;
 				}
 			}
 		}
@@ -226,26 +278,64 @@ export default {
 		}
 
 		&-summary {
-			@apply text-center;
-			@apply border border-solid border-gray-light;
+			display: flex;
+			text-align: left;
+			align-items: center;
+			border: 3px solid #90d701;
+			width: 50%;
+			margin: 0 auto;
 			@apply pt-8 px-4 pb-4 mt-6 mb-8;
 			@apply rounded-2xl;
 
 			&_avatar {
 				@apply bg-gray-base;
-				@apply w-24 h-24;
+				height: 300px;
+				width: 300px;
 				@apply rounded-full;
 				@apply object-cover;
-				@apply mx-auto mb-6;
 
 				@media screen and (min-width: 960px) {
-					@apply w-56 h-56;
+					height: 250px;
+					width: 250px;
 				}
 			}
 
 			&_personal-info {
-				@apply text-gray-heavy;
+				max-width: 49%;
+				color: white;
+				font-size: 14px;
+				padding-left: 15px;
+				align-content: center;
+				margin: 0 auto;
 			}
+		}
+
+		&-access-menu{
+			margin: 0 auto;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-auto-rows: minmax(100px, auto);
+			width: 500px;
+		}
+
+		&-op1{
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		&-op2{
+			grid-column: 2;
+			grid-row: 1;
+		}
+
+		&-op3{
+			grid-column: 1;
+			grid-row: 2;
+		}
+
+		&-op4{
+			grid-column: 2;
+			grid-row: 2;
 		}
 	}
 
@@ -268,5 +358,12 @@ export default {
 			@apply w-full h-40;
 		}
 	}
+}
+
+.ximena-name{
+	color: #55b2f4;
+}
+.ximena-name-dark{
+	color: #0d7dc9;
 }
 </style>

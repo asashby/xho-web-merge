@@ -6,13 +6,15 @@
       fixed
       elevation="0"
     >
-      <picture>
-        <img
-          class="login-logo"
-          src="~/assets/icons/ximena_logo.svg"
-          alt="Logo_Ximena_Hoyos"
-        >
-      </picture>
+      <NuxtLink to="/sobre-ximena">
+		<picture>
+			<img
+			class="login-logo"
+			src="~/assets/icons/ximena_logo.svg"
+			alt="Logo_Ximena_Hoyos"
+			>
+		</picture>
+      </NuxtLink>
 
       <v-spacer />
 
@@ -37,7 +39,7 @@
 		<v-btn
 			icon
 		>
-			<img src="~/assets/icons/bag.svg">
+			<img class="shop-icon" src="~/assets/images/menu/bag.png">
 		</v-btn>
       </NuxtLink>
 
@@ -139,7 +141,7 @@ export default {
 		@apply mr-6;
 
 		&.nuxt-link-active {
-			@apply text-green-base;
+			color: #90d701;
 		}
 
 		@media screen and (min-width:800px) {
@@ -155,6 +157,8 @@ export default {
 			@apply text-green-base;
 			@apply border border-solid border-green-base;
 			@apply px-2 py-1 mr-4;
+			color: #90d701;
+			border: 1px solid #90d701;
 		}
 	}
 
@@ -165,6 +169,7 @@ export default {
 			@apply inline;
 			@apply w-8 h-8;
 			@apply rounded-full;
+			border: 3px solid #90d701;
 		}
 	}
 
@@ -174,5 +179,6 @@ export default {
 			@apply hidden;
 		}
 	}
+
 }
 </style>

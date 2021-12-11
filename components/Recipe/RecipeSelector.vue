@@ -2,6 +2,7 @@
 	<div class="recipe-selector--main-container">
 		<div class="recipe-selector--desktop-container">
 			<Selector
+				class="recipe-selector-element"
 				wire
 				itemText="title"
 				itemValue="code"
@@ -109,5 +110,9 @@ export default {
 			}
 		}
 	}
+}
+.recipe-selector-element{
+	border: 2px solid #1583d2;
+	color: #b9b7b8;
 }
 </styles>

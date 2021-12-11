@@ -3,7 +3,7 @@
 		<NavBarComponent class="principal-layout--nav-bar"/>
 
 		<div class="principal-layout--container">
-			<div class="menu-container">
+			<!--<div class="menu-container">
 				<picture>
 					<img
 						class="login-logo"
@@ -11,14 +11,14 @@
 						alt="Logo_Ximena_Hoyos">
 				</picture>
 				<AppMenu :menu="menu" />
-			</div>
+			</div>-->
 
 			<div class="content-container">
 
 				<div class="user-greeting--main-container">
 					<div class="user-greeting--text">
 						<h1>Hola</h1>
-						<h2>{{ userName }}, bienvenida</h2>
+						<h2>{{ userName }}</h2>
 					</div>
 					<NuxtLink to="/perfil">
 						<picture>
@@ -36,12 +36,12 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import AppMenu from '~/components/AppMenu/AppMenu'
+// import AppMenu from '~/components/AppMenu/AppMenu'
 import NavBarComponent from '~/components/Nav'
 
 export default {
 	name: 'LayoutPantallaPrincipal',
-	components: { AppMenu, NavBarComponent },
+	components: { NavBarComponent },
 	computed: {
 		...mapGetters('profile', [
 			'userPhoto',
@@ -64,12 +64,6 @@ export default {
 	}
 
 	&--container {
-		@apply grid grid-cols-1;
-
-		@media screen and (min-width: 1024px) {
-			@apply grid gap-8;
-			grid-template-columns: 24rem 1fr;
-		}
 
 		.menu-container {
 			@apply hidden;
@@ -89,7 +83,7 @@ export default {
 		.content-container {
 
 			@media screen and (min-width:1024px) {
-				@apply pr-4;
+
 			}
 
 			.user-greeting {

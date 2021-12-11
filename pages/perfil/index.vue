@@ -138,7 +138,7 @@ export default {
 			}
 
 			&_btn.v-btn {
-				@apply text-green-base;
+				color: #95d100;
 				@apply bg-black-heavy;
 			}
 		}

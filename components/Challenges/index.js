@@ -293,12 +293,12 @@ export const IntroductionChallengeDetails = Vue.component('IntroductionChallenge
         	{ this.coursepaid === 0
 					? <button
 						type="button"
-						class="introduction-btn x-btn x-btn__green"
+						class="introduction-btn"
 					>Iniciar reto</button>
 					: <button
 						onClick={ this.handlePayment }
 						type="button"
-						class="introduction-btn x-btn x-btn__green"
+						class="introduction-btn"
 					>Solicitar reto
 						<span class="d-block">
 							{this.prices}
@@ -359,7 +359,7 @@ export const WorkoutByDay = Vue.component('WorkoutByDay', {
 				</div>
 
 				<div class="done">
-					{this.done !== 0 ? <Icon icon="mdi-lock"/> : <Icon icon="mdi-check"/>}
+					{this.done !== 0 ? <Icon icon="mdi-lock"/> : <img class="done-icon" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/garrapata.png?alt=media&token=d239de7c-41e8-4d6a-9360-401ded4355b2"/>}
 				</div>
 			</NuxtLink>
 		)
@@ -508,7 +508,7 @@ export const RoutineSummary = Vue.component('RoutineSummary', {
 					</div>
 				</div>
 
-				<span class="text-xs flex justify-center">
+				<span class="subtitle-text">
 					{ this.level }
 					{ this.frequency && <span class="separation-text" >.</span> }
 					{ this.frequency }

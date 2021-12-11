@@ -5,8 +5,8 @@
 		rounded
 		clearable
 		hide-details
-		prepend-icon="mdi-magnify"
-		placeholder="buscar"
+		append-icon="mdi-magnify"
+		placeholder="Buscar..."
 		@keydown="handleEnterPress"
 		@input="handleClearEvent"
 	></v-text-field>
@@ -31,4 +31,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+	.x-searcher--field__desktop{
+		border: 3px solid #90d701;
+		background-color: #343432;
+	}
 </style>
