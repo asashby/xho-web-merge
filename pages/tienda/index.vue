@@ -13,13 +13,10 @@
                     indicators="false"
                     interval="5000">
                     <SliderItem class="banner-item">
-                        <img class="banner-image" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/promo.jpg?alt=media&token=5d9c801e-a810-4bdf-9993-d19b4ce87831" alt="">
+                        <img class="banner-image" @click="addOneMonthOffer" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/promo.jpg?alt=media&token=5d9c801e-a810-4bdf-9993-d19b4ce87831" alt="">
                     </SliderItem>
                     <SliderItem class="banner-item">
-                        <img class="banner-image" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/promo2.jpg?alt=media&token=e98fb3ae-9add-401b-b4dc-44d06ac68398" alt="">
-                    </SliderItem>
-                    <SliderItem class="banner-item">
-                        <img class="banner-image" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/promo3.jpg?alt=media&token=d8c95639-c157-4749-8372-bf4d95f1f33c" alt="">
+                        <img class="banner-image" @click="addTwoMonthsOffer" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/promo2.jpg?alt=media&token=e98fb3ae-9add-401b-b4dc-44d06ac68398" alt="">
                     </SliderItem>
                 </Slider>
             </client-only>
@@ -99,10 +96,46 @@ export default defineComponent({
 	computed: {
 		products () {
 			return products
+		},
+		oneMonthOffer () {
+			return {
+				id: 13,
+				title: 'PACK ISOXIPRO Whey protein isolate + Entrenamiento app (1 mes)',
+				price: 238.00,
+				description: 'Oferta proteína más entrenamientos por un mes',
+				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/pack-isoxipro-shaker-tobillera.jpg?alt=media&token=60184469-d1b7-478e-90fc-3f43138b3814',
+				sku: 'PIPT-1-1',
+				category: 'PROMOCIONES, PROTEINA'
+			}
+		},
+		twoMonthsOffer () {
+			return {
+				id: 14,
+				title: 'PACK ISOXIPRO Whey protein 500g + Entrenamiento app (2 meses)',
+				price: 199.00,
+				description: 'Oferta proteína 500 gramos más entrenamientos por un mes',
+				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/pack-isoxipro-shaker-tobillera.jpg?alt=media&token=60184469-d1b7-478e-90fc-3f43138b3814',
+				sku: 'PIPT-1-1',
+				category: 'PROMOCIONES, PROTEINA'
+			}
 		}
 	},
 	methods: {
-		openProductDetails
+		openProductDetails,
+		addOneMonthOffer () {
+			this.$store.commit('addToCart', {
+				product: this.oneMonthOffer,
+				quantity: 1
+			})
+			this.$router.push('/tienda/cart')
+		},
+		addTwoMonthsOffer () {
+			this.$store.commit('addToCart', {
+				product: this.twoMonthsOffer,
+				quantity: 1
+			})
+			this.$router.push('/tienda/cart')
+		}
 	},
 	mounted () {
 		this.$store.dispatch('fetchProducts')
@@ -227,6 +260,9 @@ export default defineComponent({
         object-fit: cover;
         margin: 0 auto;
         border-radius: 12px;
+    }
+    .banner-image:hover{
+        cursor: pointer;
     }
     .banner{
         height: 450px !important;

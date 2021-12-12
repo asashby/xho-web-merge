@@ -12,7 +12,6 @@
 
       <div class="principal-background--container-rrss">
         <div class="name-container">
-          <span>Sobre</span>
           <h1 class="ximena-name-dark">Ximena</h1>
           <h1 class="ximena-name-dark">Hoyos</h1>
         </div>
@@ -45,7 +44,6 @@
       </div>
 
       <div class="principal-ximena--container-name">
-        <span>Sobre</span>
         <h1 class="ximena-name">Ximena</h1>
         <h1 class="ximena-name">Hoyos</h1>
       </div>

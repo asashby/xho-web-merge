@@ -156,7 +156,7 @@ export default {
 			this.$nuxt.$loading.start()
 		})
 		if (this.$auth.$state.loggedIn) {
-			this.$router.push('/perfil')
+			this.$router.push('/sobre-ximena')
 			this.$nextTick(() => {
 				this.$nuxt.$loading.finish()
 			})
@@ -189,7 +189,7 @@ export default {
 		loginWithFacebook (hash) {
 			const facebookToken = hash.get('#access_token')
 			if (facebookToken) {
-				this.$router.push('/objetivos')
+				this.$router.push('/sobre-ximena')
 				this.$nextTick(() => {
 					this.$nuxt.$loading.finish()
 				})
@@ -201,7 +201,7 @@ export default {
 			}
 		},
 		loginWithGoogle () {
-			this.$router.push('/objetivos')
+			this.$router.push('/sobre-ximena')
 			this.$nextTick(() => {
 				this.$nuxt.$loading.finish()
 			})
@@ -223,8 +223,7 @@ export default {
 			)({})
 		},
 		goToAbout () {
-			this.$router.push('/perfil')
-			console.log('cargando pagina')
+			this.$router.push('/sobre-ximena')
 		},
 		goToTraining () {
 			this.$router.push('/entrenamientos')

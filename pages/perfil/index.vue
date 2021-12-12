@@ -49,7 +49,7 @@ async function handleClickOnLogout () {
 function data () {
 	return {
 		profilePages: [
-			{ route: '/perfil/mis-datos', name: 'Datos personales' },
+			// { route: '/perfil/mis-datos', name: 'Datos personales' },
 			{ route: '/perfil/mis-direcciones', name: 'Mis Direcciones' },
 			{ route: '/perfil/mis-pedidos', name: 'Mis pedidos' },
 			{ route: '/perfil/terminos-y-condiciones', name: 'Terminos y condiciones' },
