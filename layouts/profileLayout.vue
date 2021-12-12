@@ -17,6 +17,10 @@ import { mapState } from 'vuex'
 import AppMenu from '~/components/AppMenu/AppMenu'
 import NavBarComponent from '~/components/Nav'
 
+function showData () {
+	console.log(this.menu)
+};
+
 export default {
 	name: 'ProfileLayout',
 	components: { AppMenu, NavBarComponent },
@@ -24,6 +28,9 @@ export default {
 		...mapState({
 			menu: state => state.menu
 		})
+	},
+	methods: {
+		showData
 	}
 }
 </script>

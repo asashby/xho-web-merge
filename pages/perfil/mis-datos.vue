@@ -74,7 +74,7 @@
       </NuxtLink>
       <button
         type="button"
-        class="x-btn x-btn__green profile-my-data--main-container__btn_wrapper-btn"
+        class="save-info-button"
         @click="saveInformation"
       >
         Guardar
@@ -239,5 +239,18 @@ export default {
 			}
 		}
 	}
+}
+
+.save-info-button{
+	margin-left: 8px;
+	padding: 16px 151px;
+	border-radius: 8px;
+	border: 1px solid #95d100;
+	color: #95d100;
+	font-weight: 600;
+}
+.save-info-button:hover{
+	background-color:#95d100;
+	color: white;
 }
 </style>

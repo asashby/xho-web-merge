@@ -53,7 +53,7 @@
 			v-if="showSeeMoreButton"
 			class="cooking-recipes--content-btn__see-more">
 			<button
-				class="more-button x-btn x-btn__green"
+				class="more-button"
 				@click="handleClickOnSeeMore"
 			>Ver mas +</button>
 		</div>
@@ -271,7 +271,15 @@ export default {
 }
 
 .more-button{
+	padding: 16px 24px;
+	border-radius: 8px;
 	border: 2px solid #1583d2;
 	color: #b9b7b8;
+	font-weight: 600;
+}
+
+.more-button:hover{
+	background-color: #1583d2;
+	color: white;
 }
 </style>

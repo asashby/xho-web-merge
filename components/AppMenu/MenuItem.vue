@@ -1,5 +1,5 @@
 <template>
-	<NuxtLink :to="`/${menuItem.route}`" class="menu-item--container">
+	<NuxtLink :to="`/${menuItem.route}`" class="menu-item--container" >
 		<picture>
 			<source
 				media="(min-width: 600px)"
@@ -58,7 +58,11 @@ export default {
 .menu-item {
 	&--container {
 		.menu-item--img {
-			object-fit: none;
+			object-fit: fill;
+		}
+		.menu-item--img:hover {
+			opacity: 0.7;
+			cursor: pointer;
 		}
 
 		&:nth-child(2),
@@ -69,14 +73,13 @@ export default {
 		}
 	}
 	&--img {
-		@apply bg-gray-base;
-		border-radius: 22px;
 		min-height: 9rem;
 		min-width: 9rem;
 	}
 
 	&--name {
 		@apply text-gray-light;
+		text-align: center;
 	}
 }
 </styles>

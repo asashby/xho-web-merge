@@ -366,4 +366,9 @@ export default {
 .ximena-name-dark{
 	color: #0d7dc9;
 }
+
+.login-card:hover{
+	opacity: 0.7;
+	cursor: pointer;
+}
 </style>
