@@ -103,7 +103,7 @@ export default defineComponent({
 				title: 'PACK ISOXIPRO Whey protein isolate + Entrenamiento app (1 mes)',
 				price: 238.00,
 				description: 'Oferta proteína más entrenamientos por un mes',
-				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/pack-isoxipro-shaker-tobillera.jpg?alt=media&token=60184469-d1b7-478e-90fc-3f43138b3814',
+				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-chocolate.jpg?alt=media&token=c866be97-1b48-4232-8849-6a44a5dd0a74',
 				sku: 'PIPT-1-1',
 				category: 'PROMOCIONES, PROTEINA'
 			}
@@ -114,7 +114,7 @@ export default defineComponent({
 				title: 'PACK ISOXIPRO Whey protein 500g + Entrenamiento app (2 meses)',
 				price: 199.00,
 				description: 'Oferta proteína 500 gramos más entrenamientos por un mes',
-				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/pack-isoxipro-shaker-tobillera.jpg?alt=media&token=60184469-d1b7-478e-90fc-3f43138b3814',
+				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-500g.jpg?alt=media&token=78b601fa-71bf-4e91-9ed4-073fc17382f2',
 				sku: 'PIPT-1-1',
 				category: 'PROMOCIONES, PROTEINA'
 			}

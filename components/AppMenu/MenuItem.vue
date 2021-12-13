@@ -34,7 +34,7 @@
 function menuImages () {
 	const name = this.menuItem.name
 	return {
-		[`${name}Image`]: require(`~/assets/images/menu/${name}.webp`),
+		[`${name}Image`]: require(`~/assets/images/menu/${name}.png`),
 		[`${name}Image2`]: require(`~/assets/images/menu/${name}@2x.webp`),
 		[`${name}Image3`]: require(`~/assets/images/menu/${name}@3x.webp`)
 	}

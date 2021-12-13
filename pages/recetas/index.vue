@@ -4,7 +4,7 @@
 
 			<div class="cooking-recipes--banner-container__image">
 				<picture>
-					<source media="(min-width:600px)" srcset="~/assets/images/recetas/banner_desktop.jpg" >
+					<source media="(min-width:600px)" srcset="~/assets/images/recetas/bannerecetas.png" >
 					<source media="(min-width:600px)" srcset="~/assets/images/recetas/banner_desktop@2x.jpg 2x" >
 					<source srcset="~/assets/images/recetas/banner_movil@2x.jpg 2x" >
 					<img
@@ -192,7 +192,9 @@ export default {
 			@apply z-0;
 
 			&-img {
-				@apply w-full h-full;
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
 			}
 		}
 		&__search {

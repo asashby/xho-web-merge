@@ -1,5 +1,7 @@
 <template>
 	<NuxtLink :to="to" class="btn-link--main-container">
+		<image class="btn-icon" :src="this.image" alt="">
+		</image>
 		<p>{{ name }}</p>
 		<v-icon large>mdi-chevron-right</v-icon>
 	</NuxtLink>
@@ -14,6 +16,10 @@ export default {
 			type: String
 		},
 		to: {
+			default: '',
+			type: String
+		},
+		image: {
 			default: '',
 			type: String
 		}
@@ -33,5 +39,11 @@ export default {
 		@apply mb-0;
 		@apply font-bold;
 	}
+}
+
+.btn-icon {
+	height: 25px;
+	width: 25px;
+	color: white;
 }
 </style>

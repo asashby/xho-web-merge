@@ -2,14 +2,15 @@
   <div class="tips">
     <div class="tips--banner-container">
       <div class="tips--banner-container__title">
-        <h1>{{ title }}</h1>
+        <h1>{{title}}</h1>
         <div v-html="description" />
       </div>
 
       <div class="tips--banner-container__image">
-        <picture>
+        <picture class="banner-container">
           <source
-            srcset="~/assets/images/tips/banner_tips_2.jpg"
+            class="banner-image"
+            srcset="~/assets/images/tips/bannertips.png"
             media="(min-width:600px)"
           ></source>
           <img
@@ -18,6 +19,10 @@
             alt="imagen banner de tips"
           >
         </picture>
+
+		<div class="banner-title">
+			<h1>Tips</h1>
+		</div>
       </div>
 
       <div class="tips--banner-container__search">
@@ -47,7 +52,7 @@
 
     <div class="see-more--btn-container">
       <button
-        class="x-btn x-btn__green"
+        class="more-button"
         @click="handleClickOnSeeMore"
       >
         Ver mas +
@@ -153,6 +158,8 @@ export default {
 		}
 
 		&__image {
+			display: flex;
+			align-items: center;
 			@apply absolute inset-0;
 			@apply z-0;
 
@@ -210,5 +217,37 @@ export default {
 			@apply pt-10 px-2;
 		}
 	}
+}
+
+.more-button{
+	padding: 16px 24px;
+	border-radius: 8px;
+	border: 2px solid #1583d2;
+	color: #b9b7b8;
+	font-weight: 600;
+}
+
+.more-button:hover{
+	background-color: #1583d2;
+	color: white;
+}
+
+.banner-image{
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+
+.banner-title{
+	position: absolute;
+	font-size: 44px;
+	font-weight: 800;
+	color: white;
+	margin-left: 150px;
+}
+
+.banner-container{
+	height: 100%;
+	width: 100%;
 }
 </style>

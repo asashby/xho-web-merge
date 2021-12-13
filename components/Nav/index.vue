@@ -50,8 +50,12 @@
         @click="drawer = true"
       />
 
-      <NuxtLink to="/perfil">
+      <NuxtLink v-if="isLoggedIn" to="/perfil">
         <img :src="userPhoto" class="user-photo">
+      </NuxtLink>
+
+      <NuxtLink v-if="isNotLoggedIn" to="/inicio-sesion" class="routes">
+        Entrar
       </NuxtLink>
     </v-app-bar>
 
@@ -96,7 +100,13 @@ export default {
 
 		...mapState({
 			menu: state => state.menu
-		})
+		}),
+		isLoggedIn () {
+			return this.$auth.$state.loggedIn
+		},
+		isNotLoggedIn () {
+			return !this.$auth.$state.loggedIn
+		}
 	},
 	methods: {
 		goToStore () {

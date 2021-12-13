@@ -20,6 +20,7 @@
         :key="profileIndex"
         :to="profile.route"
         :name="profile.name"
+		:image="profile.image"
       />
     </div>
 
@@ -50,10 +51,10 @@ function data () {
 	return {
 		profilePages: [
 			// { route: '/perfil/mis-datos', name: 'Datos personales' },
-			{ route: '/perfil/mis-direcciones', name: 'Mis Direcciones' },
-			{ route: '/perfil/mis-pedidos', name: 'Mis pedidos' },
-			{ route: '/perfil/terminos-y-condiciones', name: 'Terminos y condiciones' },
-			{ route: '/perfil/politicas-de-privacidad', name: 'Politicas de privacidad' }
+			// { route: '/perfil/mis-direcciones', name: 'Mis Direcciones' },
+			// { route: '/perfil/mis-pedidos', name: 'Mis pedidos' },
+			{ route: '/perfil/terminos-y-condiciones', name: 'Terminos y condiciones', image: '@/assets/icons/home.png' },
+			{ route: '/perfil/politicas-de-privacidad', name: 'Politicas de privacidad', image: '@/assets/icons/lupa.png' }
 		]
 	}
 }

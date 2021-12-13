@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
+import politicsAndPrivacy from '@/api/politicsAndPrivacyData'
 import ProfilePageTitle from '~/components/Profile/ProfilePageTitle'
 
 async function fetch () {
@@ -23,9 +24,9 @@ export default {
 	layout: 'profileLayout',
 	fetch,
 	computed: {
-		...mapGetters([
-			'politicsAndPrivacyData'
-		])
+		politicsAndPrivacyData () {
+			return politicsAndPrivacy
+		}
 	}
 }
 </script>

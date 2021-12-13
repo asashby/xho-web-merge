@@ -4,18 +4,18 @@
 
 		<div class="principal-layout--container">
 			<!--<div class="menu-container">
+				<AppMenu :menu="menu" />
+			</div>-->
+
+			<div class="content-container">
 				<picture>
 					<img
 						class="login-logo"
 						src="~/assets/icons/ximena_logo.svg"
 						alt="Logo_Ximena_Hoyos">
 				</picture>
-				<AppMenu :menu="menu" />
-			</div>-->
 
-			<div class="content-container">
-
-				<div class="user-greeting--main-container">
+				<div v-if="isLoggedIn" class="user-greeting--main-container">
 					<div class="user-greeting--text">
 						<h1>Hola</h1>
 						<h2>{{ userName }}</h2>
@@ -49,7 +49,20 @@ export default {
 		]),
 		...mapState({
 			menu: state => state.menu
-		})
+		}),
+		isLoggedIn () {
+			return this.$auth.$state.loggedIn
+		},
+		isNotLoggedIn () {
+			return !this.$auth.$state.loggedIn
+		}
+	},
+	methods: {
+		logoClick () {
+			if (this.isNotLoggedIn) {
+				this.$router.push('/inicio-sesion')
+			}
+		}
 	}
 }
 </script>
@@ -81,6 +94,7 @@ export default {
 		}
 
 		.content-container {
+			display: inline;
 
 			@media screen and (min-width:1024px) {
 
@@ -115,5 +129,16 @@ export default {
 			}
 		}
 	}
+}
+
+.login-logo{
+	margin-top: 35px;
+	margin-left: 75px;
+	float: left;
+	width: 100px;
+}
+
+.login-logo:hover{
+	cursor: pointer;
 }
 </style>
