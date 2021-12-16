@@ -39,6 +39,13 @@
 					alt="Logo_Ximena_Hoyos"
 					>
 				</picture>
+				<picture>
+					<img
+					class="login-logo-mobile"
+					src="~/assets/icons/ximena_logo.svg"
+					alt="Logo_Ximena_Hoyos"
+					>
+				</picture>
 			</div>
 			<div class="login-column">
 				<div class="login-grid">
@@ -274,26 +281,37 @@ export default {
 
 	&-wrapper {
 		@apply w-full;
-		@apply self-end;
 		@apply z-10;
 		@apply pb-4;
-		display: table;
+		margin: 0 auto;
 
 		@media screen and (min-width: 600px) {
 			@apply self-auto;
+			@apply self-end;
+			display: table;
 		}
 	}
 
-	&-row::after {
-		content: "";
-		display: table;
-		clear: both;
+	&-row {
+		margin: 0 auto;
+
+		@media screen and (min-width: 600px) {
+			display: table;
+			clear: both;
+		}
 	}
 
 	&-column {
-		float: left;
-		width: 50%;
 		margin: 0 auto;
+
+		@media screen and (max-width: 599px) {
+			align-items: center;
+		}
+
+		@media screen and (min-width: 600px) {
+			float: left;
+			width: 50%;
+		}
 	}
 
 	&-logo {
@@ -302,18 +320,39 @@ export default {
 	}
 
 	&-cover {
-		height: 700px;
-		margin: auto;
-		float: right;
+		@media screen and (min-width: 600px) {
+			height: 700px;
+			margin: auto;
+			float: right;
+		}
+		@media screen and (max-width: 599px) {
+			display: none;
+		}
+	}
+
+	&-logo-mobile {
+		margin: 0 auto;
+
+		@media screen and (min-width: 600px) {
+			display: none;
+		}
+		@media screen and (max-width: 599px) {
+			margin-top: 75px;
+			width: 200px;
+			object-fit: contain;
+			margin-bottom: 35px;
+		}
 	}
 
 	&-grid {
 		margin: 0 auto;
-		margin-top: 150px;
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		grid-auto-rows: minmax(100px, auto);
-		width: 500px;
+		@media screen and (min-width: 600px) {
+			margin-top: 150px;
+			grid-auto-rows: minmax(100px, auto);
+			width: 500px;
+		}
 	}
 
 	&-op1 {
@@ -337,7 +376,12 @@ export default {
 	}
 
 	&-card {
-		height: 200px;
+		@media screen and (max-width: 599px) {
+			height: 150px;
+		}
+		@media screen and (min-width: 600px) {
+			height: 200px;
+		}
 	}
 
 	&-selector-icon {
@@ -354,10 +398,13 @@ export default {
 		flex-direction: row;
 		display: flex;
 		justify-content: center;
-		width: 400px;
+		@media screen and (min-width: 600px) {
+			width: 400px;
+		}
 	}
 
 	&-selector-grid {
+		align-items: center;
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		grid-auto-rows: minmax(50px, auto);

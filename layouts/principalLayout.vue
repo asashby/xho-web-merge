@@ -3,10 +3,6 @@
 		<NavBarComponent class="principal-layout--nav-bar"/>
 
 		<div class="principal-layout--container">
-			<!--<div class="menu-container">
-				<AppMenu :menu="menu" />
-			</div>-->
-
 			<div class="content-container">
 				<picture>
 					<img
@@ -132,10 +128,17 @@ export default {
 }
 
 .login-logo{
-	margin-top: 35px;
-	margin-left: 75px;
-	float: left;
-	width: 100px;
+
+	@media screen and (max-width: 599px) {
+		display: none;
+	}
+
+	@media screen and (min-width: 600px) {
+		margin-top: 35px;
+		margin-left: 75px;
+		float: left;
+		width: 100px;
+	}
 }
 
 .login-logo:hover{

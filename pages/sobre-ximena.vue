@@ -60,41 +60,49 @@
 			/>
 		</div>
 		<div class="principal-ximena--container-access-menu">
-			<div class="principal-ximena--container-op1" @click="goToAbout">
-				<picture>
-					<img
+			<div class="principal-ximena--container-op1">
+				<NuxtLink to="/sobre-ximena">
+					<picture>
+						<img
+							class="login-card"
+							src="~/assets/images/login/OP01.jpg"
+							alt="Logo_Ximena_Hoyos"
+						>
+					</picture>
+				</NuxtLink>
+			</div>
+			<div class="principal-ximena--container-op2">
+				<NuxtLink to="/entrenamientos">
+					<picture>
+						<img
 						class="login-card"
-						src="~/assets/images/login/OP01.jpg"
+						src="~/assets/images/login/OP02.jpg"
 						alt="Logo_Ximena_Hoyos"
-					>
-				</picture>
+						>
+					</picture>
+				</NuxtLink>
 			</div>
-			<div class="principal-ximena--container-op2" @click="goToTraining">
-				<picture>
-					<img
-					class="login-card"
-					src="~/assets/images/login/OP02.jpg"
-					alt="Logo_Ximena_Hoyos"
-					>
-				</picture>
+			<div class="principal-ximena--container-op3">
+				<NuxtLink to="/recetas">
+					<picture>
+						<img
+						class="login-card"
+						src="~/assets/images/login/OP03.jpg"
+						alt="Logo_Ximena_Hoyos"
+						>
+					</picture>
+				</NuxtLink>
 			</div>
-			<div class="principal-ximena--container-op3" @click="goToRecipes">
-				<picture>
-					<img
-					class="login-card"
-					src="~/assets/images/login/OP03.jpg"
-					alt="Logo_Ximena_Hoyos"
-					>
-				</picture>
-			</div>
-			<div class="principal-ximena--container-op4" @click="goToTips">
-				<picture>
-					<img
-					class="login-card"
-					src="~/assets/images/login/OP04.jpg"
-					alt="Logo_Ximena_Hoyos"
-					>
-				</picture>
+			<div class="principal-ximena--container-op4">
+				<NuxtLink to="/tips">
+					<picture>
+						<img
+						class="login-card"
+						src="~/assets/images/login/OP04.jpg"
+						alt="Logo_Ximena_Hoyos"
+						>
+					</picture>
+				</NuxtLink>
 			</div>
 		</div>
       </div>
@@ -171,8 +179,11 @@ export default {
 <style lang="scss" scoped>
 .principal--main-container {
 	width: 100%;
-	padding-left: 150px;
-	padding-right: 150px;
+
+	@media screen and (min-width: 600px) {
+		padding-left: 150px;
+		padding-right: 150px;
+	}
 
 	.principal-background--container {
 		@apply bg-gray-heavy;
@@ -194,6 +205,17 @@ export default {
 
 		&-rrss {
 			@apply hidden;
+
+			&_components {
+				@media screen and (max-width:599px) {
+					float: right;
+				}
+				.rrss-component {
+
+					img {
+					}
+				}
+			}
 
 			@media screen and (min-width: 600px) {
 				@apply absolute right-0 z-10;
@@ -233,8 +255,16 @@ export default {
 		width: 100%;
 
 		&-div-summary{
-			display: inline-flex;
 			align-items: center;
+			max-width: 100%;
+
+			@media screen and (max-width: 599px) {
+				display: inline;
+			}
+
+			@media screen and (min-width: 600px) {
+				display: inline-flex;
+			}
 		}
 
 		@media screen and (min-width: 960px) {
@@ -266,6 +296,10 @@ export default {
 		&-name {
 			@apply text-center;
 
+			@media screen and (max-width: 599px) {
+				margin-top: 25px;
+			}
+
 			@media screen and (min-width: 960px) {
 				@apply hidden;
 			}
@@ -276,21 +310,32 @@ export default {
 		}
 
 		&-summary {
-			display: flex;
-			text-align: left;
 			align-items: center;
-			border: 3px solid #90d701;
-			width: 50%;
 			margin: 0 auto;
-			@apply pt-8 px-4 pb-4 mt-6 mb-8;
-			@apply rounded-2xl;
+			max-width: 100%;
+
+			@media screen and (max-width: 599px) {
+				display: inline;
+				padding: 30px;
+			}
+
+			@media screen and (min-width: 600px) {
+				display: flex;
+				text-align: left;
+				width: 50%;
+				@apply pt-8 px-4 pb-4 mt-6 mb-8;
+				border: 3px solid #90d701;
+				@apply rounded-2xl;
+			}
 
 			&_avatar {
 				@apply bg-gray-base;
-				height: 300px;
-				width: 300px;
 				@apply rounded-full;
 				@apply object-cover;
+
+				@media screen and (max-width: 959px) {
+					display: none;
+				}
 
 				@media screen and (min-width: 960px) {
 					height: 250px;
@@ -299,12 +344,20 @@ export default {
 			}
 
 			&_personal-info {
-				max-width: 49%;
 				color: white;
 				font-size: 14px;
-				padding-left: 15px;
 				align-content: center;
 				margin: 0 auto;
+
+				@media screen and (max-width: 599px) {
+					padding-left: 30px;
+					padding-right: 30px;
+				}
+
+				@media screen and (min-width: 600px) {
+					max-width: 49%;
+					padding-left: 15px;
+				}
 			}
 		}
 
@@ -312,8 +365,10 @@ export default {
 			margin: 0 auto;
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
-			grid-auto-rows: minmax(100px, auto);
-			width: 500px;
+			@media screen and (min-width: 600px) {
+				grid-auto-rows: minmax(100px, auto);
+				width: 500px;
+			}
 		}
 
 		&-op1{
@@ -363,6 +418,12 @@ export default {
 }
 .ximena-name-dark{
 	color: #0d7dc9;
+}
+
+.login-card{
+	@media screen and (max-width: 599px) {
+		height: 150px;
+	}
 }
 
 .login-card:hover{

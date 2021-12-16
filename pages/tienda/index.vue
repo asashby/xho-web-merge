@@ -146,18 +146,20 @@ export default defineComponent({
 
     .slider-wrapper{
         margin-top: 0;
-        height: 470px;
-        background-image: url("https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/bg%20(1).png?alt=media&token=c02a4e91-ec77-44f6-b7af-7f1ab49cbbed");
-        background-size: contain;
-        background-repeat:   no-repeat;
-        background-position: center center;
+
+        @media screen and (max-width: 599px) {
+            height: 250px;
+        }
+
+        @media screen and (min-width: 600px) {
+            background-image: url("https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/bg%20(1).png?alt=media&token=c02a4e91-ec77-44f6-b7af-7f1ab49cbbed");
+            height: 470px;
+            background-size: contain;
+            background-repeat:   no-repeat;
+            background-position: center center;
+        }
     }
     .empty-column{
-        float: left;
-        width: 50%;
-        margin: 0 auto;
-    }
-    .slider-column{
         float: left;
         width: 50%;
         margin: 0 auto;
@@ -166,20 +168,35 @@ export default defineComponent({
         padding: 75px;
     }
     .shop-items-wrapper{
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-gap: 50px;
         justify-content: center;
         margin: 0 auto;
         float: right;
+
+        @media screen and (max-width: 599px) {
+            display: inline;
+        }
+
+        @media screen and (min-width: 600px) {
+            display: grid;
+            grid-gap: 50px;
+            grid-template-columns: repeat(4, 1fr);
+        }
     }
     .categories-wrapper{
-        width: 15%;
-		flex-direction: column;
-		display: inline-block;
-		justify-content: left;
-        height: 500px;
-        float: left;
+
+        @media screen and (max-width: 599px) {
+            display: none;
+            margin: 0 auto;
+        }
+
+        @media screen and (min-width: 600px) {
+            width: 15%;
+            flex-direction: column;
+            display: inline-block;
+            justify-content: left;
+            height: 500px;
+            float: left;
+        }
     }
     .shop-category-title{
         font-size: 16;
@@ -205,6 +222,10 @@ export default defineComponent({
         justify-content: center;
         margin: 0 auto;
         width: 250px;
+
+        @media screen and (max-width: 599px) {
+            margin-bottom: 25px;
+        }
     }
     .item-card:hover{
         cursor: pointer;
@@ -256,20 +277,41 @@ export default defineComponent({
         text-align: center;
     }
     .banner-image{
-        height: 300px;
         object-fit: cover;
         margin: 0 auto;
         border-radius: 12px;
+
+        @media screen and (max-width: 599px) {
+            height: 150px;
+        }
+
+        @media screen and (min-width: 600px) {
+            height: 300px;
+        }
     }
     .banner-image:hover{
         cursor: pointer;
     }
     .banner{
-        height: 450px !important;
         z-index: 1 !important;
+
+        @media screen and (max-width: 599px) {
+            height: 250px !important;
+        }
+
+        @media screen and (min-width: 600px) {
+            height: 450px !important;
+        }
     }
     .banner-item{
         margin-top: 90px;
-        height: 450px !important;
+
+        @media screen and (max-width: 599px) {
+            height: 250px !important;
+        }
+
+        @media screen and (min-width: 600px) {
+            height: 450px !important;
+        }
     }
 </style>

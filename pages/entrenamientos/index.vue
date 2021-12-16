@@ -15,7 +15,7 @@
     <div class="my-challenges--items-container">
       <h2>{{ title }}</h2>
 
-      <div v-if="existMyChallenges" class="my-challenges--items-container__wrapper">
+      <div v-if="isChallengeListed" class="my-challenges--items-container__wrapper">
         <ChallengeComponent
           v-for="challenge in myChallenges"
           :key="challenge.id"
@@ -80,6 +80,7 @@
 <script>
 import { getPropertysValue, isNotEmpty } from 'functionallibrary'
 import { mapState } from 'vuex'
+import challenges from '@/api/challengesData'
 import MobileButtonSearcher from '~/components/Searcher/MobileButtonSearcher'
 import SearcherField from '~/components/Searcher/SearcherField'
 import { ChallengeComponent, BannerChallenges } from '~/components/Challenges'
@@ -143,7 +144,13 @@ export default {
 			existMyChallenges: state => isNotEmpty(state.myChallenges),
 			myChallenges: state => state.myChallenges,
 			title: state => getPropertysValue('challengesDataPage.name', state)
-		})
+		}),
+		challengesList () {
+			return challenges
+		},
+		isChallengeListed () {
+			return true
+		}
 	},
 	mounted,
 	methods: {

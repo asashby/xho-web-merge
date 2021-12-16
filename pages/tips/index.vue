@@ -140,6 +140,10 @@ export default {
 			@apply w-full h-full;
 			@apply z-10;
 
+			@media screen and (max-width: 599px) {
+				display: none;
+			}
+
 			@media screen and (min-width: 600px) {
 				@apply items-start;
 				@apply pl-16;

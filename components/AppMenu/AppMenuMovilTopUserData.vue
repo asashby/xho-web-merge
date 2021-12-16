@@ -12,13 +12,13 @@
       </div>
     </div>
 
-    <a
-      href="https://tienda.ximehoyos.com/tienda/ximenahoyos"
+    <NuxtLink
+	to="/tienda"
       class="header-user--shopstore"
       target="_blank"
     >
       Tienda
-    </a>
+    </NuxtLink>
   </div>
 </template>
 

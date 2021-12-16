@@ -15,7 +15,7 @@
 
 		<NuxtLink :to="`/recetas/${this.slug}`" class="recipe--movil">
 			<div class="recipe--movil-image">
-				<img:src="img">
+				<img :src="img">
 			</div>
 			<div class="recipe--movil-content">
 				<h3 class="recipe-category">{{ resume }}</h3>
