@@ -247,7 +247,14 @@ export default {
 	font-size: 44px;
 	font-weight: 800;
 	color: white;
-	margin-left: 150px;
+
+	@media screen and (max-width: 599px) {
+		margin-left: 30px;
+	}
+
+	@media screen and (min-width: 600px) {
+		margin-left: 150px;
+	}
 }
 
 .banner-container{

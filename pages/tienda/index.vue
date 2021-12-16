@@ -11,7 +11,7 @@
                     :speed="500"
                     animation="fade"
                     indicators="false"
-                    interval="5000">
+                    :interval="5000">
                     <SliderItem class="banner-item">
                         <img class="banner-image" @click="addOneMonthOffer" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/promo.jpg?alt=media&token=5d9c801e-a810-4bdf-9993-d19b4ce87831" alt="">
                     </SliderItem>
