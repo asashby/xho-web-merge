@@ -42,7 +42,7 @@
 
       <div class="all-challenges--items-container__wrapper">
         <ChallengeComponent
-          v-for="challenge in challenges"
+          v-for="challenge in myChallenges"
           :key="challenge.id"
           :img="challenge.url_image"
           :title="challenge.title"
