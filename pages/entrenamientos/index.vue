@@ -15,7 +15,7 @@
     <div class="my-challenges--items-container">
       <h2>{{ title }}</h2>
 
-      <div v-if="isChallengeListed" class="my-challenges--items-container__wrapper">
+      <div v-if="existMyChallenges" class="my-challenges--items-container__wrapper">
         <ChallengeComponent
           v-for="challenge in myChallenges"
           :key="challenge.id"
@@ -42,7 +42,7 @@
 
       <div class="all-challenges--items-container__wrapper">
         <ChallengeComponent
-          v-for="challenge in myChallenges"
+          v-for="challenge in challenges"
           :key="challenge.id"
           :img="challenge.url_image"
           :title="challenge.title"
