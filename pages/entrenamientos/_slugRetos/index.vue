@@ -35,7 +35,7 @@
 
       <div class="workout-details--workout-container">
         <WorkoutByDay
-          v-for="w in workout"
+          v-for="w in workoutDays"
           :id="w.id"
           :key="w.code"
           :code="w.code"
@@ -60,6 +60,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import basicoEnCasaUnits from '@/api/basicoEnCasaData'
 import { BannerChallengeDetails, IntroductionChallengeDetails, SummaryChallengeDetails, WorkoutByDay } from '~/components/Challenges'
 import VideoModal from '~/components/Modal/VideoModal'
 
@@ -98,7 +99,10 @@ export default {
 		...mapState('challenges', {
 			challenge: state => state.details,
 			workout: state => state.workout
-		})
+		}),
+		workoutDays () {
+			return basicoEnCasaUnits
+		}
 	},
 	methods: {
 		openVideo,
