@@ -109,61 +109,116 @@ export default defineComponent({
 </script>
 <style scoped>
     .product-details-wrapper{
-        display: table;
-        clear: both;
         width: 100%;
+
+        @media screen and (max-width: 599px){
+            display: inline;
+        }
+
+        @media screen and (min-width: 600px) {
+            display: table;
+            clear: both;
+        }
     }
     .product-details-image-wrapper{
-        width: 50%;
         margin: auto;
-        float: left;
         display: flex;
-        justify-content: right;
         align-items: center;
-        padding: 40px;
         margin-top: 65px;
+
+        @media screen and (max-width: 599px){
+            width: 100%;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        @media screen and (min-width: 600px) {
+            width: 50%;
+            float: left;
+            padding: 40px;
+            justify-content: right;
+        }
     }
     .product-details-image-archive{
-        height: 500px;
         object-fit: contain;
         margin: auto;
         border-radius: 20px;
+
+        @media screen and (max-width: 599px){
+            width: 100%;
+        }
+
+        @media screen and (min-width: 600px) {
+            height: 500px;
+        }
     }
     .product-details-info{
-        width: 50%;
-        float: right;
-        min-height: 100%;
         display: inline;
         justify-content: left;
         align-items: center;
-        padding-top: 40px;
-        padding-left: 40px;
-        padding-right: 125px;
-        margin-top: 65px;
+
+        @media screen and (max-width: 599px){
+            width: 100%;
+        }
+
+        @media screen and (min-width: 600px) {
+            padding-top: 40px;
+            padding-left: 40px;
+            padding-right: 125px;
+            margin-top: 65px;
+            min-height: 100%;
+            width: 50%;
+            float: right;
+        }
     }
     .product-title{
 		font-family: 'Poppins' !important;
 		font-size: 32px !important;
         color: white;
+
+        @media screen and (max-width: 599px){
+            padding-left: 25px;
+            padding-right: 25px;
+        }
     }
     .product-price{
 		font-family: 'Poppins' !important;
 		font-size: 26px !important;
         color: #50d2d4;
+
+        @media screen and (max-width: 599px){
+            padding-left: 25px;
+            padding-right: 25px;
+        }
     }
     .product-description{
 		font-family: 'Poppins' !important;
 		font-size: 14px !important;
         color: white;
         font-weight: 300;
+
+        @media screen and (max-width: 599px){
+            padding-left: 25px;
+            padding-right: 25px;
+        }
     }
     .product-divider{
         margin-top: 20px;
         margin-bottom: 20px;
         border-top: 3px solid #bbb;
+
+        @media screen and (max-width: 599px){
+            margin-left: 25px;
+            margin-right: 25px;
+        }
     }
     .add-to-cart-wrapper{
         display: flex;
+
+        @media screen and (max-width: 599px){
+            padding-left: 25px;
+            padding-right: 25px;
+        }
     }
     .add-to-cart-selector{
         display: inline-flex;
@@ -226,9 +281,19 @@ export default defineComponent({
     }
     .product-extras-wrapper{
         display: inline;
+
+        @media screen and (max-width: 599px){
+            padding-left: 25px;
+            padding-right: 25px;
+        }
     }
     .product-extras-segment{
         display: flex;
+
+        @media screen and (max-width: 599px){
+            padding-left: 25px;
+            padding-right: 25px;
+        }
     }
     .product-extras-key{
 		font-family: 'Poppins' !important;

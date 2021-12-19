@@ -287,8 +287,8 @@ export default {
 
 		@media screen and (min-width: 600px) {
 			@apply self-auto;
-			@apply self-end;
 			display: table;
+			align-items: center;
 		}
 	}
 

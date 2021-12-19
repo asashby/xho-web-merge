@@ -136,16 +136,27 @@ export default defineComponent({
 </script>
 <style scoped>
     .cart-wrapper{
-        display: flex;
         width: 100%;
         max-width: 100%;
+
+        @media screen and (max-width: 599px) {
+            display: inline;
+        }
+
+        @media screen and (min-width: 600px) {
+            display: flex;
+        }
     }
     .cart-table-section{
         margin-top: 100px;
         max-width: 100%;
         width: 100%;
-        padding-left: 50px;
-        padding-right: 25px;
+
+        @media screen and (min-width: 600px) {
+            display: flex;
+            padding-left: 50px;
+            padding-right: 25px;
+        }
     }
     .cart-table{
         width: 100%;
@@ -153,6 +164,11 @@ export default defineComponent({
         border-collapse: collapse;
         font-size: 14px;
         line-height: 1.4;
+
+        @media screen and (max-width: 599px) {
+            display: block;
+            margin-top: 100px;
+        }
     }
     .product-remove{
         border: none;
@@ -161,6 +177,11 @@ export default defineComponent({
         vertical-align: middle;
         font-size: 100%;
         color: white;
+
+        @media screen and (max-width: 599px) {
+            top: -7px;
+            right: -7px;
+        }
     }
     .product-remove-text{
         margin: 0 auto;
@@ -170,10 +191,20 @@ export default defineComponent({
         cursor: pointer;
     }
     .product-thumbnail{
-        padding: 15px 10px;
         border: none;
         border-bottom: 1px solid #EFEFEF;
         color: white;
+
+        @media screen and (max-width: 599px) {
+            top: 0;
+            left: 0;
+            max-height: 115px;
+            padding: 15px 10px;
+        }
+
+        @media screen and (min-width: 600px) {
+            padding: 15px 10px;
+        }
     }
     .product-thumbnail-image{
         height: 80px;
@@ -234,12 +265,26 @@ export default defineComponent({
         font-weight: 600;
         font-size: 14px;
         line-height: 1.2;
+
+        @media screen and (max-width: 599px) {
+            display: none;
+        }
     }
     .cart-totals-section{
-        margin-top: 100px;
-        padding-left: 25px;
-        padding-right: 50px;
-        width: 700px;
+
+        @media screen and (max-width: 599px) {
+            margin-top: 50px;
+            width: 100%;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        @media screen and (min-width: 600px) {
+            margin-top: 100px;
+            width: 700px;
+            padding-left: 25px;
+            padding-right: 50px;
+        }
     }
     .cart-totals-inner{
         padding: 25px;

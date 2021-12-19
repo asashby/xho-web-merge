@@ -35,7 +35,7 @@
 
       <div class="workout-details--workout-container">
         <WorkoutByDay
-          v-for="w in workoutDays"
+          v-for="w in workout"
           :id="w.id"
           :key="w.code"
           :code="w.code"
@@ -61,6 +61,8 @@
 <script>
 import { mapState } from 'vuex'
 import basicoEnCasaUnits from '@/api/basicoEnCasaData'
+import intermedioEnCasaUnits from '@/api/intermedioEnCasaData'
+import avanzadoEnGymUnits from '@/api/avanzadoEnGymData'
 import { BannerChallengeDetails, IntroductionChallengeDetails, SummaryChallengeDetails, WorkoutByDay } from '~/components/Challenges'
 import VideoModal from '~/components/Modal/VideoModal'
 
@@ -101,7 +103,18 @@ export default {
 			workout: state => state.workout
 		}),
 		workoutDays () {
-			return basicoEnCasaUnits
+			if (this.challenge.title === 'Básico en casa') {
+				console.log(basicoEnCasaUnits)
+				return basicoEnCasaUnits
+			} else if (this.challenge.title === 'Intermedio en casa') {
+				console.log(intermedioEnCasaUnits)
+				return intermedioEnCasaUnits
+			} else if (this.challege.title === 'Avanzado en Gym') {
+				console.log(avanzadoEnGymUnits)
+				return avanzadoEnGymUnits
+			}
+			console.log(this.workout)
+			return this.workout
 		}
 	},
 	methods: {
