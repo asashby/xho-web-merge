@@ -7,7 +7,7 @@ const challenges = [
 		days: 60,
 		level: 'Principiante',
 		slug: 'basico-en-casa',
-		frequency: 'Diaria'
+		frequency: null
 	},
 	{
 		id: 18,
@@ -27,7 +27,7 @@ const challenges = [
 		days: 40,
 		level: 'Avanzado',
 		slug: 'avanzado-en-gym',
-		frequency: 'Diaria'
+		frequency: null
 	}
 ]
 
