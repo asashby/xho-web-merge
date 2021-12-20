@@ -104,12 +104,16 @@ export default {
 		}),
 		workoutDays () {
 			if (this.slugRetos === 'basico-en-casa') {
+				console.log(basicoEnCasaUnits)
 				return basicoEnCasaUnits
 			} else if (this.slugRetos === 'intermedio-en-casa') {
+				console.log(intermedioEnCasaUnits)
 				return intermedioEnCasaUnits
 			} else if (this.slugRetos === 'avanzado-en-gym') {
+				console.log(avanzadoEnGymUnits)
 				return avanzadoEnGymUnits
 			} else {
+				console.log(this.workout)
 				return this.workout
 			}
 		}
