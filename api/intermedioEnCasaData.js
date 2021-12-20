@@ -7,6 +7,62 @@ const intermedioEnCasaUnits = [
 		url_icon: 'https://ximena.makipos.la/units/images/file-61039.jpeg'
 	},
 	{
+		id: 29,
+		title: 'Tren superior',
+		day: '2',
+		slug: 'tren-superior',
+		url_icon: 'https://ximena.makipos.la/units/images/file-71189.jpeg'
+	},
+	{
+		id: 30,
+		title: 'Tren inferior',
+		day: '3',
+		slug: 'tren-inferior',
+		url_icon: 'https://ximena.makipos.la/units/images/file-841.jpeg'
+	},
+	{
+		id: 105,
+		title: 'Tren superior',
+		day: '4',
+		slug: 'tren-superior',
+		url_icon: 'https://ximena.makipos.la/units/images/file-79882.jpeg'
+	},
+	{
+		id: 109,
+		title: 'Tren inferior',
+		day: '5',
+		slug: 'tren-inferior',
+		url_icon: 'https://ximena.makipos.la/units/images/file-98323.jpeg'
+	},
+	{
+		id: 110,
+		title: 'Tren inferior',
+		day: '6',
+		slug: 'tren-inferior',
+		url_icon: 'https://ximena.makipos.la/units/images/file-11114.jpeg'
+	},
+	{
+		id: 111,
+		title: 'Tren superior',
+		day: '7',
+		slug: 'tren-superior',
+		url_icon: 'https://ximena.makipos.la/units/images/file-80772.jpeg'
+	},
+	{
+		id: 114,
+		title: 'Tren inferior',
+		day: '8',
+		slug: 'tren-inferior',
+		url_icon: 'https://ximena.makipos.la/units/images/file-74316.jpeg'
+	},
+	{
+		id: 121,
+		title: 'Tren superior',
+		day: '9',
+		slug: 'tren-superior',
+		url_icon: 'https://ximena.makipos.la/units/images/file-58710.jpeg'
+	},
+	{
 		id: 122,
 		title: 'Tren inferior',
 		day: '10',
@@ -75,13 +131,6 @@ const intermedioEnCasaUnits = [
 		day: '19',
 		slug: 'tren-superior',
 		url_icon: 'https://ximena.makipos.la/units/images/file-88696.jpeg'
-	},
-	{
-		id: 29,
-		title: 'Tren superior',
-		day: '2',
-		slug: 'tren-superior',
-		url_icon: 'https://ximena.makipos.la/units/images/file-71189.jpeg'
 	},
 	{
 		id: 140,
@@ -154,13 +203,6 @@ const intermedioEnCasaUnits = [
 		url_icon: 'https://ximena.makipos.la/units/images/file-84208.jpeg'
 	},
 	{
-		id: 30,
-		title: 'Tren inferior',
-		day: '3',
-		slug: 'tren-inferior',
-		url_icon: 'https://ximena.makipos.la/units/images/file-841.jpeg'
-	},
-	{
 		id: 150,
 		title: 'Tren inferior',
 		day: '30',
@@ -231,53 +273,11 @@ const intermedioEnCasaUnits = [
 		url_icon: 'https://ximena.makipos.la/units/images/file-59341.jpeg'
 	},
 	{
-		id: 105,
-		title: 'Tren superior',
-		day: '4',
-		slug: 'tren-superior',
-		url_icon: 'https://ximena.makipos.la/units/images/file-79882.jpeg'
-	},
-	{
 		id: 160,
 		title: 'Tren inferior',
 		day: '40',
 		slug: 'tren-inferior',
 		url_icon: 'https://ximena.makipos.la/units/images/file-63505.jpeg'
-	},
-	{
-		id: 109,
-		title: 'Tren inferior',
-		day: '5',
-		slug: 'tren-inferior',
-		url_icon: 'https://ximena.makipos.la/units/images/file-98323.jpeg'
-	},
-	{
-		id: 110,
-		title: 'Tren inferior',
-		day: '6',
-		slug: 'tren-inferior',
-		url_icon: 'https://ximena.makipos.la/units/images/file-11114.jpeg'
-	},
-	{
-		id: 111,
-		title: 'Tren superior',
-		day: '7',
-		slug: 'tren-superior',
-		url_icon: 'https://ximena.makipos.la/units/images/file-80772.jpeg'
-	},
-	{
-		id: 114,
-		title: 'Tren inferior',
-		day: '8',
-		slug: 'tren-inferior',
-		url_icon: 'https://ximena.makipos.la/units/images/file-74316.jpeg'
-	},
-	{
-		id: 121,
-		title: 'Tren superior',
-		day: '9',
-		slug: 'tren-superior',
-		url_icon: 'https://ximena.makipos.la/units/images/file-58710.jpeg'
 	}
 ]
 

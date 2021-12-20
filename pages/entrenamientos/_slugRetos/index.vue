@@ -35,7 +35,7 @@
 
       <div class="workout-details--workout-container">
         <WorkoutByDay
-          v-for="w in workout"
+          v-for="w in workoutDays"
           :id="w.id"
           :key="w.code"
           :code="w.code"
@@ -60,9 +60,9 @@
 
 <script>
 import { mapState } from 'vuex'
-// import basicoEnCasaUnits from '@/api/basicoEnCasaData'
-// import intermedioEnCasaUnits from '@/api/intermedioEnCasaData'
-// import avanzadoEnGymUnits from '@/api/avanzadoEnGymData'
+import basicoEnCasaUnits from '@/api/basicoEnCasaData'
+import intermedioEnCasaUnits from '@/api/intermedioEnCasaData'
+import avanzadoEnGymUnits from '@/api/avanzadoEnGymData'
 import { BannerChallengeDetails, IntroductionChallengeDetails, SummaryChallengeDetails, WorkoutByDay } from '~/components/Challenges'
 import VideoModal from '~/components/Modal/VideoModal'
 
@@ -103,7 +103,15 @@ export default {
 			workout: state => state.workout
 		}),
 		workoutDays () {
-			return this.workout
+			if (this.slugRetos === 'basico-en-casa') {
+				return basicoEnCasaUnits
+			} else if (this.slugRetos === 'intermedio-en-casa') {
+				return intermedioEnCasaUnits
+			} else if (this.slugRetos === 'avanzado-en-gym') {
+				return avanzadoEnGymUnits
+			} else {
+				return this.workout
+			}
 		}
 	},
 	methods: {
