@@ -35,7 +35,7 @@
 
       <div class="workout-details--workout-container">
         <WorkoutByDay
-          v-for="w in workoutDays"
+          v-for="w in workout"
           :id="w.id"
           :key="w.code"
           :code="w.code"
