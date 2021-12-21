@@ -22,10 +22,10 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody v-for="item in cart" :key="item.product.id">
+                <tbody v-for="item in this.$store.state.cart" :key="item.product.id">
                     <tr>
                         <td class="product-remove">
-                            <p class="product-remove-text" @click="removeProductFromCart">
+                            <p class="product-remove-text" @click="$store.commit('removeFromCart', item)">
                                 X
                             </p>
                         </td>
@@ -194,6 +194,8 @@ export default defineComponent({
         border: none;
         border-bottom: 1px solid #EFEFEF;
         color: white;
+        height: 80px;
+        width: 80px;
 
         @media screen and (max-width: 599px) {
             top: 0;
@@ -210,6 +212,7 @@ export default defineComponent({
         height: 80px;
         width: 80px;
         border-radius: 6px;
+        object-fit: cover;
     }
     .product-name{
         padding: 15px 10px;

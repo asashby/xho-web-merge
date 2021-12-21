@@ -26,24 +26,24 @@
                 <p class="shop-category-title">
                     CATEGORIAS:
                 </p>
-                <p class="shop-category-label">
+                <p class="shop-category-label" @click="$store.commit('selectByAll', products)">
                     TODOS
                 </p>
-                <p class="shop-category-label">
+                <p class="shop-category-label" @click="$store.commit('selectByCollagen', products)">
                     COLAGENO
                 </p>
-                <p class="shop-category-label">
+                <p class="shop-category-label" @click="$store.commit('selectByImplements', products)">
                     IMPLEMENTOS
                 </p>
-                <p class="shop-category-label">
+                <p class="shop-category-label" @click="$store.commit('selectByPromotions', products)">
                     PROMOCIONES
                 </p>
-                <p class="shop-category-label">
+                <p class="shop-category-label" @click="$store.commit('selectByProteins', products)">
                     PROTEINAS
                 </p>
             </div>
             <div class="shop-items-wrapper">
-                <div class="item-card" v-for="product in products" :key="product.id">
+                <div v-for="product in $store.state.products2" :key="product.id" class="item-card">
                     <div class="item-image-container">
                         <img class="item-image" :src="product.image" alt="">
                         <button
@@ -136,9 +136,6 @@ export default defineComponent({
 			})
 			this.$router.push('/tienda/cart')
 		}
-	},
-	mounted () {
-		this.$store.dispatch('fetchProducts')
 	}
 })
 </script>
@@ -296,7 +293,7 @@ export default defineComponent({
         z-index: 1 !important;
 
         @media screen and (max-width: 599px) {
-            height: 250px !important;
+            height: 330px !important;
         }
 
         @media screen and (min-width: 600px) {
