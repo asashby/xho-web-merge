@@ -2,12 +2,21 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import { atLeastOneTrue } from 'functionallibrary'
+import CulqiCheckout from 'vue-culqi-checkout'
 import { CounterTime } from '~/components/common'
 
 import '~/components/Challenges/index.styles.scss'
 
 import Rating from '~/components/Buttons/Rating'
 import Icon from '~/components/Buttons/Icon'
+
+Vue.use(CulqiCheckout, {
+	publicKey: 'pk_test_815666c9fedfa56c',
+	title: 'Compra tienda Ximena Hoyos',
+	currency: 'PEN',
+	description: 'Descripcion',
+	amount: 500
+})
 
 export const BannerChallenges = Vue.component('BannerChallenges', {
 	data: () => ({
@@ -241,14 +250,15 @@ export const IntroductionChallengeDetails = Vue.component('IntroductionChallenge
 	},
 	methods: {
 		async handlePayment () {
-			const token = this.$store.$auth.strategies.local.token.get()
-			const body = {
+			const token = await this.$culqi.openCheckout()
+			console.log(token.id)
+			/* const body = {
 				orderId: '',
 				link: ''
 			}
 			const { data: response } = await this.$http.patch(`courses/${this.slug}/payment`, body)
 			const extId = response.external_id
-			window.location.href = `${this.$auth.ctx.env.URL_TIENDA}${this.slug}/detalle-producto?shoper=true&token=${token}&orderExternalId=${extId}`
+			window.location.href = `${this.$auth.ctx.env.URL_TIENDA}${this.slug}/detalle-producto?shoper=true&token=${token}&orderExternalId=${extId}` */
 		}
 	},
 	render () {
@@ -292,10 +302,6 @@ export const IntroductionChallengeDetails = Vue.component('IntroductionChallenge
 				/>
         	{ this.coursepaid === 0
 					? <button
-						type="button"
-						class="introduction-btn"
-					>Iniciar reto</button>
-					: <button
 						onClick={ this.handlePayment }
 						type="button"
 						class="introduction-btn"
@@ -304,6 +310,10 @@ export const IntroductionChallengeDetails = Vue.component('IntroductionChallenge
 							{this.prices}
 						</span>
 					</button>
+					: <button
+						type="button"
+						class="introduction-btn"
+					>Iniciar reto</button>
 				}
 			</div>
 		)
@@ -345,7 +355,7 @@ export const WorkoutByDay = Vue.component('WorkoutByDay', {
 	render () {
 		return (
 			<NuxtLink
-				event={ this.coursepaid === 0 ? 'click' : '' }
+				event={ this.coursepaid === 0 ? '' : 'click' }
 				to={ this.goToRoutine }
 				class="workout-day--container"
 			>
@@ -359,7 +369,7 @@ export const WorkoutByDay = Vue.component('WorkoutByDay', {
 				</div>
 
 				<div class="done">
-					{this.done !== 0 ? <Icon icon="mdi-lock"/> : <img class="done-icon" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/garrapata.png?alt=media&token=d239de7c-41e8-4d6a-9360-401ded4355b2"/>}
+					{this.done === 0 ? <Icon icon="mdi-lock"/> : <img class="done-icon" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/garrapata.png?alt=media&token=d239de7c-41e8-4d6a-9360-401ded4355b2"/>}
 				</div>
 			</NuxtLink>
 		)
