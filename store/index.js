@@ -237,6 +237,8 @@ export const state = () => ({
 	cart: [],
 	selectedProduct: {},
 	productsCount: 1,
+	actualChallengeName: '',
+	actualChallengePrice: 0.0,
 	ages: buildArrayOfItems(18, 80),
 	company: {},
 	isMovil: false,

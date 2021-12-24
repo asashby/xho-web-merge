@@ -21,10 +21,11 @@
           :title="challenge.title"
           :type="challenge.type"
           :users="challenge.users"
-          :coursepaid="challenge.course_paid"
+          :coursepaid="userChallenge.course_paid"
           :prices="challenge.prices"
           :subtitle="challenge.subtitle"
           :extid="challenge.ext_id"
+          :plans="coursePlans.plansByCourse"
           readonly-rating
         />
       </div>
@@ -40,12 +41,12 @@
           :key="w.code"
           :code="w.code"
           :day="w.day"
-          :done="w.flag_complete_unit"
+          :done="userChallenge.course_paid"
           :img="w.url_icon"
           :title="w.title"
           :route="w.slug || w.title"
           :idcourse="challenge.id"
-          :coursepaid="challenge.course_paid"
+          :coursepaid="userChallenge.course_paid"
         />
       </div>
     </div>
@@ -69,8 +70,15 @@ import VideoModal from '~/components/Modal/VideoModal'
 async function fetch () {
 	const { slugRetos } = this.$route.params
 	await this.$store.dispatch('challenges/getDetails', slugRetos)
+	await this.$store.dispatch('challenges/getDetailsByUser', slugRetos)
 	await this.$store.dispatch('challenges/getDetailsWorkout', slugRetos)
+	await this.$store.dispatch('challenges/getCoursePlans', slugRetos)
 }
+
+/* function setPaymentInfo () {
+	this.$route.state.actualChallengeName = this.challenge.title
+	this.$route.state.actualChallengePrice = this.challenge.prices
+} */
 
 function openVideo () {
 	this.showVideo = true
@@ -88,6 +96,7 @@ function data () {
 
 export default {
 	name: 'PaginaDetalleReto',
+	auth: false,
 	components: {
 		BannerChallengeDetails,
 		IntroductionChallengeDetails,
@@ -100,7 +109,9 @@ export default {
 	computed: {
 		...mapState('challenges', {
 			challenge: state => state.details,
-			workout: state => state.workout
+			myChallenge: state => state.myDetails,
+			workout: state => state.workout,
+			coursePlans: state => state.coursePlans
 		}),
 		workoutDays () {
 			if (this.slugRetos === 'basico-en-casa') {
@@ -115,6 +126,16 @@ export default {
 			} else {
 				console.log(this.workout)
 				return this.workout
+			}
+		},
+		userChallenge () {
+			if (this.$auth.$state.loggedIn) {
+				console.log('logueado')
+				console.log(this.myChallenge.course_paid)
+				return this.myChallenge
+			} else {
+				console.log('no logueado')
+				return this.challenge
 			}
 		}
 	},

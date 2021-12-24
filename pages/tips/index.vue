@@ -11,8 +11,8 @@
           <source
             class="banner-image"
             srcset="~/assets/images/tips/bannertips.png"
-            media="(min-width:600px)"
-          ></source>
+            media="(min-width:600px)">
+			</source>
           <img
             class="tips--banner-container__image-img"
             src="~/assets/images/tips/banner_tips_mobile.jpg"
@@ -105,6 +105,7 @@ function data () {
 
 export default {
 	name: 'PaginaTips',
+	auth: false,
 	components: {
 		ArticleComponent,
 		MobileButtonSearcher,

@@ -167,6 +167,10 @@
 			}
 		}
 
+		&-plans{
+			display: inline;
+		}
+
 		&-btn {
 			@apply w-full;
 			background-color: transparent;

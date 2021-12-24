@@ -143,6 +143,7 @@ async function fetch () {
 
 export default {
 	name: 'PaginaSobreXimena',
+	auth: false,
 	layout: 'principalLayout',
 	fetch,
 	computed: {
@@ -154,7 +155,7 @@ export default {
 			instagramLink: state => getPropertysValue('ximena.addittional_info.instagram', state),
 			prideImages: state => getPropertysValue('ximena.galery', state),
 			tiktokLink: state => getPropertysValue('ximena.addittional_info.tiktok', state),
-			ximenaCircular: state => getPropertysValue('ximena.page_image', state) || require('~/assets/images/ximena/foto_circular.jpg')
+			ximenaCircular: state => getPropertysValue('ximena.page_image', state)
 		}),
 		rrssImages
 	},

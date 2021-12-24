@@ -127,6 +127,7 @@ function data () {
 
 export default {
 	name: 'PaginaDeRetos',
+	auth: false,
 	components: {
 		BannerChallenges,
 		ChallengeComponent,

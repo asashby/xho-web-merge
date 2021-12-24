@@ -2,21 +2,22 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import { atLeastOneTrue } from 'functionallibrary'
-import CulqiCheckout from 'vue-culqi-checkout'
+// import CulqiCheckout from 'vue-culqi-checkout'
 import { CounterTime } from '~/components/common'
 
 import '~/components/Challenges/index.styles.scss'
 
 import Rating from '~/components/Buttons/Rating'
 import Icon from '~/components/Buttons/Icon'
+import BuyChallengePlan from '~/components/Modal/BuyChallengePlan'
 
-Vue.use(CulqiCheckout, {
+/* Vue.use(CulqiCheckout, {
 	publicKey: 'pk_test_815666c9fedfa56c',
-	title: 'Compra tienda Ximena Hoyos',
+	title: 'Compra reto ',
 	currency: 'PEN',
 	description: 'Descripcion',
 	amount: 500
-})
+}) */
 
 export const BannerChallenges = Vue.component('BannerChallenges', {
 	data: () => ({
@@ -241,7 +242,8 @@ export const IntroductionChallengeDetails = Vue.component('IntroductionChallenge
 		prices: { default: '0', type: String },
 		readonlyRating: { default: false, type: Boolean },
 		subtitle: { default: '', type: String },
-		extid: { default: 0, type: Number }
+		extid: { default: 0, type: Number },
+		plans: { default: null, type: Array }
 	},
 	computed: {
 		...mapGetters([
@@ -249,9 +251,9 @@ export const IntroductionChallengeDetails = Vue.component('IntroductionChallenge
 		])
 	},
 	methods: {
-		async handlePayment () {
-			const token = await this.$culqi.openCheckout()
-			console.log(token.id)
+		handlePayment () {
+			// const token = await this.$culqi.openCheckout()
+			console.log('toy dique pagando lol')
 			/* const body = {
 				orderId: '',
 				link: ''
@@ -301,15 +303,27 @@ export const IntroductionChallengeDetails = Vue.component('IntroductionChallenge
 					type={ this.type }
 				/>
         	{ this.coursepaid === 0
-					? <button
+					? <BuyChallengePlan />
+					/* <button
 						onClick={ this.handlePayment }
 						type="button"
 						class="introduction-btn"
-					>Solicitar reto
+					>Comprar plan
 						<span class="d-block">
-							{this.prices}
+							VER
 						</span>
-					</button>
+					</button> */
+					/* this.plans.forEach((element) => {
+				<button
+							onClick={ this.handlePayment }
+							type="button"
+							class="introduction-btn"
+						>{element.title}
+							<span class="d-block">
+								{element.price}
+							</span>
+						</button>
+					}) */
 					: <button
 						type="button"
 						class="introduction-btn"

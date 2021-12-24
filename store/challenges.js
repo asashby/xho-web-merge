@@ -1,8 +1,12 @@
 import { isEmpty, setNewProperty } from 'functionallibrary'
+import httpClient from '~/plugins/axios'
+
 export const state = () => ({
 	challenges: [],
 	challengesDataPage: {},
+	coursePlans: {},
 	details: {},
+	myDetails: {},
 	myChallenges: [],
 	myChallengesParams: {
 		limit: 8,
@@ -60,6 +64,15 @@ export const actions = {
 			console.log('error al cargar detalle de reto', err)
 		}
 	},
+	async getDetailsByUser ({ commit }, slug) {
+		try {
+			const { params } = state
+			const { data: response } = await this.$http.get(`/courses/${slug}/detail-user`, { params })
+			commit('SET_CHALLENGES_DETAILS_BY_USER', response)
+		} catch (err) {
+			console.log('error al cargar detalle de reto', err)
+		}
+	},
 	changePageMyChallenges ({ commit, state, dispatch }) {
 		const { page } = state.myChallengesParams
 		commit('SET_MY_CHALLENGES_NEW_PAGE', page + 1)
@@ -104,6 +117,41 @@ export const actions = {
 			}
 		} catch (err) {
 			console.log('error al cargar detalle de reto', err)
+		}
+	},
+	async suscribeUserToChallenge ({ commit }, slug) {
+		try {
+			const body = {
+				orderId: 1234,
+				link: 'http://127.0.0.1:8000/courses/basico-en-casa/payment'
+			}
+			// const { requestParams } = state
+
+			const token = this.$auth.strategies.local.token.get()
+			console.log(token)
+			const response = await httpClient({
+				url: '/courses/' + slug + '/payment',
+				method: 'patch',
+				headers: {
+					Authorization: token
+				},
+				data: body
+			})
+			// const { data: response } = await this.$http.patch(`/courses/${slug}/payment`, { params, data: body })
+			console.log('funciona la suscripcion')
+			console.log(response)
+		} catch (err) {
+			console.log('fallo por el patch', err)
+		}
+	},
+	async getCoursePlans ({ commit }, slug) {
+		try {
+			const { data: response } = await this.$http.get(`/course/${slug}/plans-list`)
+			console.log('funciona el get')
+			console.log(response)
+			commit('SET_CHALLENGE_PLANS', response)
+		} catch (err) {
+			console.log('error al cargar planes del reto', err)
 		}
 	},
 	async getDetailsWorkout ({ commit }, slug) {
@@ -186,8 +234,14 @@ export const mutations = {
 	SET_CHALLENGES_DETAILS (state, challengesDetails) {
 		state.details = challengesDetails
 	},
+	SET_CHALLENGES_DETAILS_BY_USER (state, details) {
+		state.myDetails = details
+	},
 	SET_CHALLENGES_WORKOUT (state, items) {
 		state.workout = items
+	},
+	SET_CHALLENGE_PLANS (state, items) {
+		state.coursePlans = items
 	},
 	SET_ROUTINE_DETAIL (state, details) {
 		state.routine.details = details

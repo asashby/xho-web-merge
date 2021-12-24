@@ -163,7 +163,7 @@ export default {
 			this.$nuxt.$loading.start()
 		})
 		if (this.$auth.$state.loggedIn) {
-			this.$router.push('/sobre-ximena')
+			this.$router.push('/objetivos')
 			this.$nextTick(() => {
 				this.$nuxt.$loading.finish()
 			})

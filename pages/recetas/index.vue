@@ -108,6 +108,7 @@ function data () {
 
 export default {
 	name: 'PaginaDeRecetas',
+	auth: false,
 	components: {
 		MobileButtonSearcher,
 		RecipeComponent,
