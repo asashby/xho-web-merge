@@ -189,7 +189,6 @@ export default {
 		&--sidebar-movil__search-container {}
 	}
 
-	.my-challenges--items-container,
 	.all-challenges--items-container {
 		@apply grid;
 		@apply pt-16 pb-6 px-2 mx-auto;
@@ -203,6 +202,11 @@ export default {
 			@apply flex;
 			@apply w-full;
 			@apply whitespace-nowrap overflow-auto;
+
+			@media screen and (max-width:599px) {
+				@apply grid gap-8;
+				grid-template-columns: repeat(1, minmax($dimTarjetaRetos, 1fr));
+			}
 
 			@media screen and (min-width:600px) {
 				@apply grid gap-8;

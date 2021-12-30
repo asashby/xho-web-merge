@@ -34,7 +34,7 @@
 }
 
 .x-selector-wire.v-input.v-select {
-	@apply border border-solid border-green-base;
+	border: 1px solid #90d701;
 	@apply rounded-2xl;
 	max-width: 220px;
 	min-width: 219px;
@@ -49,20 +49,20 @@
 
 			.v-select__slot {
 				label {
-					@apply text-green-base;
+					color: #90d701;
 					@apply font-light;
 				}
 
 				.v-select__selections {
 					.v-select__selection {
-						@apply text-green-base;
+						color: #90d701;
 					}
 				}
 
 				.v-input__append-inner {
 					.v-input__icon {
 						i.v-icon {
-							@apply text-green-base;
+							color: #90d701;
 							@apply text-5xl;
 						}
 					}

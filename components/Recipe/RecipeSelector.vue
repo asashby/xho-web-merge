@@ -2,8 +2,8 @@
 	<div class="recipe-selector--main-container">
 		<div class="recipe-selector--desktop-container">
 			<Selector
-				class="recipe-selector-element"
 				wire
+				class="recipe-selector-element"
 				itemText="title"
 				itemValue="code"
 				label="Comidas"
@@ -38,7 +38,7 @@ export default {
 		meals: [
 			{ active: true, title: 'Todos', code: 'todos' },
 			{ active: false, title: 'Desayuno', code: 'Desayuno' },
-			{ active: false, title: 'Media manana', code: 'Media manana' },
+			{ active: false, title: 'Media mañana', code: 'Media manana' },
 			{ active: false, title: 'Almuerzo', code: 'Almuerzo' },
 			{ active: false, title: 'Media tarde', code: 'Media tarde' },
 
@@ -104,7 +104,7 @@ export default {
 				min-width: 5rem;
 
 				&.active {
-					@apply bg-green-base;
+					background-color: #95d100;
 					@apply text-gray-light font-bold;
 				}
 			}
@@ -113,6 +113,8 @@ export default {
 }
 .recipe-selector-element{
 	border: 2px solid #1583d2;
-	color: #b9b7b8;
+	background-color: #242424;
+	border-radius: 15px;
+	width: 250px;
 }
 </styles>

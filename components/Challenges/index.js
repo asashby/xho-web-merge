@@ -2,7 +2,7 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import { atLeastOneTrue } from 'functionallibrary'
-// import CulqiCheckout from 'vue-culqi-checkout'
+import CulqiCheckout from 'vue-culqi-checkout'
 import { CounterTime } from '~/components/common'
 
 import '~/components/Challenges/index.styles.scss'
@@ -11,13 +11,13 @@ import Rating from '~/components/Buttons/Rating'
 import Icon from '~/components/Buttons/Icon'
 import BuyChallengePlan from '~/components/Modal/BuyChallengePlan'
 
-/* Vue.use(CulqiCheckout, {
-	publicKey: 'pk_test_815666c9fedfa56c',
+Vue.use(CulqiCheckout, {
+	publicKey: 'pk_test_1338180928bae5d6',
 	title: 'Compra reto ',
 	currency: 'PEN',
 	description: 'Descripcion',
 	amount: 500
-}) */
+})
 
 export const BannerChallenges = Vue.component('BannerChallenges', {
 	data: () => ({
@@ -251,9 +251,9 @@ export const IntroductionChallengeDetails = Vue.component('IntroductionChallenge
 		])
 	},
 	methods: {
-		handlePayment () {
-			// const token = await this.$culqi.openCheckout()
-			console.log('toy dique pagando lol')
+		async handlePayment () {
+			const token = await this.$culqi.openCheckout()
+			console.log(token)
 			/* const body = {
 				orderId: '',
 				link: ''

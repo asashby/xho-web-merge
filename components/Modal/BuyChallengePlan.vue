@@ -48,6 +48,10 @@ Vue.use(CulqiCheckout, {
 	amount: 1000
 })
 
+async function suscribeUserToChallenge (slugName) {
+	await this.$store.dispatch('challenges/suscribeUserToChallenge', slugName)
+}
+
 export default defineComponent({
 	setup () {
 
@@ -71,7 +75,10 @@ export default defineComponent({
 			}
 
 			const { slugRetos } = this.$route.params
-			await this.$store.dispatch('challenges/suscribeUserToChallenge', slugRetos)
+
+			plan.slug.forEach((slugName) => {
+				suscribeUserToChallenge(slugName)
+			})
 			console.log('routeParams', slugRetos)
 
 			/* const body = {

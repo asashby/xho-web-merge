@@ -124,16 +124,14 @@ export default {
 
 	&__bar.theme--light.v-app-bar.v-toolbar.v-sheet {
 		@apply bg-transparent;
-
-		@media screen and (min-width:800px) {
-			@apply bg-gradient-to-b from-gray-900;
-		}
+		@apply bg-gradient-to-b from-gray-900;
 
 		.v-toolbar__content {
 			@apply mx-auto;
 			max-width: $maxWidth;
 
 			.login-logo {
+				margin-top: 20px;
 				height: 24px;
 			}
 		}

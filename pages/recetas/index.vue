@@ -16,7 +16,7 @@
 			</div>
 
 			<div class="cooking-recipes--banner-container__title">
-				<h1>Recetas</h1>
+				<h1>Comidas</h1>
 			</div>
 
 			<div class="cooking-recipes--banner-container__search">
@@ -98,6 +98,7 @@ async function handleClickOnSeeMore () {
 
 async function fetch () {
 	await this.$store.dispatch('recipes/getList', true)
+	console.log(this.$store.state.auth)
 }
 
 function data () {
@@ -120,7 +121,8 @@ export default {
 			'showSeeMoreButton'
 		]),
 		...mapState('recipes', {
-			cookingRecipes: state => getPropertysValue('list', state)
+			cookingRecipes: state => getPropertysValue('list', state),
+			user: state => state.auth.user
 		})
 	},
 	data,

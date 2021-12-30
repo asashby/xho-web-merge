@@ -5,7 +5,7 @@
 		rounded
 		clearable
 		hide-details
-		append-icon="mdi-magnify"
+		prepend-icon="mdi-magnify"
 		placeholder="Buscar..."
 		@keydown="handleEnterPress"
 		@input="handleClearEvent"
@@ -34,5 +34,6 @@ export default {
 	.x-searcher--field__desktop{
 		border: 3px solid #90d701;
 		background-color: #343432;
+		color: gray;
 	}
 </style>

@@ -23,7 +23,7 @@ export default {
 <style lang="scss" scoped>
 .x-searcher {
 	&--btn__mobile {
-		@apply bg-green-base;
+		background-color: #95d100;
 		@apply rounded-full;
 		@apply w-16 h-16;
 		@apply z-0;

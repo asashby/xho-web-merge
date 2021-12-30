@@ -42,6 +42,7 @@
 
 		<div class="logout">
 			<v-btn
+			v-if="isLoggedIn"
 				class="logout_btn"
 				tile
 				@click="handleClickOnLogout"
@@ -50,6 +51,14 @@
 					mdi-logout
 				</v-icon>
 				Cerrar sesion
+			</v-btn>
+			<v-btn
+				v-if="isNotLoggedIn"
+				class="logout_btn"
+				tile
+				@click="handleClickOnLogin"
+			>
+				Entrar
 			</v-btn>
 		</div>
 
@@ -62,12 +71,23 @@ import AppMenuMovilTopUserData from '~/components/AppMenu/AppMenuMovilTopUserDat
 export default {
 	name: 'AppMenuMovil',
 	components: { AppMenuMovilTopUserData },
+	computed: {
+		isLoggedIn () {
+			return this.$auth.$state.loggedIn
+		},
+		isNotLoggedIn () {
+			return !this.$auth.$state.loggedIn
+		}
+	},
 	methods: {
 		emitCloseModal () {
 			this.$emit('closeModal')
 		},
 		async handleClickOnLogout () {
 			await this.$store.dispatch('logout', this.$auth)
+		},
+		async handleClickOnLogin () {
+			await this.$router.push('/inicio-sesion')
 		}
 	},
 	props: {
@@ -122,7 +142,7 @@ export default {
 		@apply p-4;
 
 		&_btn.theme--light.v-btn.v-btn--has-bg {
-			@apply text-green-base;
+			color: #95d100;
 			@apply bg-black-darkest;
 		}
 	}

@@ -265,14 +265,14 @@ export default defineComponent({
         margin-top: 8px;
     }
     .add-to-cart-button{
-		background-color: #76a530;
+		background-color: #95d100;
 		display: inline-block;
 		margin-left: 20px;
 		height: 40px;
 		width: 190px;
     }
     .add-to-cart-button:hover{
-        background-color: #5d8622;
+        background-color: #76a530;
     }
     .add-to-cart-text{
         margin: 0 auto;

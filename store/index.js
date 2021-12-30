@@ -262,7 +262,8 @@ export const state = () => ({
 	},
 	weights: buildArrayOfItems(40, 120),
 	ximena: {},
-	tokenMaki: ''
+	tokenMaki: '',
+	fullUser: {}
 })
 
 export const actions = {
@@ -311,6 +312,9 @@ export const actions = {
 		if (state.auth.loggedIn) {
 			await $auth.logout()
 		}
+	},
+	setFullUserData ({ commit }, user) {
+		commit('SET_FULL_USER_DATA', user)
 	},
 	setTokenMaki ({ commit }, tokenMaki) {
 		commit('SET_TOKEN_MAKI', tokenMaki)
@@ -430,6 +434,9 @@ export const mutations = {
 		newUser.name = data.name
 		newUser.sur_name = data.last_name
 		state.auth.user = { ...newUser }
+	},
+	SET_FULL_USER_DATA (state, user) {
+		state.fullUser = user
 	},
 	SET_LOADING (state, value) {
 		state.loading = value

@@ -191,6 +191,8 @@ export default {
 
 	&--content-container {
 		@apply pt-32 pb-20 px-4;
+		@apply mx-auto;
+		max-width: 1240px;
 
 		&__articulo {
 				@apply mb-8;

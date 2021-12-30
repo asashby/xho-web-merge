@@ -330,13 +330,13 @@ export default defineComponent({
         font-size: 22px;
     }
     .finalize-order-button{
-		background-color: #76a530;
+		background-color: #95d100;
 		display: inline-block;
 		height: 40px;
 		width: 100%;
     }
     .finalize-order-button:hover{
-        background-color: #5d8622;
+        background-color: #76a530;
         cursor: pointer !important;
     }
     .finalize-order-text{

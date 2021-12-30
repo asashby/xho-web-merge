@@ -1,6 +1,6 @@
 <template>
   <div class="header-user">
-    <div class="header-user--avatar">
+    <div v-if="isLoggedIn" class="header-user--avatar">
       <picture>
         <img :src="userPhoto"></img>
       </picture>
@@ -15,7 +15,6 @@
     <NuxtLink
 	to="/tienda"
       class="header-user--shopstore"
-      target="_blank"
     >
       Tienda
     </NuxtLink>
@@ -31,7 +30,10 @@ export default {
 		...mapGetters('profile', [
 			'userPhoto',
 			'userName'
-		])
+		]),
+		isLoggedIn () {
+			return this.$auth.$state.loggedIn
+		}
 	}
 }
 </script>
@@ -57,13 +59,13 @@ export default {
 		}
 
 		a {
-			@apply text-green-base;
+			color: #95d100;
 		}
 	}
 
 	&--shopstore {
-		@apply text-green-base;
-		@apply border border-solid border-green-base;
+		color: #95d100;
+		border: 1px solid #95d100;
 		@apply px-2 py-1;
 	}
 }
