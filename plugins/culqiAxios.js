@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const httpClient = axios.create({
-	baseURL: process.env.CULQI_API_URL,
+const culqiHttpClient = axios.create({
+	baseURL: 'https://api.culqi.com/v2',
 	headers: {
 		'Content-Type': 'application/json'
 		// anything you want to add to the headers
 	}
 })
 
-export default httpClient
+export default culqiHttpClient

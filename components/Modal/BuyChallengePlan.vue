@@ -1,36 +1,43 @@
 <template>
-  <v-dialog max-width="450px">
-    <template #activator="{ on }">
-      <v-btn x-large class="success btn" dark v-on="on">
-        Solicita tu plan
-      </v-btn>
-    </template>
-    <v-card>
-      <div class="plans-wrapper">
-        <p class="plans-header-text">
-          Seleccione el plan de su conveniencia:
-        </p>
-        <button
-          v-for="plan in coursePlans.plansByCourse"
-          :key="plan.id"
-          type="button"
-          class="plans-btn"
-          @click="buyPlan(plan)"
-        >
-          {{ plan.title }}
-          <span class="d-block plans-description">
-            {{ plan.description }}
-          </span>
-          <span class="d-block">
-            S/{{ plan.price }}
-          </span>
-        </button>
-        <p class="plans-footer-text">
-          Al suscribirte aceptas los Términos y Condiciones de XOH
-        </p>
+  <div>
+    <v-dialog max-width="450px">
+      <template #activator="{ on }">
+        <v-btn x-large class="success btn" dark v-on="on">
+          Solicita tu plan
+        </v-btn>
+      </template>
+      <v-card>
+        <div class="plans-wrapper">
+          <p class="plans-header-text">
+            Seleccione el plan de su conveniencia:
+          </p>
+          <button
+            v-for="plan in coursePlans.plansByCourse"
+            :key="plan.id"
+            type="button"
+            class="plans-btn"
+            @click="buyPlan(plan)"
+          >
+            {{ plan.title }}
+            <span class="d-block plans-description">
+              {{ plan.description }}
+            </span>
+            <span class="d-block">
+              S/{{ plan.price }}
+            </span>
+          </button>
+          <p class="plans-footer-text">
+            Al suscribirte aceptas los Términos y Condiciones de XOH
+          </p>
+        </div>
+      </v-card>
+    </v-dialog>
+    <transition name="payment-window">
+      <div v-if="showModal" class="modal-overlay">
+        <PaymentCompleted />
       </div>
-    </v-card>
-  </v-dialog>
+    </transition>
+  </div>
 </template>
 <script>
 import { defineComponent } from '@vue/composition-api'
@@ -38,28 +45,40 @@ import { mapState } from 'vuex'
 import Vue from 'vue'
 
 import CulqiCheckout from 'vue-culqi-checkout'
+import PaymentCompleted from '~/components/Modal/PaymentCompleted'
 // import httpClient from '~/plugins/culqiAxios'
 
 Vue.use(CulqiCheckout, {
-	publicKey: 'pk_test_vzMuTHoueOMlgUPj',
+	publicKey: 'pk_test_1338180928bae5d6',
 	title: 'Compra ',
 	currency: 'PEN',
 	description: 'Descripcion',
 	amount: 1000
 })
 
-async function suscribeUserToChallenge (slugName) {
-	await this.$store.dispatch('challenges/suscribeUserToChallenge', slugName)
+function data () {
+	return {
+		showModal: false
+	}
 }
 
+/* async function suscribeUserToChallenge (slugName) {
+	await this.$store.dispatch('challenges/suscribeUserToChallenge', slugName)
+} */
+
 export default defineComponent({
+	components: {
+		PaymentCompleted
+	},
 	setup () {
 
 	},
+	data,
 	computed: {
 		...mapState('challenges', {
 			coursePlans: state => state.coursePlans,
-			challenge: state => state.details
+			challenge: state => state.details,
+			showPaymentModal: state => state.showPaymentModal
 		}),
 		slug () {
 			return this.$route.params
@@ -74,12 +93,15 @@ export default defineComponent({
 				console.log('no se pudo')
 			}
 
-			const { slugRetos } = this.$route.params
+			this.$store.commit('SET_SHOW_PAYMENT_MODAL', true)
+			// this.showModal = true
+
+			/* const { slugRetos } = this.$route.params
 
 			plan.slug.forEach((slugName) => {
 				suscribeUserToChallenge(slugName)
 			})
-			console.log('routeParams', slugRetos)
+			console.log('routeParams', slugRetos) */
 
 			/* const body = {
 				amount: plan.price,
@@ -170,5 +192,15 @@ export default defineComponent({
 .plans-btn:hover {
     background-color: #96d502;;
     color: white;
+}
+
+.modal-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 100;
+	background: rgba(0, 0, 0, 0.4);
 }
 </style>

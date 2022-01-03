@@ -27,6 +27,7 @@
           :extid="challenge.ext_id"
           :plans="coursePlans.plansByCourse"
           readonly-rating
+          @show-modal="showPaymentModal"
         />
       </div>
 
@@ -56,6 +57,11 @@
       :url-video="challenge.url_video"
       @close-video-modal="closeVideoModal"
     />
+    <transition name="payment-window">
+      <div v-show="this.$store.state.showPaymentModal" class="modal-overlay">
+        <PaymentCompleted />
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -66,6 +72,7 @@ import intermedioEnCasaUnits from '@/api/intermedioEnCasaData'
 import avanzadoEnGymUnits from '@/api/avanzadoEnGymData'
 import { BannerChallengeDetails, IntroductionChallengeDetails, SummaryChallengeDetails, WorkoutByDay } from '~/components/Challenges'
 import VideoModal from '~/components/Modal/VideoModal'
+import PaymentCompleted from '~/components/Modal/PaymentCompleted'
 
 async function fetch () {
 	const { slugRetos } = this.$route.params
@@ -88,9 +95,14 @@ function closeVideoModal () {
 	this.showVideo = false
 }
 
+function showPaymentModal () {
+	this.showModal = true
+}
+
 function data () {
 	return {
-		showVideo: false
+		showVideo: false,
+		showModal: false
 	}
 }
 
@@ -102,7 +114,8 @@ export default {
 		IntroductionChallengeDetails,
 		SummaryChallengeDetails,
 		WorkoutByDay,
-		VideoModal
+		VideoModal,
+		PaymentCompleted
 	},
 	data,
 	fetch,
@@ -111,37 +124,32 @@ export default {
 			challenge: state => state.details,
 			myChallenge: state => state.myDetails,
 			workout: state => state.workout,
-			coursePlans: state => state.coursePlans
+			coursePlans: state => state.coursePlans,
+			showPaymentModal: state => state.showPaymentModal
 		}),
 		workoutDays () {
 			if (this.slugRetos === 'basico-en-casa') {
-				console.log(basicoEnCasaUnits)
 				return basicoEnCasaUnits
 			} else if (this.slugRetos === 'intermedio-en-casa') {
-				console.log(intermedioEnCasaUnits)
 				return intermedioEnCasaUnits
 			} else if (this.slugRetos === 'avanzado-en-gym') {
-				console.log(avanzadoEnGymUnits)
 				return avanzadoEnGymUnits
 			} else {
-				console.log(this.workout)
 				return this.workout
 			}
 		},
 		userChallenge () {
 			if (this.$auth.$state.loggedIn) {
-				console.log('logueado')
-				console.log(this.myChallenge.course_paid)
 				return this.myChallenge
 			} else {
-				console.log('no logueado')
 				return this.challenge
 			}
 		}
 	},
 	methods: {
 		openVideo,
-		closeVideoModal
+		closeVideoModal,
+		showPaymentModal
 	}
 }
 </script>
@@ -166,5 +174,15 @@ export default {
 			@apply grid-cols-2 gap-12;
 		}
 	}
+}
+
+.modal-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 10000000;
+	background: rgba(0, 0, 0, 0.4);
 }
 </styles>

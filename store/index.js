@@ -1,5 +1,6 @@
 /* eslint-disable no-tabs */
 import { isEmpty, getPropertysValue } from 'functionallibrary'
+import httpClient from '~/plugins/woocommerceAxios'
 
 const alreadyInTheState = (state, prop) => {
 	return !(isEmpty(state[prop]))
@@ -16,7 +17,7 @@ const buildArrayOfItems = (init, end) => {
 export const state = () => ({
 	products: [
 		{
-			id: 1,
+			id: 72,
 			title: 'ISOXIPRO Whey protein isolate – Vainilla',
 			price: 179.00,
 			description: 'Proteína en polvo de suero de leche aislada de 900g  (30 servicios),Contiene 25gr de proteína por servicio. Nuestra proteína es aislada durante el procesado se elimina la mayor parte de la grasa y la lactosa. Este aislado permite obtener mayor cantidad de proteína en el producto final. Es libre de grasa, libre de lactosa, baja carbohidratos y sin azúcar. No contiene aminoácidos de relleno. Suero de leche importado Certified de origing USA-Halal -Kosher-Non-GMO',
@@ -25,7 +26,7 @@ export const state = () => ({
 			category: 'PROTEINA'
 		},
 		{
-			id: 2,
+			id: 68,
 			title: 'Muñequera',
 			price: 39.90,
 			description: '',
@@ -34,7 +35,7 @@ export const state = () => ({
 			category: 'IMPLEMENTOS'
 		},
 		{
-			id: 3,
+			id: 67,
 			title: 'Vincha',
 			price: 24.90,
 			description: '',
@@ -43,7 +44,7 @@ export const state = () => ({
 			category: 'IMPLEMENTOS'
 		},
 		{
-			id: 4,
+			id: 64,
 			title: 'Polera XOH',
 			price: 89.00,
 			description: '',
@@ -52,7 +53,7 @@ export const state = () => ({
 			category: 'IMPLEMENTOS'
 		},
 		{
-			id: 5,
+			id: 63,
 			title: 'Shaker',
 			price: 29.90,
 			description: '',
@@ -61,7 +62,7 @@ export const state = () => ({
 			category: 'IMPLEMENTOS'
 		},
 		{
-			id: 6,
+			id: 62,
 			title: 'Toalla Xiprofit',
 			price: 29.90,
 			description: '',
@@ -70,7 +71,7 @@ export const state = () => ({
 			category: 'IMPLEMENTOS'
 		},
 		{
-			id: 7,
+			id: 41,
 			title: 'PACK ISOXIPRO Whey protein isolate + Shaker + Tobillera',
 			price: 229.00,
 			description: 'Proteína en polvo de suero de leche aislada de 900g  (30 servicios),Contiene 25gr de proteína por servicio. Nuestra proteína es aislada durante el procesado se elimina la mayor parte de la grasa y la lactosa. Este aislado permite obtener mayor cantidad de proteína en el producto final. Es libre de grasa, libre de lactosa, baja carbohidratos y sin azúcar. No contiene aminoácidos de relleno. Suero de leche importado Certified de origing USA-Halal -Kosher-Non-GMO',
@@ -79,7 +80,7 @@ export const state = () => ({
 			category: 'PROMOCIONES, PROTEINA'
 		},
 		{
-			id: 8,
+			id: 37,
 			title: 'PACK ISOXIPRO Whey protein isolate + Shaker',
 			price: 209.00,
 			description: 'Proteína en polvo de suero de leche aislada de 900g  (30 servicios),Contiene 25gr de proteína por servicio. Nuestra proteína es aislada durante el procesado se elimina la mayor parte de la grasa y la lactosa. Este aislado permite obtener mayor cantidad de proteína en el producto final. Es libre de grasa, libre de lactosa, baja carbohidratos y sin azúcar. No contiene aminoácidos de relleno. Suero de leche importado Certified de origing USA-Halal -Kosher-Non-GMO',
@@ -88,7 +89,7 @@ export const state = () => ({
 			category: 'PROMOCIONES, PROTEINA'
 		},
 		{
-			id: 9,
+			id: 18,
 			title: 'Pack DUO Whey Protein y Colágeno Hidrolizado',
 			price: 288.00,
 			description: 'Isoxipro proteína en polvo de suero de leche aislada de 900g (30 servicios), Contiene 25gr de proteína por servicio. Es baja en grasa, sin lactosa, baja carbohidratos y sin azúcar. Materia prima importada WPI 95%.',
@@ -97,7 +98,7 @@ export const state = () => ({
 			category: 'PROMOCIONES'
 		},
 		{
-			id: 10,
+			id: 17,
 			title: 'Pack DUO Whey Protein Isolate',
 			price: 338.00,
 			description: '¡Llévate 2 proteínas!',
@@ -106,7 +107,7 @@ export const state = () => ({
 			category: 'PROMOCIONES'
 		},
 		{
-			id: 11,
+			id: 15,
 			title: 'ISOXIPRO Whey protein isolate – Chocolate',
 			price: 179.00,
 			description: 'Proteína en polvo de suero de leche aislada de 1kg  (33 servicios aproximadamente),Contiene 24gr de proteína por servicio. Nuestra proteína es aislada durante el procesado se elimina la mayor parte de la grasa y la lactosa. Este aislado permite obtener mayor cantidad de proteína en el producto final. Es libre de grasa, libre de lactosa, baja carbohidratos y sin azúcar. No contiene aminoácidos de relleno. Suero de leche importado Certified de origing USA-Halal -Kosher-Non-GMO',
@@ -115,7 +116,7 @@ export const state = () => ({
 			category: 'PROTEINA'
 		},
 		{
-			id: 12,
+			id: 14,
 			title: 'Colágeno Hidrolizado',
 			price: 139.00,
 			description: 'Beneficios del Colágeno Hidrolizado',
@@ -126,7 +127,7 @@ export const state = () => ({
 	],
 	products2: [
 		{
-			id: 1,
+			id: 72,
 			title: 'ISOXIPRO Whey protein isolate – Vainilla',
 			price: 179.00,
 			description: 'Proteína en polvo de suero de leche aislada de 900g  (30 servicios),Contiene 25gr de proteína por servicio. Nuestra proteína es aislada durante el procesado se elimina la mayor parte de la grasa y la lactosa. Este aislado permite obtener mayor cantidad de proteína en el producto final. Es libre de grasa, libre de lactosa, baja carbohidratos y sin azúcar. No contiene aminoácidos de relleno. Suero de leche importado Certified de origing USA-Halal -Kosher-Non-GMO',
@@ -135,7 +136,7 @@ export const state = () => ({
 			category: 'PROTEINA'
 		},
 		{
-			id: 2,
+			id: 68,
 			title: 'Muñequera',
 			price: 39.90,
 			description: '',
@@ -144,7 +145,7 @@ export const state = () => ({
 			category: 'IMPLEMENTOS'
 		},
 		{
-			id: 3,
+			id: 67,
 			title: 'Vincha',
 			price: 24.90,
 			description: '',
@@ -153,7 +154,7 @@ export const state = () => ({
 			category: 'IMPLEMENTOS'
 		},
 		{
-			id: 4,
+			id: 64,
 			title: 'Polera XOH',
 			price: 89.00,
 			description: '',
@@ -162,7 +163,7 @@ export const state = () => ({
 			category: 'IMPLEMENTOS'
 		},
 		{
-			id: 5,
+			id: 63,
 			title: 'Shaker',
 			price: 29.90,
 			description: '',
@@ -171,7 +172,7 @@ export const state = () => ({
 			category: 'IMPLEMENTOS'
 		},
 		{
-			id: 6,
+			id: 62,
 			title: 'Toalla Xiprofit',
 			price: 29.90,
 			description: '',
@@ -180,7 +181,7 @@ export const state = () => ({
 			category: 'IMPLEMENTOS'
 		},
 		{
-			id: 7,
+			id: 41,
 			title: 'PACK ISOXIPRO Whey protein isolate + Shaker + Tobillera',
 			price: 229.00,
 			description: 'Proteína en polvo de suero de leche aislada de 900g  (30 servicios),Contiene 25gr de proteína por servicio. Nuestra proteína es aislada durante el procesado se elimina la mayor parte de la grasa y la lactosa. Este aislado permite obtener mayor cantidad de proteína en el producto final. Es libre de grasa, libre de lactosa, baja carbohidratos y sin azúcar. No contiene aminoácidos de relleno. Suero de leche importado Certified de origing USA-Halal -Kosher-Non-GMO',
@@ -189,7 +190,7 @@ export const state = () => ({
 			category: 'PROMOCIONES, PROTEINA'
 		},
 		{
-			id: 8,
+			id: 37,
 			title: 'PACK ISOXIPRO Whey protein isolate + Shaker',
 			price: 209.00,
 			description: 'Proteína en polvo de suero de leche aislada de 900g  (30 servicios),Contiene 25gr de proteína por servicio. Nuestra proteína es aislada durante el procesado se elimina la mayor parte de la grasa y la lactosa. Este aislado permite obtener mayor cantidad de proteína en el producto final. Es libre de grasa, libre de lactosa, baja carbohidratos y sin azúcar. No contiene aminoácidos de relleno. Suero de leche importado Certified de origing USA-Halal -Kosher-Non-GMO',
@@ -198,7 +199,7 @@ export const state = () => ({
 			category: 'PROMOCIONES, PROTEINA'
 		},
 		{
-			id: 9,
+			id: 18,
 			title: 'Pack DUO Whey Protein y Colágeno Hidrolizado',
 			price: 288.00,
 			description: 'Isoxipro proteína en polvo de suero de leche aislada de 900g (30 servicios), Contiene 25gr de proteína por servicio. Es baja en grasa, sin lactosa, baja carbohidratos y sin azúcar. Materia prima importada WPI 95%.',
@@ -207,7 +208,7 @@ export const state = () => ({
 			category: 'PROMOCIONES'
 		},
 		{
-			id: 10,
+			id: 17,
 			title: 'Pack DUO Whey Protein Isolate',
 			price: 338.00,
 			description: '¡Llévate 2 proteínas!',
@@ -216,7 +217,7 @@ export const state = () => ({
 			category: 'PROMOCIONES'
 		},
 		{
-			id: 11,
+			id: 15,
 			title: 'ISOXIPRO Whey protein isolate – Chocolate',
 			price: 179.00,
 			description: 'Proteína en polvo de suero de leche aislada de 1kg  (33 servicios aproximadamente),Contiene 24gr de proteína por servicio. Nuestra proteína es aislada durante el procesado se elimina la mayor parte de la grasa y la lactosa. Este aislado permite obtener mayor cantidad de proteína en el producto final. Es libre de grasa, libre de lactosa, baja carbohidratos y sin azúcar. No contiene aminoácidos de relleno. Suero de leche importado Certified de origing USA-Halal -Kosher-Non-GMO',
@@ -225,7 +226,7 @@ export const state = () => ({
 			category: 'PROTEINA'
 		},
 		{
-			id: 12,
+			id: 14,
 			title: 'Colágeno Hidrolizado',
 			price: 139.00,
 			description: 'Beneficios del Colágeno Hidrolizado',
@@ -239,6 +240,9 @@ export const state = () => ({
 	productsCount: 1,
 	actualChallengeName: '',
 	actualChallengePrice: 0.0,
+	userShippingInfo: {},
+	shippingProductsData: [],
+	woocommerceOrderBody: [],
 	ages: buildArrayOfItems(18, 80),
 	company: {},
 	isMovil: false,
@@ -263,7 +267,8 @@ export const state = () => ({
 	weights: buildArrayOfItems(40, 120),
 	ximena: {},
 	tokenMaki: '',
-	fullUser: {}
+	fullUser: {},
+	showPaymentModal: false
 })
 
 export const actions = {
@@ -313,6 +318,24 @@ export const actions = {
 			await $auth.logout()
 		}
 	},
+	sendShippingInformation ({ commit }) {
+		try {
+			commit('SET_SHIPPING_PRODUCTS_DATA')
+			commit('SET_WOOCOMMERCE_ORDER_BODY')
+			commit('SEND_WOOCOMMERCE_ORDER')
+			// const { requestParams } = state
+
+			/* const response = await httpClient({
+				url: '/orders',
+				method: 'post',
+				data: body
+			}) */
+			// const { data: response } = await this.$http.patch(`/courses/${slug}/payment`, { params, data: body })
+			// console.log(response)
+		} catch (err) {
+			console.log('fallo por el patch', err)
+		}
+	},
 	setFullUserData ({ commit }, user) {
 		commit('SET_FULL_USER_DATA', user)
 	},
@@ -321,12 +344,18 @@ export const actions = {
 	},
 	setLoading ({ commit, state }) {
 		commit('SET_LOADING', state.loading)
+	},
+	setShowPaymentModal ({ commit, indicator }) {
+		commit('SET_SHOW_PAYMENT_MODAL', indicator)
+	},
+	setUserShippingInfo ({ commit }, userShipping) {
+		commit('SET_USER_SHIPPING_INFO', userShipping)
+		console.log(userShipping)
 	}
 }
 
 export const mutations = {
 	setProductsData (state, productsData) {
-		console.log('funciono')
 		productsData.forEach((value) => {
 			state.products.push(value)
 		})
@@ -348,8 +377,6 @@ export const mutations = {
 		}
 	},
 	selectByAll (state, productsData) {
-		console.log('funciono')
-
 		const data = []
 		productsData.forEach((value) => {
 			data.push(value)
@@ -358,8 +385,6 @@ export const mutations = {
 		state.products2 = data
 	},
 	selectByCollagen (state, productsData) {
-		console.log('funciono')
-
 		const data = []
 		productsData.forEach((value) => {
 			if (value.category.includes('COLÁGENO')) {
@@ -370,8 +395,6 @@ export const mutations = {
 		state.products2 = data
 	},
 	selectByImplements (state, productsData) {
-		console.log('funciono')
-
 		const data = []
 		productsData.forEach((value) => {
 			if (value.category.includes('IMPLEMENTOS')) {
@@ -382,8 +405,6 @@ export const mutations = {
 		state.products2 = data
 	},
 	selectByPromotions (state, productsData) {
-		console.log('funciono')
-
 		const data = []
 		productsData.forEach((value) => {
 			if (value.category.includes('PROMOCIONES')) {
@@ -394,8 +415,6 @@ export const mutations = {
 		state.products2 = data
 	},
 	selectByProteins (state, productsData) {
-		console.log('funciono')
-
 		const data = []
 		productsData.forEach((value) => {
 			if (value.category.includes('PROTEINA')) {
@@ -440,6 +459,87 @@ export const mutations = {
 	},
 	SET_LOADING (state, value) {
 		state.loading = value
+	},
+	SET_SHOW_PAYMENT_MODAL (state, indicator) {
+		state.showPaymentModal = indicator
+	},
+	SET_USER_SHIPPING_INFO (state, userShipping) {
+		state.userShippingInfo = {
+			firstName: userShipping.firstName,
+			lastName: userShipping.lastName,
+			firstAddress: userShipping.firstAddress,
+			secondAddress: userShipping.secondAddress,
+			city: userShipping.city,
+			state: userShipping.state,
+			country: userShipping.country,
+			email: userShipping.email,
+			phone: userShipping.phone
+		}
+	},
+	SET_SHIPPING_PRODUCTS_DATA (state) {
+		const data = []
+		state.cart.forEach((item) => {
+			data.push({
+				product_id: item.product.id,
+				quantity: 1
+			})
+		})
+
+		state.shippingProductsData = data
+		console.log(state.cart)
+		console.log(state.shippingProductsData)
+	},
+	SET_WOOCOMMERCE_ORDER_BODY (state) {
+		const LINE_ITEMS = state.shippingProductsData
+		const body = {
+			payment_method: 'bacs',
+			payment_method_title: 'Direct Bank Transfer',
+			status: 'pending',
+			currency: 'PEN',
+			set_paid: true,
+			billing: {
+				first_name: state.userShippingInfo.firstName,
+				last_name: state.userShippingInfo.lastName,
+				address_1: state.userShippingInfo.firstAddress,
+				address_2: state.userShippingInfo.secondAddress,
+				city: state.userShippingInfo.city,
+				state: state.userShippingInfo.state,
+				country: state.userShippingInfo.country,
+				email: state.userShippingInfo.email,
+				phone: state.userShippingInfo.phone
+			},
+			shipping: {
+				first_name: state.userShippingInfo.firstName,
+				last_name: state.userShippingInfo.lastName,
+				address_1: state.userShippingInfo.firstAddress,
+				address_2: state.userShippingInfo.secondAddress,
+				city: state.userShippingInfo.city,
+				state: state.userShippingInfo.state,
+				country: state.userShippingInfo.country,
+				email: state.userShippingInfo.email,
+				phone: state.userShippingInfo.phone
+			},
+			LINE_ITEMS,
+			shipping_lines: [
+				{
+					method_id: 'flat_rate',
+					method_title: 'Flat Rate',
+					total: '10.00'
+				}
+			]
+		}
+
+		state.woocommerceOrderBody = body
+
+		// console.log(state.woocommerceOrderBody)
+	},
+	async SEND_WOOCOMMERCE_ORDER (state) {
+		const response = await httpClient({
+			url: '/orders',
+			method: 'post',
+			data: state.woocommerceOrderBody
+		})
+		console.log(response)
 	}
 }
 

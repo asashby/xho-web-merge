@@ -1,6 +1,7 @@
 <template>
     <div class="cart-wrapper">
         <div class="cart-table-section">
+            <p class="cart-table-title">Carrito de compras</p>
             <table class="cart-table">
                 <thead>
                     <tr>
@@ -83,7 +84,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button class="finalize-order-button" @click="pay">
+                    <button class="finalize-order-button" @click="finishShopping">
                         <p class="finalize-order-text">
                             FINALIZAR COMPRA
                         </p>
@@ -125,9 +126,10 @@ export default defineComponent({
 		removeProductFromCart (product) {
 			this.$store.commit('removeFromCart', product)
 		},
-		async pay () {
-			const token = await this.$culqi.openCheckout()
-			console.log(token.id)
+		finishShopping () {
+			this.$router.push('/tienda/checkout')
+			/* const token = await this.$culqi.openCheckout()
+			console.log(token.id) */
 		}
 	},
 	setup () {
@@ -154,10 +156,16 @@ export default defineComponent({
         width: 100%;
 
         @media screen and (min-width: 600px) {
-            display: flex;
+            display: inline;
             padding-left: 50px;
             padding-right: 25px;
         }
+    }
+    .cart-table-title{
+        color: white;
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 600;
     }
     .cart-table{
         width: 100%;

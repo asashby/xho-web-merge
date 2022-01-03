@@ -136,32 +136,16 @@ export const BannerChallengeDetails = Vue.component('BannerChallengeDetails', {
 	},
 	computed: {
 		bannerDesktop () {
-			if (this.img) {
-				return this.img
-			} else {
-				return '~/assets/images/retos/rutinas/banner_desktop@2x.jpg'
-			}
+			return this.img
 		},
 		bannerDesktop2x () {
-			if (this.img) {
-				return this.img
-			} else {
-				return '~/assets/images/retos/rutinas/banner_desktop@2x.jpg'
-			}
+			return this.img
 		},
 		bannerMovil () {
-			if (this.imgMobile) {
-				return this.imgMobile
-			} else {
-				return '~/assets/images/retos/rutinas/banner_desktop@2x.jpg'
-			}
+			return this.imgMobile
 		},
 		bannerMovil2x () {
-			if (this.imgMobile) {
-				return this.imgMobile
-			} else {
-				return '~/assets/images/retos/rutinas/banner_desktop@2x.jpg'
-			}
+			return this.imgMobile
 		},
 		iconPlay () {
 			return require('~/assets/images/retos/rutinas/ejercicios/ejecucion/icon-play.svg')
@@ -552,31 +536,16 @@ export const BannerExcercises = Vue.component('BannerExcercises', {
 
 	computed: {
 		bannerDesktop () {
-			if (this.urlImage) {
-				return this.urlImage
-			} else {
-				return require('~/assets/images/retos/rutinas/ejercicios/ejecucion/banner_desktop.jpg')
-			}
+			return this.urlImage
 		},
 		bannerDesktop2x () {
-			if (this.urlImage) {
-				return this.urlImage
-			} else {
-				return require('~/assets/images/retos/rutinas/ejercicios/ejecucion/banner_desktop@2x.jpg')
-			}
+			return this.urlImage
 		},
 		bannerMovil () {
-			if (this.urlImageMobile) {
-				return this.urlImageMobile
-			}
-			return require('~/assets/images/retos/rutinas/ejercicios/ejecucion/banner_movil.jpg')
+			return this.urlImageMobile
 		},
 		bannerMovil2x () {
-			if (this.urlImageMobile) {
-				return this.urlImageMobile
-			} else {
-				return require('~/assets/images/retos/rutinas/ejercicios/ejecucion/banner_movil@2x.jpg')
-			}
+			return this.urlImageMobile
 		},
 		iconPlay () {
 			return require('~/assets/images/retos/rutinas/ejercicios/ejecucion/icon-play.svg')

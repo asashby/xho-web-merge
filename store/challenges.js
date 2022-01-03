@@ -147,8 +147,6 @@ export const actions = {
 	async getCoursePlans ({ commit }, slug) {
 		try {
 			const { data: response } = await this.$http.get(`/course/${slug}/plans-list`)
-			console.log('funciona el get')
-			console.log(response)
 			commit('SET_CHALLENGE_PLANS', response)
 		} catch (err) {
 			console.log('error al cargar planes del reto', err)
