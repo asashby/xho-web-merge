@@ -13,10 +13,22 @@
                     indicators="false"
                     :interval="5000">
                     <SliderItem class="banner-item">
-                        <img class="banner-image" @click="addOneMonthOffer" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/promo.jpg?alt=media&token=5d9c801e-a810-4bdf-9993-d19b4ce87831" alt="">
+                        <img class="banner-image" @click="add500gBasicOffer" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/1.png" alt="">
                     </SliderItem>
                     <SliderItem class="banner-item">
-                        <img class="banner-image" @click="addTwoMonthsOffer" src="https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/promo2.jpg?alt=media&token=e98fb3ae-9add-401b-b4dc-44d06ac68398" alt="">
+                        <img class="banner-image" @click="add1kgBasicOffer" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/6.png" alt="">
+                    </SliderItem>
+                    <SliderItem class="banner-item">
+                        <img class="banner-image" @click="add500gIntermediateOffer" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/2.png" alt="">
+                    </SliderItem>
+                    <SliderItem class="banner-item">
+                        <img class="banner-image" @click="add1kgIntermediateOffer" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/5.png" alt="">
+                    </SliderItem>
+                    <SliderItem class="banner-item">
+                        <img class="banner-image" @click="add500gAdvancedOffer" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/3.png" alt="">
+                    </SliderItem>
+                    <SliderItem class="banner-item">
+                        <img class="banner-image" @click="add1kgAdvancedOffer" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/4.png" alt="">
                     </SliderItem>
                 </Slider>
             </client-only>
@@ -75,6 +87,10 @@ function openProductDetails (product) {
 	this.$router.push('/tienda/product_details')
 }
 
+async function suscribeUserToChallenge (slugName) {
+	await this.$store.dispatch('challenges/suscribeUserToChallenge', slugName)
+}
+
 export default defineComponent({
 	name: 'Product',
 	auth: false,
@@ -98,24 +114,68 @@ export default defineComponent({
 		products () {
 			return products
 		},
-		oneMonthOffer () {
+		_500gBasicChallenge () {
 			return {
-				id: 13,
-				title: 'PACK ISOXIPRO Whey protein isolate + Entrenamiento app (1 mes)',
+				id: 109,
+				title: 'PACK ISOXIPRO Whey protein 500g + Entrenamiento básico (1 mes)',
+				price: 199.00,
+				description: 'Oferta proteína 500 gramos más entrenamiento básico por un mes',
+				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-500g.jpg?alt=media&token=78b601fa-71bf-4e91-9ed4-073fc17382f2',
+				sku: 'PIPT-1-1',
+				category: 'PROMOCIONES, PROTEINA'
+			}
+		},
+		_1kgBasicChallenge () {
+			return {
+				id: 15,
+				title: 'PACK ISOXIPRO Whey protein isolate + Entrenamiento básico (1 mes)',
 				price: 238.00,
-				description: 'Oferta proteína más entrenamientos por un mes',
+				description: 'Oferta proteína 1 kilogramo más entrenamiento básico por un mes',
 				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-chocolate.jpg?alt=media&token=c866be97-1b48-4232-8849-6a44a5dd0a74',
 				sku: 'PIPT-1-1',
 				category: 'PROMOCIONES, PROTEINA'
 			}
 		},
-		twoMonthsOffer () {
+		_500gIntermediateChallenge () {
 			return {
-				id: 14,
-				title: 'PACK ISOXIPRO Whey protein 500g + Entrenamiento app (2 meses)',
+				id: 109,
+				title: 'PACK ISOXIPRO Whey protein 500g + Entrenamiento intermedio (1 mes)',
 				price: 199.00,
-				description: 'Oferta proteína 500 gramos más entrenamientos por un mes',
+				description: 'Oferta proteína 500 gramos más entrenamiento intermedio por un mes',
 				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-500g.jpg?alt=media&token=78b601fa-71bf-4e91-9ed4-073fc17382f2',
+				sku: 'PIPT-1-1',
+				category: 'PROMOCIONES, PROTEINA'
+			}
+		},
+		_1kgIntermediateChallenge () {
+			return {
+				id: 15,
+				title: 'PACK ISOXIPRO Whey protein isolate + Entrenamiento intermedio (1 mes)',
+				price: 238.00,
+				description: 'Oferta proteína 1 kilogramo más entrenamiento intermedio por un mes',
+				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-chocolate.jpg?alt=media&token=c866be97-1b48-4232-8849-6a44a5dd0a74',
+				sku: 'PIPT-1-1',
+				category: 'PROMOCIONES, PROTEINA'
+			}
+		},
+		_500gAdvancedChallenge () {
+			return {
+				id: 109,
+				title: 'PACK ISOXIPRO Whey protein 500g + Entrenamiento avanzado (1 mes)',
+				price: 199.00,
+				description: 'Oferta proteína 500 gramos más entrenamiento avanzado por un mes',
+				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-500g.jpg?alt=media&token=78b601fa-71bf-4e91-9ed4-073fc17382f2',
+				sku: 'PIPT-1-1',
+				category: 'PROMOCIONES, PROTEINA'
+			}
+		},
+		_1kgAdvancedChallenge () {
+			return {
+				id: 15,
+				title: 'PACK ISOXIPRO Whey protein isolate + Entrenamiento avanzado (1 mes)',
+				price: 238.00,
+				description: 'Oferta proteína 1 kilogramo más entrenamiento avanzado por un mes',
+				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-chocolate.jpg?alt=media&token=c866be97-1b48-4232-8849-6a44a5dd0a74',
 				sku: 'PIPT-1-1',
 				category: 'PROMOCIONES, PROTEINA'
 			}
@@ -123,18 +183,53 @@ export default defineComponent({
 	},
 	methods: {
 		openProductDetails,
-		addOneMonthOffer () {
+		suscribeUserToChallenge,
+		add500gBasicOffer () {
 			this.$store.commit('addToCart', {
-				product: this.oneMonthOffer,
+				product: this._500gBasicChallenge,
 				quantity: 1
 			})
+			suscribeUserToChallenge('basico-en-casa')
 			this.$router.push('/tienda/cart')
 		},
-		addTwoMonthsOffer () {
+		add1kgBasicOffer () {
 			this.$store.commit('addToCart', {
-				product: this.twoMonthsOffer,
+				product: this._1kgBasicChallenge,
 				quantity: 1
 			})
+			suscribeUserToChallenge('basico-en-casa')
+			this.$router.push('/tienda/cart')
+		},
+		add500gIntermediateOffer () {
+			this.$store.commit('addToCart', {
+				product: this._500gIntermediateChallenge,
+				quantity: 1
+			})
+			suscribeUserToChallenge('intermedio-en-casa')
+			this.$router.push('/tienda/cart')
+		},
+		add1kgIntermediateOffer () {
+			this.$store.commit('addToCart', {
+				product: this._1kgIntermediateChallenge,
+				quantity: 1
+			})
+			suscribeUserToChallenge('intermedio-en-casa')
+			this.$router.push('/tienda/cart')
+		},
+		add500gAdvancedOffer () {
+			this.$store.commit('addToCart', {
+				product: this._500gAdvancedChallenge,
+				quantity: 1
+			})
+			suscribeUserToChallenge('avanzado-en-gym')
+			this.$router.push('/tienda/cart')
+		},
+		add1kgAdvancedOffer () {
+			this.$store.commit('addToCart', {
+				product: this._1kgAdvancedChallenge,
+				quantity: 1
+			})
+			suscribeUserToChallenge('avanzado-en-gym')
 			this.$router.push('/tienda/cart')
 		}
 	}

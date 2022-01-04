@@ -49,7 +49,7 @@ import PaymentCompleted from '~/components/Modal/PaymentCompleted'
 // import httpClient from '~/plugins/culqiAxios'
 
 Vue.use(CulqiCheckout, {
-	publicKey: 'pk_test_1338180928bae5d6',
+	publicKey: 'pk_live_519c60a11816cfdc',
 	title: 'Compra ',
 	currency: 'PEN',
 	description: 'Descripcion',
@@ -62,9 +62,9 @@ function data () {
 	}
 }
 
-/* async function suscribeUserToChallenge (slugName) {
+async function suscribeUserToChallenge (slugName) {
 	await this.$store.dispatch('challenges/suscribeUserToChallenge', slugName)
-} */
+}
 
 export default defineComponent({
 	components: {
@@ -93,15 +93,15 @@ export default defineComponent({
 				console.log('no se pudo')
 			}
 
-			this.$store.commit('SET_SHOW_PAYMENT_MODAL', true)
-			// this.showModal = true
-
-			/* const { slugRetos } = this.$route.params
+			const { slugRetos } = this.$route.params
 
 			plan.slug.forEach((slugName) => {
 				suscribeUserToChallenge(slugName)
 			})
-			console.log('routeParams', slugRetos) */
+			console.log('routeParams', slugRetos)
+
+			this.$store.commit('SET_SHOW_PAYMENT_MODAL', true)
+			// this.showModal = true
 
 			/* const body = {
 				amount: plan.price,
