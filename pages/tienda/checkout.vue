@@ -232,7 +232,7 @@
 import { defineComponent } from '@vue/composition-api'
 import Vue from 'vue'
 import CulqiCheckout from 'vue-culqi-checkout'
-import culqiHttpClient from '~/plugins/axios'
+import culqiHttpClient from '~/plugins/culqiAxios'
 
 Vue.use(CulqiCheckout, {
 	publicKey: 'pk_live_519c60a11816cfdc',
