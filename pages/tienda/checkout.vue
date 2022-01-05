@@ -311,11 +311,26 @@ export default defineComponent({
 </script>
 <style scoped>
     .checkout-data-wrapper{
-        padding: 75px;
+        @media screen and (max-width: 599px){
+          padding-top: 75px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        @media screen and (min-width: 600px){
+          padding: 75px;
+        }
     }
     .checkout-data-form-fields{
-        width: 50%;
-        float: left;
+
+        @media screen and (max-width: 599px){
+          width: 100%;
+        }
+
+        @media screen and (min-width: 600px){
+          width: 50%;
+          float: left;
+        }
     }
     .checkout-data-form-fields-title{
         color: white;
@@ -374,9 +389,17 @@ export default defineComponent({
         background-color: #242424;
     }
     .checkout-data-form-review{
-        width: 50%;
-        float: right;
-        padding-left: 75px;
+
+        @media screen and (max-width: 599px){
+          margin-top: 40px;
+          width: 100%;
+        }
+
+        @media screen and (min-width: 600px){
+          width: 50%;
+          float: right;
+          padding-left: 75px;
+        }
     }
     .order-review-title{
         color: white;
