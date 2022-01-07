@@ -50,11 +50,11 @@
         @click="drawer = true"
       />
 
-      <NuxtLink v-if="isLoggedIn" to="/perfil">
+      <NuxtLink v-if="$auth.$state.loggedIn" to="/perfil">
         <img :src="userPhoto" class="user-photo">
       </NuxtLink>
 
-      <NuxtLink v-if="isNotLoggedIn" to="/inicio-sesion" class="routes">
+      <NuxtLink v-if="!$auth.$state.loggedIn" to="/inicio-sesion" class="routes">
         Entrar
       </NuxtLink>
     </v-app-bar>

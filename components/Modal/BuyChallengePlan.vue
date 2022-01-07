@@ -33,7 +33,7 @@
       </v-card>
     </v-dialog>
     <transition name="payment-window">
-      <div v-if="showModal" class="modal-overlay">
+      <div v-if="$store.state.showPaymentModal" class="modal-overlay">
         <PaymentCompleted />
       </div>
     </transition>
@@ -50,10 +50,10 @@ import PaymentCompleted from '~/components/Modal/PaymentCompleted'
 
 Vue.use(CulqiCheckout, {
 	publicKey: 'pk_live_519c60a11816cfdc',
-	title: 'Compra ',
+	title: 'Compra reto Ximena Hoyos',
 	currency: 'PEN',
 	description: 'Descripcion',
-	amount: 1000
+	amount: 500
 })
 
 function data () {
@@ -88,7 +88,14 @@ export default defineComponent({
 		async buyPlan (plan) {
 			try {
 				const token = await this.$culqi.openCheckout()
-				console.log(token)
+				const body = {
+					amount: 500,
+					currency_code: 'PEN',
+					email: 'test@gmail.com',
+					source_id: token.id
+				}
+
+				await this.$store.dispatch('createCulqiOrder', body)
 			} catch (ex) {
 				console.log('no se pudo')
 			}
@@ -100,24 +107,8 @@ export default defineComponent({
 			})
 			console.log('routeParams', slugRetos)
 
+			this.$store.commit('SET_PAYMENT_MODAL_REDIRECTION_PATH', '/entrenamientos')
 			this.$store.commit('SET_SHOW_PAYMENT_MODAL', true)
-			// this.showModal = true
-
-			/* const body = {
-				amount: plan.price,
-				currency_code: 'PEN',
-				email: 'test@gmail.com',
-				source_id: token
-			} */
-
-			/* const response = await httpClient({
-				url: '/charges',
-				method: 'post',
-				headers: {
-					// "X-CSRF-TOKEN": getCookie('csrf_token')
-				},
-				data: body
-			}) */
 		}
 	}
 })

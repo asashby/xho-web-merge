@@ -226,34 +226,29 @@
         </div>
       </div>
     </div>
+    <transition name="payment-window">
+      <div v-if="$store.state.showPaymentModal" class="modal-overlay">
+        <PaymentCompleted />
+      </div>
+    </transition>
   </div>
 </template>
-<script src="https://checkout.culqi.com/js/v3">
-</script>
+
 <script>
 import { defineComponent } from '@vue/composition-api'
+import { mapState } from 'vuex'
 import Vue from 'vue'
 import CulqiCheckout from 'vue-culqi-checkout'
+import PaymentCompleted from '~/components/Modal/PaymentCompleted'
 // import culqiHttpClient from '~/plugins/culqiAxios'
 
 Vue.use(CulqiCheckout, {
-	publicKey: 'pk_test_1338180928bae5d6',
+	publicKey: 'pk_live_519c60a11816cfdc',
 	title: 'Compra tienda Ximena Hoyos',
 	currency: 'PEN',
 	description: 'Descripcion',
 	amount: 500
 })
-
-Culqi.publicKey = "pk_live_519c60a11816cfdc"
-
-Culqi.settings(
-  {
-    title: 'Culqi Store',
-    currency: 'PEN',
-    description: 'Polo Culqi lover',
-    amount: 3500
-  }
-)
 
 async function completeOrder () {
 	const token = await this.$culqi.openCheckout()
@@ -263,17 +258,9 @@ async function completeOrder () {
 		email: 'test@gmail.com',
 		source_id: token.id
 	}
+
 	await this.$store.dispatch('createCulqiOrder', body)
-	// this.$store.dispatch('sendCulqiOrder', body)
-	/* const response = await culqiHttpClient({
-		url: '/charges',
-		method: 'post',
-		headers: {
-			// "X-CSRF-TOKEN": getCookie('csrf_token')
-		},
-		data: body
-	})
-	console.log(response) */
+
 	const userShipping = {
 		firstName: this.firstNameData,
 		lastName: this.lastNameData,
@@ -287,12 +274,17 @@ async function completeOrder () {
 	}
 	this.$store.dispatch('setUserShippingInfo', userShipping)
 	this.$store.dispatch('sendShippingInformation')
+	this.$store.commit('SET_PAYMENT_MODAL_REDIRECTION_PATH', '/tienda')
+	this.$store.commit('SET_SHOW_PAYMENT_MODAL', true)
 }
 
 export default defineComponent({
 	name: 'ShopCheckout',
 	setup () {
 
+	},
+	components: {
+		PaymentCompleted
 	},
 	data () {
 		return {
@@ -308,6 +300,9 @@ export default defineComponent({
 		}
 	},
 	computed: {
+		...mapState('challenges', {
+			showPaymentModal: state => state.showPaymentModal
+		}),
 		cart () {
 			return this.$store.state.cart
 		},

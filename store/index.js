@@ -269,7 +269,8 @@ export const state = () => ({
 	ximena: {},
 	tokenMaki: '',
 	fullUser: {},
-	showPaymentModal: false
+	showPaymentModal: false,
+	paymentModalRedirectionPath: ''
 })
 
 export const actions = {
@@ -366,6 +367,9 @@ export const actions = {
 	},
 	setShowPaymentModal ({ commit, indicator }) {
 		commit('SET_SHOW_PAYMENT_MODAL', indicator)
+	},
+	setPaymentModalRedirectionPath ({ commit, path }) {
+		commit('SET_PAYMENT_MODAL_REDIRECTION_PATH', path)
 	},
 	setUserShippingInfo ({ commit }, userShipping) {
 		commit('SET_USER_SHIPPING_INFO', userShipping)
@@ -482,6 +486,9 @@ export const mutations = {
 	SET_SHOW_PAYMENT_MODAL (state, indicator) {
 		state.showPaymentModal = indicator
 	},
+	SET_PAYMENT_MODAL_REDIRECTION_PATH (state, path) {
+		state.paymentModalRedirectionPath = path
+	},
 	SET_USER_SHIPPING_INFO (state, userShipping) {
 		state.userShippingInfo = {
 			firstName: userShipping.firstName,
@@ -497,9 +504,9 @@ export const mutations = {
 	},
 	SET_SHIPPING_PRODUCTS_DATA (state) {
 		const data = []
-		state.cart.forEach((item) => {
+		state.cart.forEach((value) => {
 			data.push({
-				product_id: item.product.id,
+				product_id: value.product.id,
 				quantity: 1
 			})
 		})
@@ -507,7 +514,6 @@ export const mutations = {
 		state.shippingProductsData = data
 	},
 	SET_WOOCOMMERCE_ORDER_BODY (state) {
-		const LINE_ITEMS = state.shippingProductsData
 		const body = {
 			payment_method: 'bacs',
 			payment_method_title: 'Direct Bank Transfer',
@@ -536,7 +542,7 @@ export const mutations = {
 				email: state.userShippingInfo.email,
 				phone: state.userShippingInfo.phone
 			},
-			LINE_ITEMS,
+			line_items: state.shippingProductsData,
 			shipping_lines: [
 				{
 					method_id: 'flat_rate',
@@ -547,8 +553,9 @@ export const mutations = {
 		}
 
 		state.woocommerceOrderBody = body
+		state.cart = []
 
-		// console.log(state.woocommerceOrderBody)
+		console.log(state.woocommerceOrderBody)
 	},
 	async SEND_WOOCOMMERCE_ORDER (state) {
 		const response = await httpClient({

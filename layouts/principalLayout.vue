@@ -11,7 +11,7 @@
 						alt="Logo_Ximena_Hoyos">
 				</picture>
 
-				<div v-if="isLoggedIn" class="user-greeting--main-container">
+				<div v-if="$auth.$state.loggedIn" class="user-greeting--main-container">
 					<div class="user-greeting--text">
 						<h1>Hola</h1>
 						<h2>{{ userName }}</h2>

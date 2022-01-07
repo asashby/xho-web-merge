@@ -42,7 +42,7 @@
 
 		<div class="logout">
 			<v-btn
-			v-if="isLoggedIn"
+			v-if="$auth.$state.loggedIn"
 				class="logout_btn"
 				tile
 				@click="handleClickOnLogout"
@@ -53,7 +53,7 @@
 				Cerrar sesion
 			</v-btn>
 			<v-btn
-				v-if="isNotLoggedIn"
+				v-if="!$auth.$state.loggedIn"
 				class="logout_btn"
 				tile
 				@click="handleClickOnLogin"

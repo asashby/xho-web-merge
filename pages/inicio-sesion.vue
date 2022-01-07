@@ -196,7 +196,7 @@ export default {
 		loginWithFacebook (hash) {
 			const facebookToken = hash.get('#access_token')
 			if (facebookToken) {
-				this.$router.push('/sobre-ximena')
+				this.$router.push('/objetivos')
 				this.$nextTick(() => {
 					this.$nuxt.$loading.finish()
 				})
@@ -208,7 +208,7 @@ export default {
 			}
 		},
 		loginWithGoogle () {
-			this.$router.push('/sobre-ximena')
+			this.$router.push('/objetivos')
 			this.$nextTick(() => {
 				this.$nuxt.$loading.finish()
 			})
