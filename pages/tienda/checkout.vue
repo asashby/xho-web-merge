@@ -261,7 +261,7 @@ async function completeOrder () {
 		amount: 500,
 		currency_code: 'PEN',
 		email: 'test@gmail.com',
-		source_id: token
+		source_id: token.id
 	}
 	await this.$store.dispatch('createCulqiOrder', body)
 	// this.$store.dispatch('sendCulqiOrder', body)
