@@ -1,6 +1,7 @@
 /* eslint-disable no-tabs */
 import { isEmpty, getPropertysValue } from 'functionallibrary'
 import httpClient from '~/plugins/woocommerceAxios'
+import culqiHttpClient from '~/plugins/culqiAxios'
 
 const alreadyInTheState = (state, prop) => {
 	return !(isEmpty(state[prop]))
@@ -306,6 +307,17 @@ export const actions = {
 			}
 		}
 	},
+	async createCulqiOrder ({ commit, state }, body) {
+		if (isEmpty(state.ximena)) {
+			try {
+				const url = '/culqui/create-charge'
+				const { data: response } = await this.$http.post(url, body)
+				console.log('RESPONSE', response)
+			} catch (err) {
+				console.log('ocurrio un error al crear la orden', err)
+			}
+		}
+	},
 	setUserData ({ commit, state }, userData) {
 		const userUpdated = {
 			...state.auth.user,
@@ -332,6 +344,13 @@ export const actions = {
 			}) */
 			// const { data: response } = await this.$http.patch(`/courses/${slug}/payment`, { params, data: body })
 			// console.log(response)
+		} catch (err) {
+			console.log('fallo por el patch', err)
+		}
+	},
+	sendCulqiOrder ({ commit }, body) {
+		try {
+			commit('SEND_CULQI_ORDER', body)
 		} catch (err) {
 			console.log('fallo por el patch', err)
 		}
@@ -486,8 +505,6 @@ export const mutations = {
 		})
 
 		state.shippingProductsData = data
-		console.log(state.cart)
-		console.log(state.shippingProductsData)
 	},
 	SET_WOOCOMMERCE_ORDER_BODY (state) {
 		const LINE_ITEMS = state.shippingProductsData
@@ -538,6 +555,17 @@ export const mutations = {
 			url: '/orders',
 			method: 'post',
 			data: state.woocommerceOrderBody
+		})
+		console.log(response)
+	},
+	async SEND_CULQI_ORDER (state, body) {
+		const response = await culqiHttpClient({
+			url: '/charges',
+			method: 'post',
+			headers: {
+				// "X-CSRF-TOKEN": getCookie('csrf_token')
+			},
+			data: body
 		})
 		console.log(response)
 	}

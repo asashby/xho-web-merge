@@ -228,19 +228,32 @@
     </div>
   </div>
 </template>
+<script src="https://checkout.culqi.com/js/v3">
+</script>
 <script>
 import { defineComponent } from '@vue/composition-api'
 import Vue from 'vue'
 import CulqiCheckout from 'vue-culqi-checkout'
-import culqiHttpClient from '~/plugins/culqiAxios'
+// import culqiHttpClient from '~/plugins/culqiAxios'
 
 Vue.use(CulqiCheckout, {
-	publicKey: 'pk_live_519c60a11816cfdc',
+	publicKey: 'pk_test_1338180928bae5d6',
 	title: 'Compra tienda Ximena Hoyos',
 	currency: 'PEN',
 	description: 'Descripcion',
 	amount: 500
 })
+
+Culqi.publicKey = "pk_live_519c60a11816cfdc"
+
+Culqi.settings(
+  {
+    title: 'Culqi Store',
+    currency: 'PEN',
+    description: 'Polo Culqi lover',
+    amount: 3500
+  }
+)
 
 async function completeOrder () {
 	const token = await this.$culqi.openCheckout()
@@ -250,7 +263,9 @@ async function completeOrder () {
 		email: 'test@gmail.com',
 		source_id: token
 	}
-	const response = await culqiHttpClient({
+	await this.$store.dispatch('createCulqiOrder', body)
+	// this.$store.dispatch('sendCulqiOrder', body)
+	/* const response = await culqiHttpClient({
 		url: '/charges',
 		method: 'post',
 		headers: {
@@ -258,7 +273,7 @@ async function completeOrder () {
 		},
 		data: body
 	})
-	console.log(response)
+	console.log(response) */
 	const userShipping = {
 		firstName: this.firstNameData,
 		lastName: this.lastNameData,
