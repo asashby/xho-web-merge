@@ -32,14 +32,11 @@ export default {
       display: flex;
       justify-content: center;
       background-color: #000000da;
-
-      @media screen and (min-width: 600px){
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-      }
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
     }
 
     .modal {
