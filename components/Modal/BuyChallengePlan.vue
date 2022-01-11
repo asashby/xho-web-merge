@@ -62,9 +62,9 @@ function data () {
 	}
 }
 
-async function suscribeUserToChallenge (slugName) {
+/* async function suscribeUserToChallenge (slugName) {
 	await this.$store.dispatch('challenges/suscribeUserToChallenge', slugName)
-}
+} */
 
 export default defineComponent({
 	components: {
@@ -98,8 +98,8 @@ export default defineComponent({
 
 			const { slugRetos } = this.$route.params
 
-			plan.slug.forEach((slugName) => {
-				suscribeUserToChallenge(slugName)
+			plan.slug.forEach(async (slugName) => {
+				await this.$store.dispatch('challenges/suscribeUserToChallenge', slugName)
 			})
 			console.log('routeParams', slugRetos)
 
