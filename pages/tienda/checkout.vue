@@ -259,7 +259,7 @@ async function completeOrder () {
 		source_id: token.id
 	}
 
-	await this.$store.dispatch('createCulqiOrder', body)
+	this.$store.dispatch('createCulqiOrder', body)
 
 	const userShipping = {
 		firstName: this.firstNameData,

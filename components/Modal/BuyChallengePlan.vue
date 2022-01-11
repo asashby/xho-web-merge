@@ -86,19 +86,15 @@ export default defineComponent({
 	},
 	methods: {
 		async buyPlan (plan) {
-			try {
-				const token = await this.$culqi.openCheckout()
-				const body = {
-					amount: 500,
-					currency_code: 'PEN',
-					email: 'test@gmail.com',
-					source_id: token.id
-				}
-
-				await this.$store.dispatch('createCulqiOrder', body)
-			} catch (ex) {
-				console.log('no se pudo')
+			const token = await this.$culqi.openCheckout()
+			const body = {
+				amount: 500,
+				currency_code: 'PEN',
+				email: 'test@gmail.com',
+				source_id: token.id
 			}
+
+			await this.$store.dispatch('createCulqiOrder', body)
 
 			const { slugRetos } = this.$route.params
 

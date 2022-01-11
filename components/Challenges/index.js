@@ -381,32 +381,16 @@ export const BannerRoutineDetails = Vue.component('BannerRoutineDetails', {
 	},
 	computed: {
 		bannerDesktop () {
-			if (this.urlImage) {
-				return this.urlImage
-			} else {
-				return require('~/assets/images/retos/rutinas/ejercicios/banner_desktop.jpg')
-			}
+			return this.urlImage
 		},
 		bannerDesktop2x () {
-			if (this.urlImage) {
-				return this.urlImage
-			} else {
-				return require('~/assets/images/retos/rutinas/ejercicios/banner_desktop@2x.jpg')
-			}
+			return this.urlImage
 		},
 		bannerMovil () {
-			if (this.urlImageMobile) {
-				return this.urlImageMobile
-			} else {
-				return require('~/assets/images/retos/rutinas/ejercicios/banner_movil.jpg')
-			}
+			return this.urlImageMobile
 		},
 		bannerMovil2x () {
-			if (this.urlImageMobile) {
-				return this.urlImageMobile
-			} else {
-				return require('~/assets/images/retos/rutinas/ejercicios/banner_movil@2x.jpg')
-			}
+			return this.urlImageMobile
 		}
 	},
 	render () {

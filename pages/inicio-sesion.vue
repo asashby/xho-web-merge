@@ -30,89 +30,89 @@
       </picture>
     </div>
     <div class="login-wrapper">
-		<div class="login-row">
-			<div class="login-column">
-				<picture>
-					<img
-					class="login-cover"
-					src="~/assets/images/login/ximena.png"
-					alt="Logo_Ximena_Hoyos"
-					>
-				</picture>
-				<picture>
-					<img
-					class="login-logo-mobile"
-					src="~/assets/icons/ximena_logo.svg"
-					alt="Logo_Ximena_Hoyos"
-					>
-				</picture>
-			</div>
-			<div class="login-column">
-				<div class="login-grid">
-					<div class="login-op1" @click="goToAbout">
-						<picture>
-							<img
-								class="login-card"
-								src="~/assets/images/login/OP01.jpg"
-								alt="Logo_Ximena_Hoyos"
-							>
-						</picture>
-					</div>
-					<div class="login-op2" @click="goToTraining">
-						<picture>
-							<img
-							class="login-card"
-							src="~/assets/images/login/OP02.jpg"
-							alt="Logo_Ximena_Hoyos"
-							>
-						</picture>
-					</div>
-					<div class="login-op3" @click="goToRecipes">
-						<picture>
-							<img
-							class="login-card"
-							src="~/assets/images/login/OP03.jpg"
-							alt="Logo_Ximena_Hoyos"
-							>
-						</picture>
-					</div>
-					<div class="login-op4" @click="goToTips">
-						<picture>
-							<img
-							class="login-card"
-							src="~/assets/images/login/OP04.jpg"
-							alt="Logo_Ximena_Hoyos"
-							>
-						</picture>
-					</div>
+		<div class="login-middle">
+			<div class="login-row">
+				<div class="login-column">
+					<picture>
+						<img
+						class="login-cover"
+						src="~/assets/images/login/ximena.png"
+						alt="Logo_Ximena_Hoyos"
+						>
+					</picture>
 				</div>
-				<div class="login-social-selector">
-					<div class="login-selector-grid">
-						<button class="login-facebook">
+				<div class="login-column">
+					<div>
+						<p class="login-title-text">
+							El app incluye:
+						</p>
+					</div>
+					<div class="login-grid">
+						<div class="login-op1">
 							<picture>
 								<img
-									class="login-selector-icon"
-									src="~/assets/icons/facebook.svg"
-									alt="facebook"
-									>
+									class="login-card"
+									src="~/assets/images/login/OP01.jpg"
+									alt="Logo_Ximena_Hoyos"
+								>
 							</picture>
-						</button>
-						<button class="login-google">
+						</div>
+						<div class="login-op2">
 							<picture>
 								<img
-									class="login-selector-icon"
-									src="~/assets/icons/google.svg"
-									alt="google"
-									>
+								class="login-card"
+								src="~/assets/images/login/OP02.jpg"
+								alt="Logo_Ximena_Hoyos"
+								>
 							</picture>
+						</div>
+						<div class="login-op3">
+							<picture>
+								<img
+								class="login-card"
+								src="~/assets/images/login/OP03.jpg"
+								alt="Logo_Ximena_Hoyos"
+								>
+							</picture>
+						</div>
+						<div class="login-op4">
+							<picture>
+								<img
+								class="login-card"
+								src="~/assets/images/login/OP04.jpg"
+								alt="Logo_Ximena_Hoyos"
+								>
+							</picture>
+						</div>
+					</div>
+					<div class="login-social-selector">
+						<div class="login-selector-grid">
+							<button class="login-facebook">
+								<picture>
+									<img
+										class="login-selector-icon"
+										src="~/assets/icons/facebook.svg"
+										alt="facebook"
+										>
+								</picture>
+							</button>
+							<button class="login-google">
+								<picture>
+									<img
+										class="login-selector-icon"
+										src="~/assets/icons/google.svg"
+										alt="google"
+										>
+								</picture>
+							</button>
+						</div>
+						<button
+							class="login-enter-button"
+							@click="signIn"
+						>
+							<p class="login-enter-text-button">ENTRAR</p>
 						</button>
 					</div>
-					<button
-						class="login-enter-button"
-						@click="signIn"
-					>
-						<p class="login-enter-text-button">ENTRAR</p>
-					</button>
 				</div>
 			</div>
 		</div>
@@ -133,11 +133,6 @@ import '@ivahid/vue-toggle-image/dist/vue-toggle-image.css'
 export default {
 	name: 'PaginaInicioSesion',
 	auth: false,
-	components: {
-		// FacebookButton,
-		// GoogleButton,
-		// VueToggleImage
-	},
 	layout: 'headless',
 	data: () => ({
 		userData: {
@@ -284,6 +279,16 @@ export default {
 		@apply z-10;
 		@apply pb-4;
 		margin: 0 auto;
+		align-items: center;
+
+		@media screen and (max-width: 599px) {
+			display: table;
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+		}
 
 		@media screen and (min-width: 600px) {
 			@apply self-auto;
@@ -291,11 +296,35 @@ export default {
 			align-items: center;
 		}
 	}
+	&-title-text{
 
-	&-row {
-		margin: 0 auto;
-
+		@media screen and (max-width: 599px) {
+			display: none;
+		}
 		@media screen and (min-width: 600px) {
+			text-align: center;
+			font-size: 18px;
+			color: white;
+			text-transform: uppercase;
+			margin-top: 150px;
+		}
+	}
+	&-middle {
+		width: 100%;
+		@media screen and (max-width: 599px) {
+			display: table-cell;
+			vertical-align: middle;
+		}
+	}
+	&-row {
+		align-items: center;
+
+		@media screen and (max-width: 599px) {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		@media screen and (min-width: 600px) {
+			width: 100%;
 			display: table;
 			clear: both;
 		}
@@ -306,6 +335,7 @@ export default {
 
 		@media screen and (max-width: 599px) {
 			align-items: center;
+			vertical-align: middle;
 		}
 
 		@media screen and (min-width: 600px) {
@@ -320,36 +350,40 @@ export default {
 	}
 
 	&-cover {
-		@media screen and (min-width: 600px) {
-			height: 700px;
-			margin: auto;
-			float: right;
-		}
-		@media screen and (max-width: 599px) {
-			display: none;
-		}
-	}
-
-	&-logo-mobile {
+		object-fit: contain;
 		margin: 0 auto;
 
-		@media screen and (min-width: 600px) {
-			display: none;
-		}
 		@media screen and (max-width: 599px) {
-			margin-top: 75px;
-			width: 200px;
-			object-fit: contain;
-			margin-bottom: 35px;
+			height: 450px;
+		}
+		@media screen and (max-width: 1099px) and (min-width: 600px) {
+			height: 500px;
+			float: right;
+		}
+		@media screen and (min-width: 1100px) {
+			height: 700px;
+			float: right;
 		}
 	}
 
 	&-grid {
-		margin: 0 auto;
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		@media screen and (min-width: 600px) {
-			margin-top: 150px;
+		display: none;
+
+		@media screen and (max-width: 599px) {
+			display: none;
+		}
+
+		@media screen and (max-width: 1099px) and (min-width: 600px) {
+			margin: 0 auto;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-auto-rows: minmax(100px, auto);
+			width: 500px;
+		}
+		@media screen and (min-width: 1100px) {
+			margin: 0 auto;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
 			grid-auto-rows: minmax(100px, auto);
 			width: 500px;
 		}
@@ -386,11 +420,6 @@ export default {
 
 	&-selector-icon {
 		height: 30px;
-	}
-
-	&-card:hover {
-		opacity: 0.6;
-		cursor: pointer;
 	}
 
 	&-social-selector {
