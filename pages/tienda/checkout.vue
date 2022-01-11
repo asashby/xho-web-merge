@@ -259,7 +259,7 @@ async function completeOrder () {
 		source_id: token.id
 	}
 
-	this.$store.dispatch('createCulqiOrder', body)
+	await this.$store.dispatch('createCulqiOrder', body)
 
 	const userShipping = {
 		firstName: this.firstNameData,
@@ -272,8 +272,8 @@ async function completeOrder () {
 		email: this.emailData,
 		phone: this.phoneData
 	}
-	this.$store.dispatch('setUserShippingInfo', userShipping)
-	this.$store.dispatch('sendShippingInformation')
+	await this.$store.dispatch('setUserShippingInfo', userShipping)
+	await this.$store.dispatch('sendShippingInformation')
 	this.$store.commit('SET_PAYMENT_MODAL_REDIRECTION_PATH', '/tienda')
 	this.$store.commit('SET_SHOW_PAYMENT_MODAL', true)
 }
