@@ -85,8 +85,8 @@ export default defineComponent({
 		}
 	},
 	methods: {
-		async buyPlan (plan) {
-			const token = await this.$culqi.openCheckout()
+		buyPlan (plan) {
+			/* const token = await this.$culqi.openCheckout()
 			const body = {
 				amount: 500,
 				currency_code: 'PEN',
@@ -94,7 +94,7 @@ export default defineComponent({
 				source_id: token.id
 			}
 
-			await this.$store.dispatch('createCulqiOrder', body)
+			await this.$store.dispatch('createCulqiOrder', body) */
 
 			const { slugRetos } = this.$route.params
 

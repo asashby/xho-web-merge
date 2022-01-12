@@ -95,7 +95,7 @@ function closeModalFinishedWorkout () {
 }
 
 function openModalComment (value) {
-	this.$store.dispatch('challenges/updateFinishModal', false)
+	this.$store.dispatch('challenges/updateFinishModal', true)
 	this.rating = value
 	this.showSendComment = true
 }

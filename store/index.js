@@ -270,7 +270,8 @@ export const state = () => ({
 	tokenMaki: '',
 	fullUser: {},
 	showPaymentModal: false,
-	paymentModalRedirectionPath: ''
+	paymentModalRedirectionPath: '',
+	loginButtonProvider: 'google'
 })
 
 export const actions = {
@@ -370,6 +371,9 @@ export const actions = {
 	},
 	setPaymentModalRedirectionPath ({ commit, path }) {
 		commit('SET_PAYMENT_MODAL_REDIRECTION_PATH', path)
+	},
+	setLoginButtonProvider ({ commit, provider }) {
+		commit('SET_LOGIN_BUTTON_PROVIDER', provider)
 	},
 	setUserShippingInfo ({ commit }, userShipping) {
 		commit('SET_USER_SHIPPING_INFO', userShipping)
@@ -488,6 +492,9 @@ export const mutations = {
 	},
 	SET_PAYMENT_MODAL_REDIRECTION_PATH (state, path) {
 		state.paymentModalRedirectionPath = path
+	},
+	SET_LOGIN_BUTTON_PROVIDER (state, provider) {
+		state.loginButtonProvider = provider
 	},
 	SET_USER_SHIPPING_INFO (state, userShipping) {
 		state.userShippingInfo = {

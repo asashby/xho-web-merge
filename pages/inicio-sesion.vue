@@ -87,7 +87,9 @@
 					</div>
 					<div class="login-social-selector">
 						<div class="login-selector-grid">
-							<button class="login-facebook">
+							<button
+								class="login-facebook"
+								@click="setFacebookProvider">
 								<picture>
 									<img
 										class="login-selector-icon"
@@ -96,7 +98,9 @@
 										>
 								</picture>
 							</button>
-							<button class="login-google">
+							<button
+								class="login-google"
+								@click="setGoogleProvider">
 								<picture>
 									<img
 										class="login-selector-icon"
@@ -237,7 +241,13 @@ export default {
 			this.$router.push('/tips')
 		},
 		async signIn () {
-			await this.$auth.loginWith('facebook')
+			await this.$auth.loginWith(this.$store.state.loginButtonProvider)
+		},
+		setGoogleProvider () {
+			this.$store.commit('SET_LOGIN_BUTTON_PROVIDER', 'google')
+		},
+		setFacebookProvider () {
+			this.$store.commit('SET_LOGIN_BUTTON_PROVIDER', 'facebook')
 		}
 		/* googleSignIn () {
 			this.provider = new firebase.auth.GoogleAuthProvider()

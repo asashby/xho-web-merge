@@ -198,6 +198,7 @@ export const actions = {
 			const slugExercises = state.routine.excercises[newExcercise].slug
 			const { slugRetos, slugRutina } = this.$router.history.current.params
 			this.$router.push(`/entrenamientos/${slugRetos}/rutinas/${slugRutina}/${slugExercises}`)
+			commit('SET_FINISH_MODAL', true)
 		} else {
 			commit('SET_FINISH_MODAL', true)
 		}
