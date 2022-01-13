@@ -233,7 +233,7 @@
     </transition>
   </div>
 </template>
-
+<script src="https://checkout.culqi.com/js/v3"></script>
 <script>
 import { defineComponent } from '@vue/composition-api'
 import { mapState } from 'vuex'
@@ -242,16 +242,24 @@ import CulqiCheckout from 'vue-culqi-checkout'
 import PaymentCompleted from '~/components/Modal/PaymentCompleted'
 // import culqiHttpClient from '~/plugins/culqiAxios'
 
+Culqi.publicKey = 'pk_live_519c60a11816cfdc';
+Culqi.settings({
+    title: 'Tienda Ximena Hoyos',
+    currency: 'PEN',
+    description: 'Orden',
+    amount: 500
+})
+
 Vue.use(CulqiCheckout, {
 	publicKey: 'pk_live_519c60a11816cfdc',
-	title: 'Compra tienda Ximena Hoyos',
+	title: 'Tienda Ximena Hoyos',
 	currency: 'PEN',
-	description: 'Descripcion',
+	description: 'Orden',
 	amount: 500
 })
 
 async function completeOrder () {
-	const token = await this.$culqi.openCheckout()
+  const token = await this.$culqi.openCheckout()
 	const body = {
 		amount: 500,
 		currency_code: 'PEN',

@@ -10,7 +10,7 @@
                     duration="8000"
                     :speed="500"
                     animation="fade"
-                    indicators="false"
+                    indicators="center"
                     :interval="5000">
                     <SliderItem class="banner-item">
                         <img class="banner-image" @click="add500gBasicOffer" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/1.png" alt="">
