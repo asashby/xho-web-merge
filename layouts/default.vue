@@ -15,6 +15,7 @@ import NavBarComponent from '~/components/Nav'
 
 function mounted () {
 	this.$nextTick(() => {
+		console.log('ejecute')
 		this.$nuxt.$loading.start()
 		setTimeout(() => this.$nuxt.$loading.finish(), 1000)
 	})

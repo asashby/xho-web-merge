@@ -39,7 +39,7 @@
     </transition>
   </div>
 </template>
-<script src="https://checkout.culqi.com/js/v3"></script>
+<!--<script src="https://checkout.culqi.com/js/v3"></script>-->
 <script>
 import { defineComponent } from '@vue/composition-api'
 import { mapState } from 'vuex'
@@ -49,13 +49,13 @@ import CulqiCheckout from 'vue-culqi-checkout'
 import PaymentCompleted from '~/components/Modal/PaymentCompleted'
 // import httpClient from '~/plugins/culqiAxios'
 
-Culqi.publicKey = 'pk_live_519c60a11816cfdc';
+/* Culqi.publicKey = 'pk_live_519c60a11816cfdc';
 Culqi.settings({
-    title: 'Reto Ximena Hoyos',
-    currency: 'PEN',
-    description: 'Orden',
-    amount: 500
-})
+	title: 'Reto Ximena Hoyos',
+	currency: 'PEN',
+	description: 'Orden',
+	amount: 500
+}) */
 
 Vue.use(CulqiCheckout, {
 	publicKey: 'pk_live_519c60a11816cfdc',
@@ -95,15 +95,15 @@ export default defineComponent({
 	},
 	methods: {
 		async buyPlan (plan) {
-      const token = await this.$culqi.openCheckout()
-      const body = {
-        amount: 500,
-        currency_code: 'PEN',
-        email: 'test@gmail.com',
-        source_id: token.id
-      }
+			const token = await this.$culqi.openCheckout()
+			const body = {
+				amount: 500,
+				currency_code: 'PEN',
+				email: 'test@gmail.com',
+				source_id: token.id
+			}
 
-      await this.$store.dispatch('createCulqiOrder', body)
+			await this.$store.dispatch('createCulqiOrder', body)
 
 			const { slugRetos } = this.$route.params
 
