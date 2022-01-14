@@ -24,7 +24,9 @@ export const state = () => ({
 		details: {}
 	},
 	workout: [],
-	showWorkoutModal: false
+	showWorkoutModal: false,
+	showRecipes: false,
+	currentChallengeId: 0
 })
 
 export const actions = {
@@ -69,6 +71,24 @@ export const actions = {
 			const { params } = state
 			const { data: response } = await this.$http.get(`/courses/${slug}/detail-user`, { params })
 			commit('SET_CHALLENGES_DETAILS_BY_USER', response)
+		} catch (err) {
+			console.log('error al cargar detalle de reto', err)
+		}
+	},
+	async getChallengesCoursePaid ({ commit }) {
+		try {
+			const { params } = state
+			const { data: response1 } = await this.$http.get('/courses/basico-en-casa/detail-user', { params })
+			const { data: response2 } = await this.$http.get('/courses/intermedio-en-casa/detail-user', { params })
+			const { data: response3 } = await this.$http.get('/courses/avanzado-en-gym/detail-user', { params })
+
+			if (response1.course_paid === 1 && response2.course_paid === 1 && response3.course_paid === 1) {
+				commit('SET_SHOW_RECIPES', true)
+			}
+
+			console.log(response1)
+			console.log(response2)
+			console.log(response3)
 		} catch (err) {
 			console.log('error al cargar detalle de reto', err)
 		}
@@ -231,6 +251,8 @@ export const mutations = {
 	},
 	SET_CHALLENGES_DETAILS (state, challengesDetails) {
 		state.details = challengesDetails
+		state.currentChallengeId = challengesDetails.id
+		console.log(state.currentChallengeId)
 	},
 	SET_CHALLENGES_DETAILS_BY_USER (state, details) {
 		state.myDetails = details
@@ -252,6 +274,9 @@ export const mutations = {
 	},
 	SET_FINISH_MODAL (state, status) {
 		state.showWorkoutModal = status
+	},
+	SET_SHOW_RECIPES (state, status) {
+		state.showRecipes = status
 	},
 	UPDATE_EXCERCISES (state, id) {
 		const updateState = state.routine.excercises.findIndex(exercise => exercise.id === id)

@@ -270,6 +270,7 @@ export const state = () => ({
 	tokenMaki: '',
 	fullUser: {},
 	showPaymentModal: false,
+	showPaymentFailedModal: false,
 	paymentModalRedirectionPath: '',
 	loginButtonProvider: 'google'
 })
@@ -316,6 +317,7 @@ export const actions = {
 				const { data: response } = await this.$http.post(url, body)
 				console.log('RESPONSE', response)
 			} catch (err) {
+				commit('SET_SHOW_PAYMENT_FAILED_MODAL', true)
 				console.log('ocurrio un error al crear la orden', err)
 			}
 		}
@@ -368,6 +370,9 @@ export const actions = {
 	},
 	setShowPaymentModal ({ commit, indicator }) {
 		commit('SET_SHOW_PAYMENT_MODAL', indicator)
+	},
+	setShowPaymentFailedModal ({ commit, indicator }) {
+		commit('SET_SHOW_PAYMENT_FAILED_MODAL', indicator)
 	},
 	setPaymentModalRedirectionPath ({ commit, path }) {
 		commit('SET_PAYMENT_MODAL_REDIRECTION_PATH', path)
@@ -489,6 +494,9 @@ export const mutations = {
 	},
 	SET_SHOW_PAYMENT_MODAL (state, indicator) {
 		state.showPaymentModal = indicator
+	},
+	SET_SHOW_PAYMENT_FAILED_MODAL (state, indicator) {
+		state.showPaymentFailedModal = indicator
 	},
 	SET_PAYMENT_MODAL_REDIRECTION_PATH (state, path) {
 		state.paymentModalRedirectionPath = path

@@ -96,7 +96,7 @@
 </template>
 <script>
 import { defineComponent } from '@vue/composition-api'
-import Vue from 'vue'
+/* import Vue from 'vue'
 import CulqiCheckout from 'vue-culqi-checkout'
 
 Vue.use(CulqiCheckout, {
@@ -105,7 +105,7 @@ Vue.use(CulqiCheckout, {
 	currency: 'PEN',
 	description: 'Descripcion',
 	amount: 500
-})
+}) */
 
 export default defineComponent({
 	name: 'ShopCart',

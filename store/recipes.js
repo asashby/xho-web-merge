@@ -8,6 +8,7 @@ export const state = () => ({
 		search: null,
 		time: null
 	},
+	showRecipes: false,
 	totalCountOfRecipes: 0
 })
 
@@ -48,6 +49,24 @@ export const actions = {
 		} catch (err) {
 			console.log('error al cargar detalle de receta', err)
 		}
+	},
+	async getChallengesCoursePaid ({ commit }) {
+		try {
+			const { params } = state
+			const { data: response1 } = await this.$http.get('/courses/basico-en-casa/detail-user', { params })
+			const { data: response2 } = await this.$http.get('/courses/intermedio-en-casa/detail-user', { params })
+			const { data: response3 } = await this.$http.get('/courses/avanzado-en-gym/detail-user', { params })
+
+			if (response1.course_paid === 1 || response2.course_paid === 1 || response3.course_paid === 1) {
+				commit('SET_SHOW_RECIPES', true)
+			}
+
+			console.log(response1)
+			console.log(response2)
+			console.log(response3)
+		} catch (err) {
+			console.log('error al cargar detalle de reto', err)
+		}
 	}
 }
 
@@ -78,5 +97,9 @@ export const mutations = {
 	},
 	SET_TOTAL_RECIPES (state, totalCount) {
 		state.totalCountOfRecipes = totalCount
+	},
+	SET_SHOW_RECIPES (state, status) {
+		state.showRecipes = status
+		console.log(state.showRecipes)
 	}
 }

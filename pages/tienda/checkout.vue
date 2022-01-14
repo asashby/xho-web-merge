@@ -230,6 +230,9 @@
       <div v-if="$store.state.showPaymentModal" class="modal-overlay">
         <PaymentCompleted />
       </div>
+      <div v-if="$store.state.showPaymentFailedModal" class="modal-overlay">
+        <PaymentFailed />
+      </div>
     </transition>
   </div>
 </template>
@@ -240,6 +243,7 @@ import { mapState } from 'vuex'
 import Vue from 'vue'
 import CulqiCheckout from 'vue-culqi-checkout'
 import PaymentCompleted from '~/components/Modal/PaymentCompleted'
+import PaymentFailed from '~/components/Modal/PaymentFailed'
 // import culqiHttpClient from '~/plugins/culqiAxios'
 
 Culqi.publicKey = 'pk_live_519c60a11816cfdc';
@@ -263,27 +267,30 @@ async function completeOrder () {
 	const body = {
 		amount: 500,
 		currency_code: 'PEN',
-		email: 'test@gmail.com',
+		email: token.email,
 		source_id: token.id
 	}
 
+  this.$store.commit('SET_PAYMENT_MODAL_REDIRECTION_PATH', '/tienda')
+
 	await this.$store.dispatch('createCulqiOrder', body)
 
-	const userShipping = {
-		firstName: this.firstNameData,
-		lastName: this.lastNameData,
-		firstAddress: this.firstAddressData,
-		secondAddress: this.secondAddressData,
-		city: this.cityData,
-		state: this.stateData,
-		country: this.countryData,
-		email: this.emailData,
-		phone: this.phoneData
-	}
-	await this.$store.dispatch('setUserShippingInfo', userShipping)
-	await this.$store.dispatch('sendShippingInformation')
-	this.$store.commit('SET_PAYMENT_MODAL_REDIRECTION_PATH', '/tienda')
-	this.$store.commit('SET_SHOW_PAYMENT_MODAL', true)
+  if (this.$store.state.showPaymentFailedModal === false) {
+    const userShipping = {
+      firstName: this.firstNameData,
+      lastName: this.lastNameData,
+      firstAddress: this.firstAddressData,
+      secondAddress: this.secondAddressData,
+      city: this.cityData,
+      state: this.stateData,
+      country: this.countryData,
+      email: this.emailData,
+      phone: this.phoneData
+    }
+    await this.$store.dispatch('setUserShippingInfo', userShipping)
+    await this.$store.dispatch('sendShippingInformation')
+    this.$store.commit('SET_SHOW_PAYMENT_MODAL', true)
+  }
 }
 
 export default defineComponent({
@@ -292,7 +299,8 @@ export default defineComponent({
 
 	},
 	components: {
-		PaymentCompleted
+		PaymentCompleted,
+    PaymentFailed
 	},
 	data () {
 		return {

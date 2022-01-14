@@ -36,6 +36,9 @@
       <div v-if="$store.state.showPaymentModal" class="modal-overlay">
         <PaymentCompleted />
       </div>
+      <div v-if="$store.state.showPaymentFailedModal" class="modal-overlay">
+        <PaymentFailed />
+      </div>
     </transition>
   </div>
 </template>
@@ -47,6 +50,7 @@ import Vue from 'vue'
 
 import CulqiCheckout from 'vue-culqi-checkout'
 import PaymentCompleted from '~/components/Modal/PaymentCompleted'
+import PaymentFailed from '~/components/Modal/PaymentFailed'
 // import httpClient from '~/plugins/culqiAxios'
 
 /* Culqi.publicKey = 'pk_live_519c60a11816cfdc';
@@ -77,7 +81,8 @@ function data () {
 
 export default defineComponent({
 	components: {
-		PaymentCompleted
+		PaymentCompleted,
+		PaymentFailed
 	},
 	setup () {
 
@@ -87,7 +92,9 @@ export default defineComponent({
 		...mapState('challenges', {
 			coursePlans: state => state.coursePlans,
 			challenge: state => state.details,
-			showPaymentModal: state => state.showPaymentModal
+			showPaymentModal: state => state.showPaymentModal,
+			challengeId: state => state.currentChallengeId,
+			showPaymentFailedModal: state => state.showPaymentFailedModal
 		}),
 		slug () {
 			return this.$route.params
@@ -99,21 +106,31 @@ export default defineComponent({
 			const body = {
 				amount: 500,
 				currency_code: 'PEN',
-				email: 'test@gmail.com',
+				email: token.email,
 				source_id: token.id
 			}
 
-			await this.$store.dispatch('createCulqiOrder', body)
-
-			const { slugRetos } = this.$route.params
-
-			plan.slug.forEach(async (slugName) => {
-				await this.$store.dispatch('challenges/suscribeUserToChallenge', slugName)
+			this.$nextTick(() => {
+				this.$nuxt.$loading.start()
 			})
-			console.log('routeParams', slugRetos)
 
 			this.$store.commit('SET_PAYMENT_MODAL_REDIRECTION_PATH', '/entrenamientos')
-			this.$store.commit('SET_SHOW_PAYMENT_MODAL', true)
+
+			await this.$store.dispatch('createCulqiOrder', body)
+
+			if (this.$store.state.showPaymentFailedModal === false) {
+				const { slugRetos } = this.$route.params
+
+				plan.slug.forEach(async (slugName) => {
+					await this.$store.dispatch('challenges/suscribeUserToChallenge', slugName)
+				})
+				console.log('routeParams', slugRetos)
+				this.$store.commit('SET_SHOW_PAYMENT_MODAL', true)
+			}
+
+			this.$nextTick(() => {
+				this.$nuxt.$loading.finish()
+			})
 		}
 	}
 })
@@ -196,7 +213,7 @@ export default defineComponent({
 	left: 0;
 	bottom: 0;
 	right: 0;
-	z-index: 100;
+	z-index: 800000000000000000;
 	background: rgba(0, 0, 0, 0.4);
 }
 </style>

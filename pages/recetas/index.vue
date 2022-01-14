@@ -19,7 +19,7 @@
 				<h1>Comidas</h1>
 			</div>
 
-			<div class="cooking-recipes--banner-container__search">
+			<div v-if="showRecipes" class="cooking-recipes--banner-container__search">
 				<MobileButtonSearcher @click="openMobileSearch = true" />
 				<SearcherField
 					class="cooking-recipes--banner-container__search_desktop"
@@ -29,48 +29,55 @@
 
 		</div>
 
-		<div class="cooking-recipes--meals-container">
-			<RecipeSelector
-				@filter-recipes="filterRecipes"
-			/>
-		</div>
-
-		<div class="cooking-recipes--content-container" v-if="cookingRecipes && cookingRecipes.length > 0">
-			<RecipeComponent
-				class="cooking-recipes--content-container__articulo"
-				v-for="(recipe, recipeIndex) in cookingRecipes"
-				:key="recipeIndex"
-				:img="recipe.page_image"
-				:resume="recipe.resume"
-				:title="recipe.title"
-				:id="recipe.id"
-				:slug="recipe.slug"
-			/>
-		</div>
-		<h1 v-else class="text-6xl font-bold text-center text-gray-heavy mb-8">Lo siento, no existen resultados :(</h1>
-
-		<div
-			v-if="showSeeMoreButton"
-			class="cooking-recipes--content-btn__see-more">
-			<button
-				class="more-button"
-				@click="handleClickOnSeeMore"
-			>Ver mas +</button>
-		</div>
-
-		<v-navigation-drawer
-			class="cooking-recipes--sidebar-mobile"
-			fixed
-			temporary
-			width='90%'
-			v-model="openMobileSearch"
-		>
-			<div class="cooking-recipes--sidebar-mobile__search-container">
-				<SearcherField
-					@enter="searchRecipe"
+		<div v-if="showRecipes">
+			<div class="cooking-recipes--meals-container">
+				<RecipeSelector
+					@filter-recipes="filterRecipes"
 				/>
 			</div>
-		</v-navigation-drawer>
+
+			<div class="cooking-recipes--content-container" v-if="cookingRecipes && cookingRecipes.length > 0">
+				<RecipeComponent
+					class="cooking-recipes--content-container__articulo"
+					v-for="(recipe, recipeIndex) in cookingRecipes"
+					:key="recipeIndex"
+					:img="recipe.page_image"
+					:resume="recipe.resume"
+					:title="recipe.title"
+					:id="recipe.id"
+					:slug="recipe.slug"
+				/>
+			</div>
+			<h1 v-else class="text-6xl font-bold text-center text-gray-heavy mb-8">Lo siento, no existen resultados :(</h1>
+
+			<div
+				v-if="showSeeMoreButton"
+				class="cooking-recipes--content-btn__see-more">
+				<button
+					class="more-button"
+					@click="handleClickOnSeeMore"
+				>Ver mas +</button>
+			</div>
+
+			<v-navigation-drawer
+				class="cooking-recipes--sidebar-mobile"
+				fixed
+				temporary
+				width='90%'
+				v-model="openMobileSearch"
+			>
+				<div class="cooking-recipes--sidebar-mobile__search-container">
+					<SearcherField
+						@enter="searchRecipe"
+					/>
+				</div>
+			</v-navigation-drawer>
+		</div>
+		<div v-if="!showRecipes" class="content-locked-wrapper">
+			<img class="content-locked-icon" src="~/assets/images/recetas/lock.png" alt="bloqueado">
+			<p class="content-locked-title">Contenido bloqueado</p>
+			<p class="content-locked-subtitle">Necesitas desbloquear un reto para poder ver las recetas</p>
+		</div>
 	</div>
 </template>
 
@@ -98,6 +105,7 @@ async function handleClickOnSeeMore () {
 
 async function fetch () {
 	await this.$store.dispatch('recipes/getList', true)
+	await this.$store.dispatch('recipes/getChallengesCoursePaid')
 	console.log(this.$store.state.auth)
 }
 
@@ -122,7 +130,8 @@ export default {
 		]),
 		...mapState('recipes', {
 			cookingRecipes: state => getPropertysValue('list', state),
-			user: state => state.auth.user
+			user: state => state.auth.user,
+			showRecipes: state => state.showRecipes
 		})
 	},
 	data,
@@ -286,5 +295,35 @@ export default {
 .more-button:hover{
 	background-color: #1583d2;
 	color: white;
+}
+
+.content-locked-wrapper {
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+
+	@media screen and (min-width: 600px) {
+		margin-top: 50px;
+	}
+}
+
+.content-locked-icon {
+	width: 150px;
+	object-fit: contain;
+	margin: 0 auto;
+}
+
+.content-locked-title {
+	color: white;
+	font-size: 22px;
+	font-weight: 600;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.content-locked-subtitle {
+	color: white;
+	font-size: 18px;
+	text-align: center;
 }
 </style>
