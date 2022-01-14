@@ -100,15 +100,15 @@
               <abbr title="Obligatorio" class="required">*</abbr>
             </label>
             <span>
-              <select id="checkout-district" v-model="cityData" class="select-text" name="checkout-district" aria-placeholder="Elige una opción">
+              <select
+                id="checkout-district"
+                v-model="cityData"
+                class="select-text"
+                name="checkout-district"
+                aria-placeholder="Elige una opción"
+              >
                 <option class="select-text-option" value="">Elige una opción</option>
-                <option class="select-text-option" value="PE010202">Amazonas - ARAMANGO</option>
-                <option class="select-text-option" value="PE010102">Amazonas - ASUNCIÓN</option>
-                <option class="select-text-option" value="PE010201">Amazonas - BAGUA</option>
-                <option class="select-text-option" value="PE010701">Amazonas - BAGUA GRANDE</option>
-                <option class="select-text-option" value="PE010103">Amazonas - BALSAS</option>
-                <option class="select-text-option" value="PE010702">Amazonas - CAJARURO</option>
-                <option class="select-text-option" value="PE010502">Amazonas - CAMPORREDONDO</option>
+                <option v-for="district in districtsData" :key="district.id" class="select-text-option" :value="district.id">{{ district.name }}</option>
               </select>
             </span>
           </p>
@@ -244,6 +244,7 @@ import Vue from 'vue'
 import CulqiCheckout from 'vue-culqi-checkout'
 import PaymentCompleted from '~/components/Modal/PaymentCompleted'
 import PaymentFailed from '~/components/Modal/PaymentFailed'
+import districtsData from '@/api/districts'
 // import culqiHttpClient from '~/plugins/culqiAxios'
 
 Culqi.publicKey = 'pk_live_519c60a11816cfdc';
@@ -328,7 +329,10 @@ export default defineComponent({
 				total = total + value.product.price
 			})
 			return total
-		}
+		},
+		districtsData () {
+			return districtsData
+		},
 	},
 	methods: {
 		completeOrder
