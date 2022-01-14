@@ -70,27 +70,23 @@
               Departamento (opcional)
             </label>
             <span>
-              <select id="checkout-department" v-model="stateData" class="select-text" name="checkout-department" aria-placeholder="Elige una opción">
+              <select
+                id="checkout-department"
+                v-model="id"
+                class="select-text"
+                name="checkout-department"
+                aria-placeholder="Elige una opción"
+                @change="onChange($event)"
+              >
                 <option class="select-text-option" value="">Elige una opción</option>
-                <option class="select-text-option" value="AMA">Amazonas</option>
-                <option class="select-text-option" value="ANC">Ancash</option>
-                <option class="select-text-option" value="APU">Apurímac</option>
-                <option class="select-text-option" value="ARE">Arequipa</option>
-                <option class="select-text-option" value="AYA">Ayacucho</option>
-                <option class="select-text-option" value="CAJ">Cajamarca</option>
-                <option class="select-text-option" value="CUS">Cusco</option>
-                <option class="select-text-option" value="CAL">El Callao</option>
-                <option class="select-text-option" value="HUV">Huancavelica</option>
-                <option class="select-text-option" value="HUC">Huánuco</option>
-                <option class="select-text-option" value="ICA">Ica</option>
-                <option class="select-text-option" value="JUN">Junín</option>
-                <option class="select-text-option" value="LAL">La Libertad</option>
-                <option class="select-text-option" value="LAM">Lambayeque</option>
-                <option class="select-text-option" value="LIM">Lima</option>
-                <option class="select-text-option" value="LOR">Loreto</option>
-                <option class="select-text-option" value="MDD">Madre de Dios</option>
-                <option class="select-text-option" value="MOQ">Moquegua</option>
-                <option class="select-text-option" value="LMA">Municipalidad Metropolitana de Lima</option>
+                <option
+                  v-for="department in departmentsData"
+                  :key="department.id"
+                  class="select-text-option"
+                  :value="department.id"
+                >
+                  {{ department.name }}
+                </option>
               </select>
             </span>
           </p>
@@ -108,7 +104,7 @@
                 aria-placeholder="Elige una opción"
               >
                 <option class="select-text-option" value="">Elige una opción</option>
-                <option v-for="district in districtsData" :key="district.id" class="select-text-option" :value="district.id">{{ district.name }}</option>
+                <option v-for="province in $store.state.shippingProvinces" :key="province.id" class="select-text-option" :value="province.id">{{ province.name }}</option>
               </select>
             </span>
           </p>
@@ -244,7 +240,8 @@ import Vue from 'vue'
 import CulqiCheckout from 'vue-culqi-checkout'
 import PaymentCompleted from '~/components/Modal/PaymentCompleted'
 import PaymentFailed from '~/components/Modal/PaymentFailed'
-import districtsData from '@/api/districts'
+import provincesData from '~/api/provinces'
+import departmentsData from '@/api/departments'
 // import culqiHttpClient from '~/plugins/culqiAxios'
 
 Culqi.publicKey = 'pk_live_519c60a11816cfdc';
@@ -330,12 +327,18 @@ export default defineComponent({
 			})
 			return total
 		},
-		districtsData () {
-			return districtsData
+		provincesData () {
+			return provincesData
 		},
+		departmentsData () {
+			return departmentsData
+		}
 	},
 	methods: {
-		completeOrder
+		completeOrder,
+    onChange(event) {
+      this.$store.commit('selectByDepartment', event.target.value)
+    }
 	}
 })
 </script>

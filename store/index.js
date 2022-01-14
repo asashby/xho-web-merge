@@ -2,6 +2,7 @@
 import { isEmpty, getPropertysValue } from 'functionallibrary'
 import httpClient from '~/plugins/woocommerceAxios'
 import culqiHttpClient from '~/plugins/culqiAxios'
+import provincesData from '~/api/provinces'
 
 const alreadyInTheState = (state, prop) => {
 	return !(isEmpty(state[prop]))
@@ -272,7 +273,8 @@ export const state = () => ({
 	showPaymentModal: false,
 	showPaymentFailedModal: false,
 	paymentModalRedirectionPath: '',
-	loginButtonProvider: 'google'
+	loginButtonProvider: 'google',
+	shippingProvinces: provincesData
 })
 
 export const actions = {
@@ -455,6 +457,17 @@ export const mutations = {
 		})
 
 		state.products2 = data
+	},
+	selectByDepartment (state, departmentId) {
+		console.log(departmentId)
+		const data = []
+		provincesData.forEach((value) => {
+			if (value.region_id === departmentId) {
+				data.push(value)
+			}
+		})
+
+		state.shippingProvinces = data
 	},
 	incrementProductsCount (state) {
 		state.productsCount++

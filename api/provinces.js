@@ -1,4 +1,4 @@
-const districts = [
+const provincesData = [
 	{
 		id: '010100',
 		name: 'Chachapoyas',
@@ -1373,4 +1373,4 @@ const districts = [
 	}
 ]
 
-export default districts
+export default provincesData
