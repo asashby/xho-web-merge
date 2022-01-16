@@ -109,7 +109,6 @@ Vue.use(CulqiCheckout, {
 
 export default defineComponent({
 	name: 'ShopCart',
-	auth: false,
 	computed: {
 		cart () {
 			return this.$store.state.cart

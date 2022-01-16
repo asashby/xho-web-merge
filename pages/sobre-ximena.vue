@@ -143,7 +143,6 @@ async function fetch () {
 
 export default {
 	name: 'PaginaSobreXimena',
-	auth: false,
 	layout: 'principalLayout',
 	fetch,
 	computed: {

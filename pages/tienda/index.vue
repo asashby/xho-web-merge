@@ -93,7 +93,6 @@ async function suscribeUserToChallenge (slugName) {
 
 export default defineComponent({
 	name: 'Product',
-	auth: false,
 	components: {
 		Slider,
 		SliderItem

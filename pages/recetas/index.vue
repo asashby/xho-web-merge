@@ -76,7 +76,7 @@
 		<div v-if="!showRecipes" class="content-locked-wrapper">
 			<img class="content-locked-icon" src="~/assets/images/recetas/lock.png" alt="bloqueado">
 			<p class="content-locked-title">Contenido bloqueado</p>
-			<p class="content-locked-subtitle">Necesitas desbloquear un reto para poder ver las recetas</p>
+			<p class="content-locked-subtitle">Necesitas desbloquear un entrenamiento para poder ver las recetas</p>
 		</div>
 	</div>
 </template>
@@ -117,7 +117,6 @@ function data () {
 
 export default {
 	name: 'PaginaDeRecetas',
-	auth: false,
 	components: {
 		MobileButtonSearcher,
 		RecipeComponent,

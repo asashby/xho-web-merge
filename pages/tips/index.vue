@@ -105,7 +105,6 @@ function data () {
 
 export default {
 	name: 'PaginaTips',
-	auth: false,
 	components: {
 		ArticleComponent,
 		MobileButtonSearcher,

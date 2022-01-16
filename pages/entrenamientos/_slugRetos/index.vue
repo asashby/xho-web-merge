@@ -108,7 +108,6 @@ function data () {
 
 export default {
 	name: 'PaginaDetalleReto',
-	auth: false,
 	components: {
 		BannerChallengeDetails,
 		IntroductionChallengeDetails,
