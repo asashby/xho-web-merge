@@ -92,7 +92,7 @@
           </p>
           <p id="checkout-district-field" class="form-row validation-required">
             <label for="checkout-district">
-              Distrito
+              Provincia
               <abbr title="Obligatorio" class="required">*</abbr>
             </label>
             <span>

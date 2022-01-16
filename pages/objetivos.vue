@@ -150,8 +150,6 @@ async function loginLocal ({ user, strategy }) {
 	const { token, tokenMaki, user: userResponse } = response
 	this.$store.$auth.strategies.local.token.set(token)
 	this.$store.dispatch('setTokenMaki', tokenMaki)
-	this.$store.dispatch('setFullUserData', userResponse)
-	console.log(userResponse)
 	if (userResponse) {
 		const { addittional_info: additionalInfo } = userResponse
 		if (additionalInfo) {

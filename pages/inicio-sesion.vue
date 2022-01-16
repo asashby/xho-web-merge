@@ -162,7 +162,7 @@ export default {
 			this.$nuxt.$loading.start()
 		})
 		if (this.$auth.$state.loggedIn) {
-			this.$router.push('/objetivos')
+			this.$router.push('/perfil')
 			this.$nextTick(() => {
 				this.$nuxt.$loading.finish()
 			})

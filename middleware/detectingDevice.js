@@ -22,6 +22,12 @@ export default (context) => {
 		Opera (userAgent) {
 			return userAgent.match(/Opera/i)
 		},
+		Safari (userAgent) {
+			return userAgent.match(/Safari/i)
+		},
+		Chrome (userAgent) {
+			return userAgent.match(/Chrome/i)
+		},
 		Windows (userAgent) {
 			return userAgent.match(/Windows/i)
 		},
@@ -31,7 +37,9 @@ export default (context) => {
 				device.BlackBerry(userAgent),
 				device.iOS(userAgent),
 				device.Opera(userAgent),
-				device.Windows(userAgent)
+				device.Windows(userAgent),
+				device.Safari(userAgent),
+				device.Chrome(userAgent)
 			])
 		}
 	}
