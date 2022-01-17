@@ -23,7 +23,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody v-for="item in this.$store.state.cart" :key="item.product.id">
+                <tbody v-for="item in $store.state.cart" :key="item.product.id">
                     <tr>
                         <td class="product-remove">
                             <p class="product-remove-text" @click="$store.commit('removeFromCart', item)">
@@ -31,11 +31,11 @@
                             </p>
                         </td>
                         <td class="product-thumbnail">
-                            <img class="product-thumbnail-image" :src="item.product.image">
+                            <img class="product-thumbnail-image" :src="item.product.images[0].src">
                         </td>
                         <td class="product-name">
                             <p class="product-name-text">
-                                {{item.product.title}}
+                                {{item.product.name}}
                             </p>
                         </td>
                         <td class="product-price">
@@ -45,12 +45,12 @@
                         </td>
                         <td class="product-quantity">
                             <p class="product-quantity-text">
-                                {{item.count}}
+                                {{item.quantity}}
                             </p>
                         </td>
                         <td class="product-subtotal">
                             <p class="product-subtotal-text">
-                                S/{{item.product.price}}
+                                S/{{item.product.price * item.quantity}}
                             </p>
                         </td>
                     </tr>
@@ -96,16 +96,6 @@
 </template>
 <script>
 import { defineComponent } from '@vue/composition-api'
-/* import Vue from 'vue'
-import CulqiCheckout from 'vue-culqi-checkout'
-
-Vue.use(CulqiCheckout, {
-	publicKey: 'pk_test_815666c9fedfa56c',
-	title: 'Compra tienda Ximena Hoyos',
-	currency: 'PEN',
-	description: 'Descripcion',
-	amount: 500
-}) */
 
 export default defineComponent({
 	name: 'ShopCart',
@@ -116,7 +106,7 @@ export default defineComponent({
 		cartTotal () {
 			let total = 0
 			this.cart.forEach((value, index) => {
-				total = total + value.product.price
+				total = total + (parseFloat(value.product.price) * value.quantity)
 			})
 			return total
 		}

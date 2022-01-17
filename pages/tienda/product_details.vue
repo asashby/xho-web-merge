@@ -2,18 +2,17 @@
     <div class="product-details-wrapper">
         <div class="product-details-image-wrapper">
             <picture>
-                <img class="product-details-image-archive" :src="productImage" alt="Imagen del producto">
+                <img class="product-details-image-archive" :src="product.images[0].src" alt="Imagen del producto">
             </picture>
         </div>
         <div class="product-details-info">
             <p class="product-title">
-                {{productTitle}}
+                {{product.name}}
             </p>
             <p class="product-price">
-                S/{{productPrice}}
+                S/{{product.price}}
             </p>
-            <p class="product-description">
-                {{productDescription}}
+            <p class="product-description" v-html="product.short_description">
             </p>
             <div class="add-to-cart-wrapper">
                 <div class="add-to-cart-selector">
@@ -46,7 +45,7 @@
                         SKU:
                     </p>
                     <p class="product-extras-value">
-                        {{productSku}}
+                        {{product.sku}}
                     </p>
                 </div>
                 <div class="product-extras-segment">
@@ -54,7 +53,7 @@
                         Categoría:
                     </p>
                     <p class="product-extras-value">
-                        {{productCategory}}
+                        {{product.categories[0].name}}
                     </p>
                 </div>
             </div>
@@ -81,7 +80,7 @@ export default defineComponent({
 	}),
 	computed: {
 		...mapState('products', {
-			product: state => state.details
+			product: state => state.selectedProduct
 		}),
 		count () {
 			return this.$store.getters.getProductsCount
@@ -93,9 +92,10 @@ export default defineComponent({
 	methods: {
 		addToCart () {
 			this.$store.commit('addToCart', {
-				product: this.product,
-				quantity: this.count
+				productData: this.product,
+				quantityData: this.$store.state.productsCount
 			})
+			this.$store.commit('resetProductsCount')
 			this.$router.push('/tienda/cart')
 		},
 		decrement () {

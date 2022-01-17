@@ -149,12 +149,12 @@
                 <tr v-for="item in $store.state.cart" :key="item.product.id" class="cart-item">
                   <td class="product-name th-border">
                     <p class="product-name-text">
-                      {{ item.product.title }} X {{ item.count }}
+                      {{ item.product.name }} X {{ item.quantity }}
                     </p>
                   </td>
                   <td class="product-total th-border">
                     <p class="product-total-text">
-                      S/{{ item.product.price }}
+                      S/{{ item.product.price * item.quantity }}
                     </p>
                   </td>
                 </tr>
@@ -323,7 +323,7 @@ export default defineComponent({
 		cartTotal () {
 			let total = 0
 			this.cart.forEach((value, index) => {
-				total = total + value.product.price
+				total = total + (parseFloat(value.product.price) * value.quantity)
 			})
 			return total
 		},

@@ -1,88 +1,89 @@
 <template>
-    <div>
-        <div class="slider-wrapper">
-            <div class="empty-column">
-
-            </div>
-            <client-only class="slider-column">
-                <Slider
-                    class="banner"
-                    duration="8000"
-                    :speed="500"
-                    animation="fade"
-                    indicators="center"
-                    :interval="5000">
-                    <SliderItem class="banner-item">
-                        <img class="banner-image" @click="add500gBasicOffer" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/1.png" alt="">
-                    </SliderItem>
-                    <SliderItem class="banner-item">
-                        <img class="banner-image" @click="add1kgBasicOffer" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/6.png" alt="">
-                    </SliderItem>
-                    <SliderItem class="banner-item">
-                        <img class="banner-image" @click="add500gIntermediateOffer" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/2.png" alt="">
-                    </SliderItem>
-                    <SliderItem class="banner-item">
-                        <img class="banner-image" @click="add1kgIntermediateOffer" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/5.png" alt="">
-                    </SliderItem>
-                    <SliderItem class="banner-item">
-                        <img class="banner-image" @click="add500gAdvancedOffer" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/3.png" alt="">
-                    </SliderItem>
-                    <SliderItem class="banner-item">
-                        <img class="banner-image" @click="add1kgAdvancedOffer" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/4.png" alt="">
-                    </SliderItem>
-                </Slider>
-            </client-only>
-        </div>
-        <div class="shop-body-wrapper">
-            <div class="categories-wrapper">
-                <p class="shop-category-title">
-                    CATEGORIAS:
-                </p>
-                <p class="shop-category-label" @click="$store.commit('selectByAll', products)">
-                    TODOS
-                </p>
-                <p class="shop-category-label" @click="$store.commit('selectByCollagen', products)">
-                    COLAGENO
-                </p>
-                <p class="shop-category-label" @click="$store.commit('selectByImplements', products)">
-                    IMPLEMENTOS
-                </p>
-                <p class="shop-category-label" @click="$store.commit('selectByPromotions', products)">
-                    PROMOCIONES
-                </p>
-                <p class="shop-category-label" @click="$store.commit('selectByProteins', products)">
-                    PROTEINAS
-                </p>
-            </div>
-            <div class="shop-items-wrapper">
-                <div v-for="product in $store.state.products2" :key="product.id" class="item-card">
-                    <div class="item-image-container">
-                        <img class="item-image" :src="product.image" alt="">
-                        <button
-                            class="add-item-button"
-                            @click="openProductDetails(product)">
-                            <p class="text-button">VER</p>
-                        </button>
-                    </div>
-                    <p class="text"> {{ product.title }}</p>
-                </div>
-            </div>
-        </div>
+  <div>
+    <div class="slider-wrapper">
+      <div class="empty-column" />
+      <client-only class="slider-column">
+        <Slider
+          class="banner"
+          duration="8000"
+          :speed="500"
+          animation="fade"
+          indicators="center"
+          :interval="5000"
+        >
+          <SliderItem class="banner-item">
+            <img class="banner-image" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/1.png" alt="" @click="add500gBasicOffer">
+          </SliderItem>
+          <SliderItem class="banner-item">
+            <img class="banner-image" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/6.png" alt="" @click="add1kgBasicOffer">
+          </SliderItem>
+          <SliderItem class="banner-item">
+            <img class="banner-image" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/2.png" alt="" @click="add500gIntermediateOffer">
+          </SliderItem>
+          <SliderItem class="banner-item">
+            <img class="banner-image" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/5.png" alt="" @click="add1kgIntermediateOffer">
+          </SliderItem>
+          <SliderItem class="banner-item">
+            <img class="banner-image" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/3.png" alt="" @click="add500gAdvancedOffer">
+          </SliderItem>
+          <SliderItem class="banner-item">
+            <img class="banner-image" src="https://xoh-media-bucket.s3.amazonaws.com/tienda/4.png" alt="" @click="add1kgAdvancedOffer">
+          </SliderItem>
+        </Slider>
+      </client-only>
     </div>
+    <div class="shop-body-wrapper">
+      <div class="categories-wrapper">
+        <p class="shop-category-title">
+          CATEGORIAS:
+        </p>
+        <p class="shop-category-label" @click="$store.commit('selectByAll', products)">
+          TODOS
+        </p>
+        <p class="shop-category-label" @click="$store.commit('selectByCategory', '16')">
+          COLAGENO
+        </p>
+        <p class="shop-category-label" @click="$store.commit('selectByCategory', '21')">
+          IMPLEMENTOS
+        </p>
+        <p class="shop-category-label" @click="$store.commit('selectByCategory', '20')">
+          PROMOCIONES
+        </p>
+        <p class="shop-category-label" @click="$store.commit('selectByCategory', '18')">
+          PROTEINAS
+        </p>
+      </div>
+      <div class="shop-items-wrapper">
+        <div v-for="product in $store.state.products" :key="product.id" class="item-card">
+          <div class="item-image-container">
+            <img class="item-image" :src="product.images[0].src" alt="">
+            <button
+              class="add-item-button"
+              @click="openProductDetails(product)"
+            >
+              <p class="text-button">
+                VER
+              </p>
+            </button>
+          </div>
+          <p class="text">
+            {{ product.name }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import { defineComponent } from '@vue/composition-api'
 import products from '@/api/productsData'
 import { Slider, SliderItem } from 'vue-easy-slider'
 
+async function fetch () {
+	await this.$store.dispatch('getShopProducts')
+}
+
 function openProductDetails (product) {
-	localStorage.setItem('selectedProductId', product.id)
-	localStorage.setItem('selectedProductTitle', product.title)
-	localStorage.setItem('selectedProductPrice', product.price)
-	localStorage.setItem('selectedProductDescription', product.description)
-	localStorage.setItem('selectedProductImage', product.image)
-	localStorage.setItem('selectedProductSku', product.sku)
-	localStorage.setItem('selectedProductCategory', product.category)
 	this.$store.commit('setSelectedProduct', product)
 	this.$router.push('/tienda/product_details')
 }
@@ -109,6 +110,7 @@ export default defineComponent({
 			]
 		}
 	},
+	fetch,
 	computed: {
 		products () {
 			return products
@@ -116,12 +118,23 @@ export default defineComponent({
 		_500gBasicChallenge () {
 			return {
 				id: 109,
-				title: 'PACK ISOXIPRO Whey protein 500g + Entrenamiento básico (1 mes)',
+				name: 'PACK ISOXIPRO Whey protein 500g + Entrenamiento básico (1 mes)',
 				price: 199.00,
-				description: 'Oferta proteína 500 gramos más entrenamiento básico por un mes',
-				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-500g.jpg?alt=media&token=78b601fa-71bf-4e91-9ed4-073fc17382f2',
+				short_description: 'Oferta proteína 500 gramos más entrenamiento básico por un mes',
+				images: [
+					{
+						src: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-500g.jpg?alt=media&token=78b601fa-71bf-4e91-9ed4-073fc17382f2'
+					}
+				],
 				sku: 'PIPT-1-1',
-				category: 'PROMOCIONES, PROTEINA'
+				categories: [
+					{
+						name: 'PROMOCIONES'
+					},
+					{
+						name: 'PROTEINA'
+					}
+				]
 			}
 		},
 		_1kgBasicChallenge () {
@@ -129,10 +142,21 @@ export default defineComponent({
 				id: 15,
 				title: 'PACK ISOXIPRO Whey protein isolate + Entrenamiento básico (1 mes)',
 				price: 238.00,
-				description: 'Oferta proteína 1 kilogramo más entrenamiento básico por un mes',
-				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-chocolate.jpg?alt=media&token=c866be97-1b48-4232-8849-6a44a5dd0a74',
+				short_description: 'Oferta proteína 1 kilogramo más entrenamiento básico por un mes',
+				images: [
+					{
+						src: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-chocolate.jpg?alt=media&token=c866be97-1b48-4232-8849-6a44a5dd0a74'
+					}
+				],
 				sku: 'PIPT-1-1',
-				category: 'PROMOCIONES, PROTEINA'
+				categories: [
+					{
+						name: 'PROMOCIONES'
+					},
+					{
+						name: 'PROTEINA'
+					}
+				]
 			}
 		},
 		_500gIntermediateChallenge () {
@@ -140,10 +164,21 @@ export default defineComponent({
 				id: 109,
 				title: 'PACK ISOXIPRO Whey protein 500g + Entrenamiento intermedio (1 mes)',
 				price: 199.00,
-				description: 'Oferta proteína 500 gramos más entrenamiento intermedio por un mes',
-				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-500g.jpg?alt=media&token=78b601fa-71bf-4e91-9ed4-073fc17382f2',
+				short_description: 'Oferta proteína 500 gramos más entrenamiento intermedio por un mes',
+				images: [
+					{
+						src: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-500g.jpg?alt=media&token=78b601fa-71bf-4e91-9ed4-073fc17382f2'
+					}
+				],
 				sku: 'PIPT-1-1',
-				category: 'PROMOCIONES, PROTEINA'
+				categories: [
+					{
+						name: 'PROMOCIONES'
+					},
+					{
+						name: 'PROTEINA'
+					}
+				]
 			}
 		},
 		_1kgIntermediateChallenge () {
@@ -151,10 +186,21 @@ export default defineComponent({
 				id: 15,
 				title: 'PACK ISOXIPRO Whey protein isolate + Entrenamiento intermedio (1 mes)',
 				price: 238.00,
-				description: 'Oferta proteína 1 kilogramo más entrenamiento intermedio por un mes',
-				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-chocolate.jpg?alt=media&token=c866be97-1b48-4232-8849-6a44a5dd0a74',
+				short_description: 'Oferta proteína 1 kilogramo más entrenamiento intermedio por un mes',
+				images: [
+					{
+						src: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-chocolate.jpg?alt=media&token=c866be97-1b48-4232-8849-6a44a5dd0a74'
+					}
+				],
 				sku: 'PIPT-1-1',
-				category: 'PROMOCIONES, PROTEINA'
+				categories: [
+					{
+						name: 'PROMOCIONES'
+					},
+					{
+						name: 'PROTEINA'
+					}
+				]
 			}
 		},
 		_500gAdvancedChallenge () {
@@ -163,9 +209,20 @@ export default defineComponent({
 				title: 'PACK ISOXIPRO Whey protein 500g + Entrenamiento avanzado (1 mes)',
 				price: 199.00,
 				description: 'Oferta proteína 500 gramos más entrenamiento avanzado por un mes',
-				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-500g.jpg?alt=media&token=78b601fa-71bf-4e91-9ed4-073fc17382f2',
+				images: [
+					{
+						src: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-500g.jpg?alt=media&token=78b601fa-71bf-4e91-9ed4-073fc17382f2'
+					}
+				],
 				sku: 'PIPT-1-1',
-				category: 'PROMOCIONES, PROTEINA'
+				categories: [
+					{
+						name: 'PROMOCIONES'
+					},
+					{
+						name: 'PROTEINA'
+					}
+				]
 			}
 		},
 		_1kgAdvancedChallenge () {
@@ -174,9 +231,20 @@ export default defineComponent({
 				title: 'PACK ISOXIPRO Whey protein isolate + Entrenamiento avanzado (1 mes)',
 				price: 238.00,
 				description: 'Oferta proteína 1 kilogramo más entrenamiento avanzado por un mes',
-				image: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-chocolate.jpg?alt=media&token=c866be97-1b48-4232-8849-6a44a5dd0a74',
+				images: [
+					{
+						src: 'https://firebasestorage.googleapis.com/v0/b/ximenahoyosapp.appspot.com/o/isoxipro-chocolate.jpg?alt=media&token=c866be97-1b48-4232-8849-6a44a5dd0a74'
+					}
+				],
 				sku: 'PIPT-1-1',
-				category: 'PROMOCIONES, PROTEINA'
+				categories: [
+					{
+						name: 'PROMOCIONES'
+					},
+					{
+						name: 'PROTEINA'
+					}
+				]
 			}
 		}
 	},

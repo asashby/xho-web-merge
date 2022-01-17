@@ -139,18 +139,19 @@ export const actions = {
 			console.log('error al cargar detalle de reto', err)
 		}
 	},
-	async suscribeUserToChallenge ({ commit }, slug) {
+	async suscribeUserToChallenge ({ commit }, id) {
 		try {
 			const body = {
 				orderId: 1234,
-				link: 'http://127.0.0.1:8000/courses/basico-en-casa/payment'
+				link: 'http://127.0.0.1:8000/courses/basico-en-casa/payment',
+				plan_id: id
 			}
 			// const { requestParams } = state
 
 			const token = this.$auth.strategies.local.token.get()
 			console.log(token)
 			const response = await httpClient({
-				url: '/courses/' + slug + '/payment',
+				url: '/courses/payment',
 				method: 'patch',
 				headers: {
 					Authorization: token

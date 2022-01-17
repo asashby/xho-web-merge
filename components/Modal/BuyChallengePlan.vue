@@ -121,9 +121,8 @@ export default defineComponent({
 			if (this.$store.state.showPaymentFailedModal === false) {
 				const { slugRetos } = this.$route.params
 
-				plan.slug.forEach(async (slugName) => {
-					await this.$store.dispatch('challenges/suscribeUserToChallenge', slugName)
-				})
+				await this.$store.dispatch('challenges/suscribeUserToChallenge', plan.id)
+
 				console.log('routeParams', slugRetos)
 				this.$store.commit('SET_SHOW_PAYMENT_MODAL', true)
 			}
