@@ -154,7 +154,7 @@
                   </td>
                   <td class="product-total th-border">
                     <p class="product-total-text">
-                      S/{{ item.product.price * item.quantity }}
+                      S/{{ (item.product.price * item.quantity).toFixed(2) }}
                     </p>
                   </td>
                 </tr>
@@ -325,7 +325,7 @@ export default defineComponent({
 			this.cart.forEach((value, index) => {
 				total = total + (parseFloat(value.product.price) * value.quantity)
 			})
-			return total
+			return total.toFixed(2)
 		},
 		provincesData () {
 			return provincesData
