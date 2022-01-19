@@ -24,7 +24,9 @@ export default {
 			policies: {
 				'script-src': [
 					"'sha256-SJBY3oMDZ3odvsZi9o5pC276lPt8n0lfEalmTTx5k/A='",
-					"'sha256-ygREkx/IT3S3Nh0utzfNmwTP47FZaD+ALhyEWxAQ5RI='"
+					"'sha256-ygREkx/IT3S3Nh0utzfNmwTP47FZaD+ALhyEWxAQ5RI='",
+					"'sha256-AaKNvvnGFcKcYH5u0LVN00nye3BNZqEThiEEopcJ7bE='",
+					"'sha256-ZkLu9xShAgaro3GorR4gr2dplU5iS3XQ0rRfvTEUVUY='"
 				]
 			}
 		}
