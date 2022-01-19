@@ -18,21 +18,7 @@ export default {
 		]
 	},
 	render: {
-		csp: {
-			hashAlgorithm: 'sha256',
-			policies: {
-				'script-src': [
-					'self',
-					'unsafe-inline',
-					'https://play.google.com',
-					'https://accounts.google.com',
-					'http://localhost:3000',
-					"'sha256-<hash>'"
-				]
-			},
-			reportOnly: false,
-			addMeta: true
-		}
+		csp: false
 	},
 
 	// Global CSS: https://go.nuxtjs.dev/config-css
