@@ -18,6 +18,17 @@ export default {
 		]
 	},
 
+	render: {
+		csp: {
+			hashArgorism: 'sha256',
+			policies: {
+				'script-src': [
+					"'sha256-SJBY3oMDZ3odvsZi9o5pC276lPt8n0lfEalmTTx5k/A='",
+					"'sha256-ygREkx/IT3S3Nh0utzfNmwTP47FZaD+ALhyEWxAQ5RI='"
+				]
+			}
+		}
+	},
 	// Global CSS: https://go.nuxtjs.dev/config-css
 	css: [
 		'~/assets/styles/global.scss',
