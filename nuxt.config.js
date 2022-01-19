@@ -17,6 +17,9 @@ export default {
 			{ rel: 'icon', type: 'image/x-icon', href: '/xoh.ico' }
 		]
 	},
+	render: {
+		csp: true
+	},
 
 	// Global CSS: https://go.nuxtjs.dev/config-css
 	css: [
