@@ -1,5 +1,5 @@
-// import path from 'path'
-// import fs from 'fs'
+import path from 'path'
+import fs from 'fs'
 
 export default {
 	// Target: https://go.nuxtjs.dev/config-target
@@ -11,7 +11,8 @@ export default {
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
-			{ hid: 'description', name: 'description', content: '' }
+			{ hid: 'description', name: 'description', content: '' },
+			{ 'http-equiv': 'Content-Security-Policy', content: "default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;" }
 		],
 		link: [
 			{ rel: 'icon', type: 'image/x-icon', href: '/xoh.ico' }
@@ -152,12 +153,12 @@ export default {
 		name: 'circle',
 		color: '#ffffff',
 		background: 'white'
-	}
+	},
 
-	// server: {
-	// 	https: {
-	// 		key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
-	// 		cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
-	// 	}
-	// }
+	server: {
+		https: {
+			key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
+			cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
+		}
+	}
 }
