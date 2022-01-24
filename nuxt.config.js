@@ -1,5 +1,5 @@
-import path from 'path'
-import fs from 'fs'
+// import path from 'path'
+// import fs from 'fs'
 
 export default {
 	// Target: https://go.nuxtjs.dev/config-target
@@ -152,12 +152,12 @@ export default {
 		name: 'circle',
 		color: '#ffffff',
 		background: 'white'
-	},
-
-	server: {
-		https: {
-			key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
-			cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
-		}
 	}
+
+	// server: {
+	// 	https: {
+	// 		key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
+	// 		cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
+	// 	}
+	// }
 }
