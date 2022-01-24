@@ -86,7 +86,9 @@
 						</div>
 					</div>
 					<div class="login-social-selector">
-						<div class="login-selector-grid">
+						<GoogleButton />
+						<FacebookButton />
+						<!-- <div class="login-selector-grid">
 							<button
 								class="login-facebook"
 								@click="setFacebookProvider">
@@ -115,7 +117,7 @@
 							@click="signIn"
 						>
 							<p class="login-enter-text-button">ENTRAR</p>
-						</button>
+						</button> -->
 					</div>
 				</div>
 			</div>
@@ -131,13 +133,17 @@ import { mapActions, mapGetters } from 'vuex'
 // import VueToggleImage from '@ivahid/vue-toggle-image'
 import '@ivahid/vue-toggle-image/dist/vue-toggle-image.css'
 // import firebase from 'firebase'
-// import FacebookButton from '~/components/Buttons/Facebook.button'
-// import GoogleButton from '~/components/Buttons/Google.button'
+import FacebookButton from '~/components/Buttons/Facebook.button'
+import GoogleButton from '~/components/Buttons/Google.button'
 
 export default {
 	name: 'PaginaInicioSesion',
 	auth: false,
 	layout: 'headless',
+	components: {
+		FacebookButton,
+		GoogleButton
+	},
 	data: () => ({
 		userData: {
 			name: '',
