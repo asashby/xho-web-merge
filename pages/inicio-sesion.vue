@@ -252,15 +252,6 @@ export default {
 		setFacebookProvider () {
 			this.$store.commit('SET_LOGIN_BUTTON_PROVIDER', 'facebook')
 		}
-		/* googleSignIn () {
-			this.provider = new firebase.auth.GoogleAuthProvider()
-			firebase.auth().signInWithPopup(this.provider).then((result) => {
-				this.$router.push('/perfil')
-			}).catch((e) => {
-				this.$notify.error(e.message)
-				console.log(e)
-			})
-		} */
 	}
 }
 </script>
