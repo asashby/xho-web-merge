@@ -44,7 +44,7 @@
 				<div class="login-column">
 					<div>
 						<p class="login-title-text">
-							El app incluye:
+							El app incluye::
 						</p>
 					</div>
 					<div class="login-grid">

@@ -33,7 +33,7 @@
         <v-icon left>
           mdi-logout
         </v-icon>
-        Cerrar sesion
+        Cerrar sesion..
       </v-btn>
     </div>
   </div>
