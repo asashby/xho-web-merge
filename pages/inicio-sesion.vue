@@ -44,7 +44,7 @@
           <div class="login-column">
             <div>
               <p class="login-title-text">
-                El app incluye: V0.0.2
+                El app incluye:
               </p>
             </div>
             <div class="login-grid">
@@ -83,6 +83,26 @@
                     alt="Logo_Ximena_Hoyos"
                   >
                 </picture>
+              </div>
+            </div>
+            <div style="background: #343532">
+              <p style="text-align: center; margin: 16px;">
+                versión: {{ version }}
+              </p>
+              <div style="border: 1px solid white; padding: 10px; margin: 30px 0; max-width: 100vw; padding: 20px; word-break: break-word;">
+                <p>AUTH: {{ JSON.stringify($store.state.auth) }}</p>
+                <br> </br>
+                <p>userData: {{ JSON.stringify(userData) }}</p>
+                <br> </br>
+                <p>isMovil: {{ JSON.stringify($store.state.isMovil) }}</p>
+                <br> </br>
+                <p>loggedIn: {{ JSON.stringify($auth.$state.loggedIn) }}</p>
+                <br> </br>
+              </div>
+              <div style="border: 1px solid red; padding: 10px; margin: 30px 0;">
+                <p style="color: white">
+                  {{ errorMessage }}
+                </p>
               </div>
             </div>
             <div class="login-social-selector">
@@ -153,7 +173,9 @@ export default {
 			image: '',
 			password: '',
 			origin: ''
-		}
+		},
+		version: 'v0.0.3',
+		errorMessage: null
 	}),
 	computed: {
 		...mapGetters([
@@ -170,6 +192,7 @@ export default {
 		})
 		if (this.$auth.$state.loggedIn) {
 			this.$router.push('/perfil')
+			this.errorMessage = 'mounted: go perfil'
 			this.$nextTick(() => {
 				this.$nuxt.$loading.finish()
 			})
@@ -197,6 +220,7 @@ export default {
 					})
 				}
 			} else {
+				this.errorMessage = 'check providers: default'
 				this.$nextTick(() => {
 					this.$nuxt.$loading.finish()
 				})
@@ -205,11 +229,13 @@ export default {
 		loginWithFacebook (hash) {
 			const facebookToken = hash.get('#access_token')
 			if (facebookToken) {
+				this.errorMessage = 'facebook: go objetivos'
 				this.$router.push('/objetivos')
 				this.$nextTick(() => {
 					this.$nuxt.$loading.finish()
 				})
 			} else {
+				this.errorMessage = 'facebook: no hay token de facebook'
 				this.$nextTick(() => {
 					this.$nuxt.$loading.finish()
 				})
@@ -217,6 +243,7 @@ export default {
 			}
 		},
 		loginWithGoogle () {
+			this.errorMessage = 'google: go objetivos'
 			this.$router.push('/objetivos')
 			this.$nextTick(() => {
 				this.$nuxt.$loading.finish()
@@ -261,7 +288,11 @@ export default {
 			this.$router.push('/tips')
 		},
 		async signIn () {
-			await this.$auth.loginWith(this.$store.state.loginButtonProvider)
+			try {
+				await this.$auth.loginWith(this.$store.state.loginButtonProvider)
+			} catch (e) {
+				this.errorMessage = e.message
+			}
 		},
 		setGoogleProvider () {
 			this.$store.commit('SET_LOGIN_BUTTON_PROVIDER', 'google')

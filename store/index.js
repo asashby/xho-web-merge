@@ -60,7 +60,7 @@ export const state = () => ({
 
 export const actions = {
 	async nuxtServerInit ({ dispatch }) {
-		await dispatch('getProducts')
+		// await dispatch('getProducts')
 	},
 
 	addProductToCart ({ commit }, product, count) {
