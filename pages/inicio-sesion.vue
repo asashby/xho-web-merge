@@ -30,101 +30,105 @@
       </picture>
     </div>
     <div class="login-wrapper">
-		<div class="login-middle">
-			<div class="login-row">
-				<div class="login-column">
-					<picture>
-						<img
-						class="login-cover"
-						src="~/assets/images/login/ximena.png"
-						alt="Logo_Ximena_Hoyos"
-						>
-					</picture>
-				</div>
-				<div class="login-column">
-					<div>
-						<p class="login-title-text">
-							El app incluye::
-						</p>
-					</div>
-					<div class="login-grid">
-						<div class="login-op1">
-							<picture>
-								<img
-									class="login-card"
-									src="~/assets/images/login/OP01.jpg"
-									alt="Logo_Ximena_Hoyos"
-								>
-							</picture>
-						</div>
-						<div class="login-op2">
-							<picture>
-								<img
-								class="login-card"
-								src="~/assets/images/login/OP02.jpg"
-								alt="Logo_Ximena_Hoyos"
-								>
-							</picture>
-						</div>
-						<div class="login-op3">
-							<picture>
-								<img
-								class="login-card"
-								src="~/assets/images/login/OP03.jpg"
-								alt="Logo_Ximena_Hoyos"
-								>
-							</picture>
-						</div>
-						<div class="login-op4">
-							<picture>
-								<img
-								class="login-card"
-								src="~/assets/images/login/OP04.jpg"
-								alt="Logo_Ximena_Hoyos"
-								>
-							</picture>
-						</div>
-					</div>
-					<div class="login-social-selector">
-						<div class="login-selector-grid">
-							<button
-								type="button"
-								class="login-facebook"
-								@click="setFacebookProvider">
-								<picture>
-									<img
-										class="login-selector-icon"
-										src="~/assets/icons/facebook.svg"
-										alt="facebook"
-										>
-								</picture>
-							</button>
-							<button
-								type="button"
-								class="login-google"
-								@click="setGoogleProvider">
-								<picture>
-									<img
-										class="login-selector-icon"
-										src="~/assets/icons/google.svg"
-										alt="google"
-										>
-								</picture>
-							</button>
-						</div>
-						<button
-							type="button"
-							class="login-enter-button"
-							@click="signIn"
-						>
-							<p class="login-enter-text-button">ENTRAR</p>
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+      <div class="login-middle">
+        <div class="login-row">
+          <div class="login-column">
+            <picture>
+              <img
+                class="login-cover"
+                src="~/assets/images/login/ximena.png"
+                alt="Logo_Ximena_Hoyos"
+              >
+            </picture>
+          </div>
+          <div class="login-column">
+            <div>
+              <p class="login-title-text">
+                El app incluye: V0.0.1
+              </p>
+            </div>
+            <div class="login-grid">
+              <div class="login-op1">
+                <picture>
+                  <img
+                    class="login-card"
+                    src="~/assets/images/login/OP01.jpg"
+                    alt="Logo_Ximena_Hoyos"
+                  >
+                </picture>
+              </div>
+              <div class="login-op2">
+                <picture>
+                  <img
+                    class="login-card"
+                    src="~/assets/images/login/OP02.jpg"
+                    alt="Logo_Ximena_Hoyos"
+                  >
+                </picture>
+              </div>
+              <div class="login-op3">
+                <picture>
+                  <img
+                    class="login-card"
+                    src="~/assets/images/login/OP03.jpg"
+                    alt="Logo_Ximena_Hoyos"
+                  >
+                </picture>
+              </div>
+              <div class="login-op4">
+                <picture>
+                  <img
+                    class="login-card"
+                    src="~/assets/images/login/OP04.jpg"
+                    alt="Logo_Ximena_Hoyos"
+                  >
+                </picture>
+              </div>
+            </div>
+            <div class="login-social-selector">
+              <div class="login-selector-grid">
+                <button
+                  type="button"
+                  class="login-facebook"
+                  @click="setFacebookProvider"
+                >
+                  <picture>
+                    <img
+                      class="login-selector-icon"
+                      src="~/assets/icons/facebook.svg"
+                      alt="facebook"
+                    >
+                  </picture>
+                </button>
+                <button
+                  type="button"
+                  class="login-google"
+                  @click="setGoogleProvider"
+                >
+                  <picture>
+                    <img
+                      class="login-selector-icon"
+                      src="~/assets/icons/google.svg"
+                      alt="google"
+                    >
+                  </picture>
+                </button>
+              </div>
+              <button
+                type="button"
+                class="login-enter-button"
+                @click="signIn"
+              >
+                <p class="login-enter-text-button">
+                  ENTRAR
+                </p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -180,6 +184,9 @@ export default {
 		async checkLoginWithProviders () {
 			if (location) {
 				const hash = new URLSearchParams(location.hash)
+				console.log('______________________________ \t -> checkLoginWithProviders \t')
+				console.log({ location, hash, isFacebook: this.isFacebook, isGoogle: this.isGoogle })
+				console.log('______________________________')
 				if (hash && this.isFacebook) {
 					await this.loginWithFacebook(hash)
 				} else if (hash && this.isGoogle) {
@@ -222,6 +229,16 @@ export default {
 		},
 		updateUserDataFromFacebook (facebookData) {
 			const userImage = getPropertysValue('picture.data.url', facebookData)
+			console.log('__________________________________ \t -> updateUserDataFromFacebook \t')
+			console.log({
+				name: facebookData.name,
+				last_name: facebookData.lastname,
+				password: window.btoa(facebookData.id),
+				image: userImage,
+				email: facebookData.email,
+				origin: 'Facebook'
+			})
+			console.log('__________________________________')
 			return compose(
 				setNewProperty('name', facebookData.name),
 				setNewProperty('last_name', facebookData.lastname),
