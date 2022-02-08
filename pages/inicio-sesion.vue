@@ -96,6 +96,8 @@
                 <br> </br>
                 <p>isMovil: {{ JSON.stringify($store.state.isMovil) }}</p>
                 <br> </br>
+                <p>URL Current: {{ $nuxt.$route.fullPath }}</p>
+                <br> </br>
                 <p>loggedIn: {{ JSON.stringify($auth.$state.loggedIn) }}</p>
                 <br> </br>
                 <p>redirectType: {{ redirectType }}</p>
@@ -127,6 +129,34 @@
                   @click="onChangeTypeRedirect('location')"
                 >
                   Location
+                </button>
+                <button
+                  type="button"
+                  class="login-facebook"
+                  @click="onGoReloadLogin()"
+                >
+                  Reload Login
+                </button>
+                <button
+                  type="button"
+                  class="login-facebook"
+                  @click="onGoReloadForce('inicio-sesion')"
+                >
+                  Reload inicio-sesion
+                </button>
+                <button
+                  type="button"
+                  class="login-facebook"
+                  @click="onGoReloadForce('objetivos')"
+                >
+                  Reload objetivos
+                </button>
+                <button
+                  type="button"
+                  class="login-facebook"
+                  @click="onGoReloadForce('perfil')"
+                >
+                  Reload perfil
                 </button>
               </div>
             </div>
@@ -199,7 +229,7 @@ export default {
 			password: '',
 			origin: ''
 		},
-		version: 'v0.0.7',
+		version: 'v0.0.8',
 		redirectType: 'push2',
 		errorMessage: null
 	}),
@@ -234,6 +264,15 @@ export default {
 		onChangeTypeRedirect (type) {
 			this.redirectType = type
 		},
+		onGoReloadLogin () {
+			this.$router.push({ path: '/inicio-sesion' })
+		},
+		onGoReloadForce (path) {
+			// const url = `${'https://master.d2s7yuej4ixbzn.amplifyapp.com'}${path}`
+			const url = `${'https://localhost:3000'}/${path}`
+			document.location = url
+			// this.$router.push({ path: '/inicio-sesion' })
+		},
 		onGoPage (path) {
 			// alert(`Tipo de redirección: ${this.redirectType}`)
 			// if (this.redirectType === 'location') {
@@ -246,7 +285,9 @@ export default {
 			// 	// let url = `${'https://master.d2s7yuej4ixbzn.amplifyapp.com'}${path}`
 			// 	this.$router.push(path)
 			// }
-			this.$router.push({ path })
+			setTimeout(() => {
+				this.$router.push({ path })
+			}, 300)
 		},
 		async checkLoginWithProviders () {
 			if (location) {
