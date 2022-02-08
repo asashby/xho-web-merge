@@ -199,7 +199,7 @@ export default {
 			password: '',
 			origin: ''
 		},
-		version: 'v0.0.6',
+		version: 'v0.0.7',
 		redirectType: 'push2',
 		errorMessage: null
 	}),
