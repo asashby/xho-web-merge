@@ -4,7 +4,7 @@ import fs from 'fs'
 export default {
 	// Target: https://go.nuxtjs.dev/config-target
 	target: 'server',
-	ssr: 'false',
+	ssr: false,
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
 		titleTemplate: '%s - X & H',
@@ -144,7 +144,8 @@ export default {
 		URL_TIENDA: process.env.URL_TIENDA,
 		URL_BASE: process.env.URL_BASE,
 		FACEBOOK_CLIENT_ID: process.env.FACEBOOK_CLIENT_ID,
-		GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID
+		GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+		WEB_BASE_URL: process.env.WEB_BASE_URL
 	},
 
 	loading: '~/components/Loading.vue',

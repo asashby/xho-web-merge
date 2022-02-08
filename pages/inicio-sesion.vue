@@ -98,11 +98,36 @@
                 <br> </br>
                 <p>loggedIn: {{ JSON.stringify($auth.$state.loggedIn) }}</p>
                 <br> </br>
+                <p>redirectType: {{ redirectType }}</p>
+                <br> </br>
               </div>
               <div style="border: 1px solid red; padding: 10px; margin: 30px 0;">
                 <p style="color: white">
                   {{ errorMessage }}
                 </p>
+              </div>
+              <div style="border: 1px solid green; padding: 10px; margin: 30px 0;">
+                <button
+                  type="button"
+                  class="login-facebook"
+                  @click="onChangeTypeRedirect('push1')"
+                >
+                  Push 1
+                </button>
+                <button
+                  type="button"
+                  class="login-facebook"
+                  @click="onChangeTypeRedirect('push2')"
+                >
+                  Push 2
+                </button>
+                <button
+                  type="button"
+                  class="login-facebook"
+                  @click="onChangeTypeRedirect('location')"
+                >
+                  Location
+                </button>
               </div>
             </div>
             <div class="login-social-selector">
@@ -174,7 +199,8 @@ export default {
 			password: '',
 			origin: ''
 		},
-		version: 'v0.0.3',
+		version: 'v0.0.4',
+		redirectType: 'push',
 		errorMessage: null
 	}),
 	computed: {
@@ -191,7 +217,8 @@ export default {
 			this.$nuxt.$loading.start()
 		})
 		if (this.$auth.$state.loggedIn) {
-			this.$router.push('/perfil')
+			// this.$router.push({ path: '/perfil' })
+			this.onGoPage('/perfil')
 			this.errorMessage = 'mounted: go perfil'
 			this.$nextTick(() => {
 				this.$nuxt.$loading.finish()
@@ -204,6 +231,18 @@ export default {
 		...mapActions([
 			'logout'
 		]),
+		onChangeTypeRedirect (type) {
+			this.redirectType = type
+		},
+		onGoPage (path) {
+			if (this.redirectType === 'push1') {
+				this.$router.push(path)
+			} else if (this.redirectType === 'push2') {
+				this.$router.push({ path })
+			} else if (this.redirectType === 'location') {
+				window.location = `${this.$config.WEB_BASE_URL}${path}`
+			}
+		},
 		async checkLoginWithProviders () {
 			if (location) {
 				const hash = new URLSearchParams(location.hash)
@@ -230,7 +269,8 @@ export default {
 			const facebookToken = hash.get('#access_token')
 			if (facebookToken) {
 				this.errorMessage = 'facebook: go objetivos'
-				this.$router.push('/objetivos')
+				// this.$router.push({ path: '/objetivos' })
+				this.onGoPage('/objetivos')
 				this.$nextTick(() => {
 					this.$nuxt.$loading.finish()
 				})
@@ -244,7 +284,8 @@ export default {
 		},
 		loginWithGoogle () {
 			this.errorMessage = 'google: go objetivos'
-			this.$router.push('/objetivos')
+			// this.$router.push({ path: '/objetivos' })
+			this.onGoPage('/objetivos')
 			this.$nextTick(() => {
 				this.$nuxt.$loading.finish()
 			})
