@@ -4,7 +4,7 @@ import fs from 'fs'
 export default {
 	// Target: https://go.nuxtjs.dev/config-target
 	target: 'server',
-	ssr: 'false',
+	ssr: true,
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
 		titleTemplate: '%s - X & H',
@@ -48,8 +48,12 @@ export default {
 		'@nuxtjs/vuetify',
 		'@nuxtjs/tailwindcss',
 		'@nuxtjs/google-fonts',
-		'@nuxtjs/auth-next'
+		'@nuxtjs/auth-next',
+		'@nuxtjs/dotenv'
 	],
+	dotenv: {
+		/* module options */
+	},
 	router: {
 		middleware: [
 			'auth',

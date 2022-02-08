@@ -199,8 +199,8 @@ export default {
 			password: '',
 			origin: ''
 		},
-		version: 'v0.0.5',
-		redirectType: 'push',
+		version: 'v0.0.6',
+		redirectType: 'push2',
 		errorMessage: null
 	}),
 	computed: {
@@ -235,13 +235,18 @@ export default {
 			this.redirectType = type
 		},
 		onGoPage (path) {
-			if (this.redirectType === 'push1') {
-				this.$router.push(path)
-			} else if (this.redirectType === 'push2') {
-				this.$router.push({ path })
-			} else if (this.redirectType === 'location') {
-				window.location = `${this.$config.WEB_BASE_URL}${path}`
-			}
+			// alert(`Tipo de redirección: ${this.redirectType}`)
+			// if (this.redirectType === 'location') {
+			// 	const url = `${'https:localhost:3000'}${path}`
+			// 	console.log({ url })
+			// 	window.location = url
+			// } else if (this.redirectType === 'push2') {
+			// 	this.$router.push({ path })
+			// } else {
+			// 	// let url = `${'https://master.d2s7yuej4ixbzn.amplifyapp.com'}${path}`
+			// 	this.$router.push(path)
+			// }
+			this.$router.push({ path })
 		},
 		async checkLoginWithProviders () {
 			if (location) {
