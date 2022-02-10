@@ -44,7 +44,7 @@
           <div class="login-column">
             <div>
               <p class="login-title-text">
-                El app incluye:
+                El app incluye: v0.0.11
               </p>
             </div>
             <div class="login-grid">
@@ -172,7 +172,7 @@ export default {
 			this.$nuxt.$loading.start()
 		})
 		if (this.$auth.$state.loggedIn) {
-			// this.$router.push({ path: '/perfil' })
+		// this.$router.push({ path: '/perfil' })
 			this.onGoPage('/perfil')
 			this.errorMessage = 'mounted: go perfil'
 			this.$nextTick(() => {
@@ -188,10 +188,16 @@ export default {
 		]),
 		onGoPage (path) {
 			const routeCurrent = this.$router.history._startLocation
-			if (routeCurrent.includes('access_token')) {
-				document.location = `${this.$nuxt.context.env.WEB_BASE_URL}${path}`
-			} else {
-				this.$router.push({ path })
+			const loginPath = '/inicio-sesion'
+			// alert(JSON.stringify(this.$router.history))
+			alert(routeCurrent)
+			if (routeCurrent !== loginPath) {
+				// document.location = `${this.$nuxt.context.env.WEB_BASE_URL}${path}`
+				if (routeCurrent.includes('access_token')) {
+					document.location = `${this.$nuxt.context.env.WEB_BASE_URL}${path}`
+				} else {
+					this.$router.push({ path })
+				}
 			}
 		},
 		async checkLoginWithProviders () {
