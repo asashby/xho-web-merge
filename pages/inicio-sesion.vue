@@ -85,81 +85,6 @@
                 </picture>
               </div>
             </div>
-            <div style="background: #343532">
-              <p style="text-align: center; margin: 16px;">
-                versión: {{ version }}
-              </p>
-              <div style="border: 1px solid white; padding: 10px; margin: 30px 0; max-width: 100vw; padding: 20px; word-break: break-word;">
-                <p>AUTH: {{ JSON.stringify($store.state.auth) }}</p>
-                <br> </br>
-                <p>userData: {{ JSON.stringify(userData) }}</p>
-                <br> </br>
-                <p>isMovil: {{ JSON.stringify($store.state.isMovil) }}</p>
-                <br> </br>
-                <p>URL Current: {{ $nuxt.$route.fullPath }}</p>
-                <br> </br>
-                <p>loggedIn: {{ JSON.stringify($auth.$state.loggedIn) }}</p>
-                <br> </br>
-                <p>redirectType: {{ redirectType }}</p>
-                <br> </br>
-              </div>
-              <div style="border: 1px solid red; padding: 10px; margin: 30px 0;">
-                <p style="color: white">
-                  {{ errorMessage }}
-                </p>
-              </div>
-              <div style="border: 1px solid green; padding: 10px; margin: 30px 0;">
-                <button
-                  type="button"
-                  class="login-facebook"
-                  @click="onChangeTypeRedirect('push1')"
-                >
-                  Push 1
-                </button>
-                <button
-                  type="button"
-                  class="login-facebook"
-                  @click="onChangeTypeRedirect('push2')"
-                >
-                  Push 2
-                </button>
-                <button
-                  type="button"
-                  class="login-facebook"
-                  @click="onChangeTypeRedirect('location')"
-                >
-                  Location
-                </button>
-                <button
-                  type="button"
-                  class="login-facebook"
-                  @click="onGoReloadLogin()"
-                >
-                  Reload Login
-                </button>
-                <button
-                  type="button"
-                  class="login-facebook"
-                  @click="onGoReloadForce('inicio-sesion')"
-                >
-                  Reload inicio-sesion
-                </button>
-                <button
-                  type="button"
-                  class="login-facebook"
-                  @click="onGoReloadForce('objetivos')"
-                >
-                  Reload objetivos
-                </button>
-                <button
-                  type="button"
-                  class="login-facebook"
-                  @click="onGoReloadForce('perfil')"
-                >
-                  Reload perfil
-                </button>
-              </div>
-            </div>
             <div class="login-social-selector">
               <div class="login-selector-grid">
                 <button
@@ -243,7 +168,6 @@ export default {
 		// Dejo esto como ayuda para que puedan revisar el objeto con toda la info
 		// del provider
 		// console.log('AUTH NUXT INFO', this.$auth)
-		console.log('this', this.$nuxt.context.env.WEB_BASE_URL)
 		this.$nextTick(() => {
 			this.$nuxt.$loading.start()
 		})
@@ -262,18 +186,6 @@ export default {
 		...mapActions([
 			'logout'
 		]),
-		onChangeTypeRedirect (type) {
-			this.redirectType = type
-		},
-		onGoReloadLogin () {
-			this.$router.push({ path: '/inicio-sesion' })
-		},
-		onGoReloadForce (path) {
-			// const url = `${'https://master.d2s7yuej4ixbzn.amplifyapp.com'}${path}`
-			const url = `${this.$nuxt.context.env.WEB_BASE_URL}/${path}`
-			document.location = url
-			// this.$router.push({ path: '/inicio-sesion' })
-		},
 		onGoPage (path) {
 			const routeCurrent = this.$router.history._startLocation
 			if (routeCurrent.includes('access_token')) {
@@ -285,9 +197,6 @@ export default {
 		async checkLoginWithProviders () {
 			if (location) {
 				const hash = new URLSearchParams(location.hash)
-				console.log('______________________________ \t -> checkLoginWithProviders \t')
-				console.log({ location, hash, isFacebook: this.isFacebook, isGoogle: this.isGoogle })
-				console.log('______________________________')
 				if (hash && this.isFacebook) {
 					await this.loginWithFacebook(hash)
 				} else if (hash && this.isGoogle) {
@@ -318,7 +227,6 @@ export default {
 				this.$nextTick(() => {
 					this.$nuxt.$loading.finish()
 				})
-				console.log('No hay token de facebook')
 			}
 		},
 		loginWithGoogle () {
@@ -336,16 +244,7 @@ export default {
 		},
 		updateUserDataFromFacebook (facebookData) {
 			const userImage = getPropertysValue('picture.data.url', facebookData)
-			console.log('__________________________________ \t -> updateUserDataFromFacebook \t')
-			console.log({
-				name: facebookData.name,
-				last_name: facebookData.lastname,
-				password: window.btoa(facebookData.id),
-				image: userImage,
-				email: facebookData.email,
-				origin: 'Facebook'
-			})
-			console.log('__________________________________')
+
 			return compose(
 				setNewProperty('name', facebookData.name),
 				setNewProperty('last_name', facebookData.lastname),
