@@ -1,18 +1,20 @@
 <template>
-	<!-- <div>
+  <!-- <div>
 		<div class="g-signin2" data-onsuccess="onSuccess"></div>
 	</div> -->
-	<div>
-		<button
-			class="google-button"
-			@click="loginWithGoogle"
-		>
-			<picture>
-				<img src="~/assets/icons/google-icon.svg" alt="logo_google" class="google-icon-logo">
-			</picture>
-			<p class="google-text-button">Ingresa con Google</p>
-		</button>
-	</div>
+  <div>
+    <button
+      class="google-button"
+      @click="loginWithGoogle"
+    >
+      <picture>
+        <img src="~/assets/icons/google-icon.svg" alt="logo_google" class="google-icon-logo">
+      </picture>
+      <p class="google-text-button">
+        Ingresa con Google
+      </p>
+    </button>
+  </div>
 </template>
 
 <script>

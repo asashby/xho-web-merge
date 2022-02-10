@@ -229,7 +229,7 @@ export default {
 			password: '',
 			origin: ''
 		},
-		version: 'v0.0.8',
+		version: 'v0.0.9',
 		redirectType: 'push2',
 		errorMessage: null
 	}),
@@ -243,6 +243,7 @@ export default {
 		// Dejo esto como ayuda para que puedan revisar el objeto con toda la info
 		// del provider
 		// console.log('AUTH NUXT INFO', this.$auth)
+		console.log('this', this.$nuxt.context.env.WEB_BASE_URL)
 		this.$nextTick(() => {
 			this.$nuxt.$loading.start()
 		})
@@ -269,25 +270,17 @@ export default {
 		},
 		onGoReloadForce (path) {
 			// const url = `${'https://master.d2s7yuej4ixbzn.amplifyapp.com'}${path}`
-			const url = `${'https://localhost:3000'}/${path}`
+			const url = `${this.$nuxt.context.env.WEB_BASE_URL}/${path}`
 			document.location = url
 			// this.$router.push({ path: '/inicio-sesion' })
 		},
 		onGoPage (path) {
-			// alert(`Tipo de redirección: ${this.redirectType}`)
-			// if (this.redirectType === 'location') {
-			// 	const url = `${'https:localhost:3000'}${path}`
-			// 	console.log({ url })
-			// 	window.location = url
-			// } else if (this.redirectType === 'push2') {
-			// 	this.$router.push({ path })
-			// } else {
-			// 	// let url = `${'https://master.d2s7yuej4ixbzn.amplifyapp.com'}${path}`
-			// 	this.$router.push(path)
-			// }
-			setTimeout(() => {
+			const routeCurrent = this.$router.history._startLocation
+			if (routeCurrent.includes('access_token')) {
+				document.location = `${this.$nuxt.context.env.WEB_BASE_URL}${path}`
+			} else {
 				this.$router.push({ path })
-			}, 300)
+			}
 		},
 		async checkLoginWithProviders () {
 			if (location) {

@@ -4,7 +4,7 @@ import fs from 'fs'
 export default {
 	// Target: https://go.nuxtjs.dev/config-target
 	target: 'server',
-	ssr: true,
+	ssr: false,
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
 		titleTemplate: '%s - X & H',
@@ -61,7 +61,7 @@ export default {
 	auth: {
 		redirect: {
 			callback: '/inicio-sesion',
-			home: '/inicio-sesion',
+			home: false,
 			login: '/inicio-sesion',
 			logout: '/inicio-sesion'
 		},
