@@ -48,8 +48,10 @@ export default {
 		'@nuxtjs/vuetify',
 		'@nuxtjs/tailwindcss',
 		'@nuxtjs/google-fonts',
-		'@nuxtjs/auth-next'
+		'@nuxtjs/auth-next',
+		'@nuxtjs/dotenv'
 	],
+	dotenv: { },
 	router: {
 		middleware: [
 			'auth',
@@ -157,6 +159,7 @@ export default {
 	},
 
 	server: {
+		// host: '0.0.0.0',
 		https: {
 			key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
 			cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))

@@ -44,7 +44,7 @@
           <div class="login-column">
             <div>
               <p class="login-title-text">
-                El app incluye: v0.0.11
+                El app incluye: v0.0.12
               </p>
             </div>
             <div class="login-grid">
@@ -189,8 +189,16 @@ export default {
 		onGoPage (path) {
 			const routeCurrent = this.$router.history._startLocation
 			const loginPath = '/inicio-sesion'
-			// alert(JSON.stringify(this.$router.history))
-			alert(routeCurrent)
+			const objTemp = {
+				auth: {
+					logIn: this.$auth.$state.loggedIn,
+					strategy: this.$auth.$state.strategy,
+					user: this.$auth.$state.user
+				},
+				location: document.location
+			}
+			const messageInfo = JSON.stringify(objTemp)
+			alert(messageInfo)
 			if (routeCurrent !== loginPath) {
 				// document.location = `${this.$nuxt.context.env.WEB_BASE_URL}${path}`
 				if (routeCurrent.includes('access_token')) {
