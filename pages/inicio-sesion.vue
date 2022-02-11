@@ -44,7 +44,7 @@
           <div class="login-column">
             <div>
               <p class="login-title-text">
-                El app incluye: v0.0.13
+                El app incluye: {{ version }}
               </p>
             </div>
             <div class="login-grid">
@@ -154,7 +154,7 @@ export default {
 			password: '',
 			origin: ''
 		},
-		version: 'v0.0.9',
+		version: 'v0.0.14',
 		redirectType: 'push2',
 		errorMessage: null
 	}),
@@ -195,7 +195,10 @@ export default {
 					strategy: this.$auth.$state.strategy,
 					user: this.$auth.$state.user
 				},
-				location: document.location
+				auth_after: '____________s_______________',
+				location: document.location,
+				location_after: 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
+				localstorage: JSON.stringify(localStorage)
 			}
 			const messageInfo = JSON.stringify(objTemp)
 			alert(messageInfo)
