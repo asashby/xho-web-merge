@@ -48,10 +48,8 @@ export default {
 		'@nuxtjs/vuetify',
 		'@nuxtjs/tailwindcss',
 		'@nuxtjs/google-fonts',
-		'@nuxtjs/auth-next',
-		'@nuxtjs/dotenv'
+		'@nuxtjs/auth-next'
 	],
-	dotenv: { },
 	router: {
 		middleware: [
 			'auth',

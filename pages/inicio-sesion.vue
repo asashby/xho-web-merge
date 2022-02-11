@@ -44,7 +44,7 @@
           <div class="login-column">
             <div>
               <p class="login-title-text">
-                El app incluye: v0.0.12
+                El app incluye: v0.0.13
               </p>
             </div>
             <div class="login-grid">
