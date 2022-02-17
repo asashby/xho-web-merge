@@ -61,7 +61,7 @@ export default {
 	auth: {
 		redirect: {
 			callback: '/inicio-sesion',
-			home: false,
+			home: '/objetivos',
 			login: '/inicio-sesion',
 			logout: '/inicio-sesion'
 		},

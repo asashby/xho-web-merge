@@ -1,11 +1,12 @@
 <template>
 	<v-app>
-		<Nuxt></Nuxt>
+		<Nuxt />
 	</v-app>
 </template>
 
 <script>
 export default {
-	name: 'HeadlessLayout'
+	name: 'HeadlessLayout',
+  auth: 'guest'
 }
 </script>

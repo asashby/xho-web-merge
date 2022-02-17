@@ -143,7 +143,6 @@ import '@ivahid/vue-toggle-image/dist/vue-toggle-image.css'
 
 export default {
 	name: 'PaginaInicioSesion',
-	auth: false,
 	layout: 'headless',
 	data: () => ({
 		userData: {
@@ -164,96 +163,96 @@ export default {
 			'isFacebook'
 		])
 	},
-	async mounted () {
-		// Dejo esto como ayuda para que puedan revisar el objeto con toda la info
-		// del provider
-		// console.log('AUTH NUXT INFO', this.$auth)
-		this.$nextTick(() => {
-			this.$nuxt.$loading.start()
-		})
-		if (this.$auth.$state.loggedIn) {
-		// this.$router.push({ path: '/perfil' })
-			this.onGoPage('/perfil')
-			this.errorMessage = 'mounted: go perfil'
-			this.$nextTick(() => {
-				this.$nuxt.$loading.finish()
-			})
-		} else {
-			await this.checkLoginWithProviders()
-		}
-	},
+	// async mounted () {
+	// 	// Dejo esto como ayuda para que puedan revisar el objeto con toda la info
+	// 	// del provider
+	// 	// console.log('AUTH NUXT INFO', this.$auth)
+	// 	this.$nextTick(() => {
+	// 		this.$nuxt.$loading.start()
+	// 	})
+	// 	if (this.$auth.$state.loggedIn) {
+	// 	// this.$router.push({ path: '/perfil' })
+	// 		this.onGoPage('/perfil')
+	// 		this.errorMessage = 'mounted: go perfil'
+	// 		this.$nextTick(() => {
+	// 			this.$nuxt.$loading.finish()
+	// 		})
+	// 	} else {
+	// 		await this.checkLoginWithProviders()
+	// 	}
+	// },
 	methods: {
 		...mapActions([
 			'logout'
 		]),
-		onGoPage (path) {
-			const routeCurrent = this.$router.history._startLocation
-			const loginPath = '/inicio-sesion'
-			const objTemp = {
-				auth: {
-					logIn: this.$auth.$state.loggedIn,
-					strategy: this.$auth.$state.strategy,
-					user: this.$auth.$state.user
-				},
-				auth_after: '____________s_______________',
-				location: document.location,
-				location_after: 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
-				localstorage: JSON.stringify(localStorage)
-			}
-			const messageInfo = JSON.stringify(objTemp)
-			alert(messageInfo)
-			if (routeCurrent !== loginPath) {
-				// document.location = `${this.$nuxt.context.env.WEB_BASE_URL}${path}`
-				if (routeCurrent.includes('access_token')) {
-					document.location = `${this.$nuxt.context.env.WEB_BASE_URL}${path}`
-				} else {
-					this.$router.push({ path })
-				}
-			}
-		},
-		async checkLoginWithProviders () {
-			if (location) {
-				const hash = new URLSearchParams(location.hash)
-				if (hash && this.isFacebook) {
-					await this.loginWithFacebook(hash)
-				} else if (hash && this.isGoogle) {
-					await this.loginWithGoogle(hash)
-				} else {
-					this.$nextTick(() => {
-						this.$nuxt.$loading.finish()
-					})
-				}
-			} else {
-				this.errorMessage = 'check providers: default'
-				this.$nextTick(() => {
-					this.$nuxt.$loading.finish()
-				})
-			}
-		},
-		loginWithFacebook (hash) {
-			const facebookToken = hash.get('#access_token')
-			if (facebookToken) {
-				this.errorMessage = 'facebook: go objetivos'
-				// this.$router.push({ path: '/objetivos' })
-				this.onGoPage('/objetivos')
-				this.$nextTick(() => {
-					this.$nuxt.$loading.finish()
-				})
-			} else {
-				this.errorMessage = 'facebook: no hay token de facebook'
-				this.$nextTick(() => {
-					this.$nuxt.$loading.finish()
-				})
-			}
-		},
-		loginWithGoogle () {
-			this.errorMessage = 'google: go objetivos'
-			// this.$router.push({ path: '/objetivos' })
-			this.onGoPage('/objetivos')
-			this.$nextTick(() => {
-				this.$nuxt.$loading.finish()
-			})
-		},
+		// onGoPage (path) {
+		// 	const routeCurrent = this.$router.history._startLocation
+		// 	const loginPath = '/inicio-sesion'
+		// 	const objTemp = {
+		// 		auth: {
+		// 			logIn: this.$auth.$state.loggedIn,
+		// 			strategy: this.$auth.$state.strategy,
+		// 			user: this.$auth.$state.user
+		// 		},
+		// 		auth_after: '____________s_______________',
+		// 		location: document.location,
+		// 		location_after: 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		// 		localstorage: JSON.stringify(localStorage)
+		// 	}
+		// 	const messageInfo = JSON.stringify(objTemp)
+		// 	alert(messageInfo)
+		// 	if (routeCurrent !== loginPath) {
+		// 		// document.location = `${this.$nuxt.context.env.WEB_BASE_URL}${path}`
+		// 		if (routeCurrent.includes('access_token')) {
+		// 			document.location = `${this.$nuxt.context.env.WEB_BASE_URL}${path}`
+		// 		} else {
+		// 			this.$router.push({ path })
+		// 		}
+		// 	}
+		// },
+		// async checkLoginWithProviders () {
+		// 	if (location) {
+		// 		const hash = new URLSearchParams(location.hash)
+		// 		if (hash && this.isFacebook) {
+		// 			await this.loginWithFacebook(hash)
+		// 		} else if (hash && this.isGoogle) {
+		// 			await this.loginWithGoogle(hash)
+		// 		} else {
+		// 			this.$nextTick(() => {
+		// 				this.$nuxt.$loading.finish()
+		// 			})
+		// 		}
+		// 	} else {
+		// 		this.errorMessage = 'check providers: default'
+		// 		this.$nextTick(() => {
+		// 			this.$nuxt.$loading.finish()
+		// 		})
+		// 	}
+		// },
+		// loginWithFacebook (hash) {
+		// 	const facebookToken = hash.get('#access_token')
+		// 	if (facebookToken) {
+		// 		this.errorMessage = 'facebook: go objetivos'
+		// 		// this.$router.push({ path: '/objetivos' })
+		// 		this.onGoPage('/objetivos')
+		// 		this.$nextTick(() => {
+		// 			this.$nuxt.$loading.finish()
+		// 		})
+		// 	} else {
+		// 		this.errorMessage = 'facebook: no hay token de facebook'
+		// 		this.$nextTick(() => {
+		// 			this.$nuxt.$loading.finish()
+		// 		})
+		// 	}
+		// },
+		// loginWithGoogle () {
+		// 	this.errorMessage = 'google: go objetivos'
+		// 	// this.$router.push({ path: '/objetivos' })
+		// 	this.onGoPage('/objetivos')
+		// 	this.$nextTick(() => {
+		// 		this.$nuxt.$loading.finish()
+		// 	})
+		// },
 		updateUserData (newUserData) {
 			if (this.isFacebook) {
 				this.userData = this.updateUserDataFromFacebook(newUserData)
