@@ -1,15 +1,15 @@
 <template>
-	<v-app>
-		<NavBarComponent />
-		<div class="profile-layout--main-container">
-			<aside class="profile-layout--main-container__aside">
-				<AppMenu :menu="menu"/>
-			</aside>
-			<div class="profile-layout--main-container__content">
-				<Nuxt />
-			</div>
-		</div>
-	</v-app>
+  <v-app>
+    <NavBarComponent />
+    <div class="profile-layout--main-container">
+      <aside class="profile-layout--main-container__aside">
+        <AppMenu :menu="menu" />
+      </aside>
+      <div class="profile-layout--main-container__content">
+        <Nuxt />
+      </div>
+    </div>
+  </v-app>
 </template>
 
 <script>

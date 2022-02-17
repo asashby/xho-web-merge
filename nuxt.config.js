@@ -52,18 +52,19 @@ export default {
 	],
 	router: {
 		middleware: [
-			'auth',
+			'authentication',
 			'detectingDevice',
-			'firstDataToLoad',
-			'redirectTo'
+			'firstDataToLoad'
+			// 'redirectTo'
 		]
 	},
 	auth: {
 		redirect: {
-			callback: '/inicio-sesion',
-			home: '/objetivos',
+			home: '/perfil',
+			goals: '/objetivos',
 			login: '/inicio-sesion',
-			logout: '/inicio-sesion'
+			logout: '/inicio-sesion',
+			callback: false
 		},
 		strategies: {
 			local: {

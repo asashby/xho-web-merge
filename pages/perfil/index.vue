@@ -20,7 +20,7 @@
         :key="profileIndex"
         :to="profile.route"
         :name="profile.name"
-		:image="profile.image"
+        :image="profile.image"
       />
     </div>
 
