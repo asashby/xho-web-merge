@@ -61,7 +61,6 @@ export default {
 	auth: {
 		redirect: {
 			home: '/objetivos',
-			goals: '/objetivos',
 			login: '/inicio-sesion',
 			logout: '/inicio-sesion',
 			callback: '/inicio-sesion'
