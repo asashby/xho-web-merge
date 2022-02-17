@@ -1,4 +1,4 @@
-import { getPropertysValue } from 'functionallibrary'
+// import { getPropertysValue } from 'functionallibrary'
 import { routeOption, getMatchedComponents, normalizePath } from '@/utils/authUtils'
 
 export default async (ctx) => {
@@ -22,19 +22,19 @@ export default async (ctx) => {
 	}
 
 	// determinar si el usuario ya tiene sus objetivos definidos
-	const flagGoald = getPropertysValue('$state.user.flag_goald', ctx.$auth)
+	// const flagGoald = getPropertysValue('$state.user.flag_goald', ctx.$auth)
 
-	if (ctx.$auth.$state.loggedIn && !flagGoald) {
-		ctx.$auth.redirect('goals')
-		return
-	}
+	// if (ctx.$auth.$state.loggedIn && !flagGoald) {
+	// 	ctx.$auth.redirect('goals')
+	// 	return
+	// }
 
 	if (ctx.$auth.$state.loggedIn) {
 		// Perform scheme checks.
 		const { tokenExpired, refreshTokenExpired, isRefreshable } = ctx.$auth.check(true)
 
 		// -- Authorized --
-		if (insidePage(ctx.$auth.options.redirect.login) || pageIsInGuestMode) {
+		if (insidePage('/') || insidePage(ctx.$auth.options.redirect.login) || pageIsInGuestMode) {
 			ctx.$auth.redirect('home')
 		}
 

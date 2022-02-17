@@ -116,7 +116,7 @@
 import { mapGetters, mapState } from 'vuex'
 import Selector from '~/components/Selector'
 
-function mounted () {
+function beforeMount () {
 	this.$nextTick(() => {
 		this.$nuxt.$loading.start()
 	})
@@ -220,7 +220,7 @@ export default {
 		]),
 		invalidForm
 	},
-	mounted,
+	beforeMount,
 	methods: {
 		loginLocal,
 		reditectTo,
