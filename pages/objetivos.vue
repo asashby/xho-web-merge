@@ -116,53 +116,53 @@
 import { mapGetters, mapState } from 'vuex'
 import Selector from '~/components/Selector'
 
-function beforeMount () {
-	this.$nextTick(() => {
-		this.$nuxt.$loading.start()
-	})
-	if (this.$auth.$state.loggedIn) {
-		this.loginLocal(this.$auth.$state)
-	} else {
-		this.$nextTick(() => {
-			setTimeout(() => this.$nuxt.$loading.finish(), 1000)
-		})
-	}
-}
+// function beforeMount () {
+// 	this.$nextTick(() => {
+// 		this.$nuxt.$loading.start()
+// 	})
+// 	if (this.$auth.$state.loggedIn) {
+// 		this.loginLocal(this.$auth.$state)
+// 	} else {
+// 		this.$nextTick(() => {
+// 			setTimeout(() => this.$nuxt.$loading.finish(), 1000)
+// 		})
+// 	}
+// }
 
-async function loginLocal ({ user, strategy }) {
-	const {
-		email,
-		family_name: googleLastName,
-		first_name: name,
-		given_name: googleName,
-		id,
-		last_name: lastName,
-		sub
-	} = user
-	const body = {
-		email,
-		last_name: googleLastName || lastName,
-		name: googleName || name,
-		origin: strategy,
-		password: sub ? window.btoa(sub) : window.btoa(id)
-	}
-	const { data: response } = await this.$http.post('login-social', body)
-	const { token, tokenMaki, user: userResponse } = response
-	this.$store.$auth.strategies.local.token.set(token)
-	this.$store.dispatch('setTokenMaki', tokenMaki)
-	if (userResponse) {
-		const { addittional_info: additionalInfo } = userResponse
-		if (additionalInfo) {
-			const { age, size, weight } = additionalInfo
-			if (age && size && weight) {
-				this.reditectTo()
-			}
-		}
-	}
-	this.$nextTick(() => {
-		this.$nuxt.$loading.finish()
-	})
-}
+// async function loginLocal ({ user, strategy }) {
+// 	const {
+// 		email,
+// 		family_name: googleLastName,
+// 		first_name: name,
+// 		given_name: googleName,
+// 		id,
+// 		last_name: lastName,
+// 		sub
+// 	} = user
+// 	const body = {
+// 		email,
+// 		last_name: googleLastName || lastName,
+// 		name: googleName || name,
+// 		origin: strategy,
+// 		password: sub ? window.btoa(sub) : window.btoa(id)
+// 	}
+// 	const { data: response } = await this.$http.post('login-social', body)
+// 	const { token, tokenMaki, user: userResponse } = response
+// 	this.$store.$auth.strategies.local.token.set(token)
+// 	this.$store.dispatch('setTokenMaki', tokenMaki)
+// 	if (userResponse) {
+// 		const { addittional_info: additionalInfo } = userResponse
+// 		if (additionalInfo) {
+// 			const { age, size, weight } = additionalInfo
+// 			if (age && size && weight) {
+// 				this.reditectTo()
+// 			}
+// 		}
+// 	}
+// 	this.$nextTick(() => {
+// 		this.$nuxt.$loading.finish()
+// 	})
+// }
 
 async function saveObjectives () {
 	await this.$store.dispatch('profile/updateObjectives', this.model)
@@ -220,9 +220,9 @@ export default {
 		]),
 		invalidForm
 	},
-	beforeMount,
+	// beforeMount,
 	methods: {
-		loginLocal,
+		// loginLocal,
 		reditectTo,
 		saveObjectives
 	}
