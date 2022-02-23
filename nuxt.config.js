@@ -59,6 +59,7 @@ export default {
 		]
 	},
 	auth: {
+		rewriteRedirects: true,
 		redirect: {
 			home: '/objetivos',
 			login: '/', // INFO: Probar con /
