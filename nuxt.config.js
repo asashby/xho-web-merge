@@ -63,7 +63,7 @@ export default {
 			home: '/objetivos',
 			login: '/inicio-sesion', // INFO: Probar con /
 			logout: '/inicio-sesion', // INFO: Probar con /
-			callback: '/inicio-sesion' // TODO: Cambiar por /objetivos o /perfil o /
+			callback: '/objetivos' // TODO: Cambiar por /objetivos o /perfil o /
 		},
 		strategies: {
 			local: {
@@ -78,7 +78,7 @@ export default {
 					logout: false,
 					user: { url: `${process.env.URL_BASE}current`, method: 'get' }
 				},
-				redirectUri: '/inicio-sesion'
+				redirectUri: '/objetivos'
 			},
 			facebook: {
 				clientId: process.env.FACEBOOK_CLIENT_ID,
