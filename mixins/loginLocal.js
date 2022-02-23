@@ -6,7 +6,7 @@ export const LoginLocal = {
 		}
 	},
 	mounted () {
-		window.alert(JSON.stringify(this.$auth.$state))
+		window.alert(document.cookie)
 	},
 	methods: {
 		async loginWithLocal () {
