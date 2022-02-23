@@ -221,11 +221,6 @@ export default {
 		invalidForm
 	},
 	// beforeMount,
-	beforeCreate () {
-		if (this.$auth.$state.loggedIn) {
-			this.loginLocal(this.$auth.$state)
-		}
-	},
 	methods: {
 		loginLocal,
 		reditectTo,
