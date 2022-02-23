@@ -61,8 +61,8 @@ export default {
 	auth: {
 		redirect: {
 			home: '/objetivos',
-			login: '/inicio-sesion', // INFO: Probar con /
-			logout: '/inicio-sesion', // INFO: Probar con /
+			login: '/', // INFO: Probar con /
+			logout: '/', // INFO: Probar con /
 			callback: '/objetivos' // TODO: Cambiar por /objetivos o /perfil o /
 		},
 		strategies: {

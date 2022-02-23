@@ -11,7 +11,7 @@ export default (ctx) => {
 	if (ctx.$auth.$state.loggedIn) {
 		if (hasGoalFlag) {
 			ctx.redirect('/perfil')
-		} else if (insidePage('/') || insidePage(login)) {
+		} else if (insidePage(login)) {
 			ctx.$auth.redirect('home')
 		}
 	} else {
