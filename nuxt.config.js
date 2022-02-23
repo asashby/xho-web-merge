@@ -64,7 +64,7 @@ export default {
 			home: '/objetivos',
 			login: '/', // INFO: Probar con /
 			logout: '/', // INFO: Probar con /
-			callback: false // TODO: Cambiar por /objetivos o /perfil o /
+			callback: '/objetivos' // TODO: Cambiar por /objetivos o /perfil o /
 		},
 		strategies: {
 			local: {
