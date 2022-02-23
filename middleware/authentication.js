@@ -1,4 +1,4 @@
-// import { getPropertysValue } from 'functionallibrary'
+import { getPropertysValue } from 'functionallibrary'
 import { normalizePath } from '@/utils/authUtils'
 
 export default (ctx) => {
@@ -6,9 +6,12 @@ export default (ctx) => {
 	const insidePage = page => normalizePath(ctx.route.path, ctx) === normalizePath(page, ctx)
 
 	const { login } = ctx.$auth.options.redirect
+	const hasGoalFlag = getPropertysValue('$state.user.flag_goald', ctx.$auth)
 
 	if (ctx.$auth.$state.loggedIn) {
-		if (insidePage('/') || insidePage(login)) {
+		if (hasGoalFlag) {
+			ctx.redirect('/perfil')
+		} else if (insidePage('/') || insidePage(login)) {
 			ctx.$auth.redirect('home')
 		}
 	} else {
