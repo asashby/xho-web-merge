@@ -6,12 +6,10 @@ export default (ctx) => {
 	const insidePage = page => normalizePath(ctx.route.path, ctx) === normalizePath(page, ctx)
 
 	const { login } = ctx.$auth.options.redirect
-	const hasGoalFlag = getPropertysValue('$state.user.flag_goald', ctx.$auth)
+	const flagGoal = getPropertysValue('$state.user.flag_goald', ctx.$auth)
 
 	if (ctx.$auth.$state.loggedIn) {
-		if (hasGoalFlag) {
-			ctx.redirect('/perfil')
-		} else if (insidePage(login)) {
+		if (!!flagGoal || insidePage(login)) {
 			ctx.$auth.redirect('home')
 		}
 	} else {
