@@ -114,6 +114,7 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
+import { LoginLocal } from '~/mixins/loginLocal'
 import Selector from '~/components/Selector'
 
 // function beforeMount () {
@@ -207,6 +208,7 @@ export default {
 	components: {
 		Selector
 	},
+	mixins: [LoginLocal],
 	layout: 'headless',
 	data,
 	computed: {

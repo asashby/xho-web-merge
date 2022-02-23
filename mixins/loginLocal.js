@@ -5,6 +5,9 @@ export const LoginLocal = {
 			this.$auth.redirect(toProfile ? 'profile' : 'home')
 		}
 	},
+	mounted () {
+		window.alert(this.$auth.$state)
+	},
 	methods: {
 		async loginWithLocal () {
 			const user = this.$auth.$state.user
