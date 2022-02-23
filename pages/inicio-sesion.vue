@@ -181,6 +181,11 @@ export default {
 	// 		await this.checkLoginWithProviders()
 	// 	}
 	// },
+	async beforeMount () {
+		if (this.$auth.$state.loggedIn) {
+			await this.loginWithLocal()
+		}
+	},
 	methods: {
 		...mapActions([
 			'logout'
@@ -294,6 +299,32 @@ export default {
 		},
 		setFacebookProvider () {
 			this.$store.commit('SET_LOGIN_BUTTON_PROVIDER', 'facebook')
+		},
+		async loginWithLocal () {
+			const user = this.$auth.$state.user
+			const payload = {
+				email: user.email,
+				last_name: user.family_name || user.last_name,
+				name: user.given_name || user.first_name,
+				origin: this.$auth.$state.strategy,
+				password: user.sub ? window.btoa(user.sub) : window.btoa(user.id)
+			}
+
+			const { data: response } = await this.$http.post('login-social', payload)
+			const { token, tokenMaki, user: userResponse } = response
+
+			this.$store.$auth.strategies.local.token.set(token)
+			this.$store.dispatch('setTokenMaki', tokenMaki)
+
+			if (userResponse) {
+				const { addittional_info: additionalInfo } = userResponse
+				if (additionalInfo) {
+					const { age, size, weight } = additionalInfo
+					return age && size && weight
+				}
+			}
+
+			return false
 		}
 		/* googleSignIn () {
 			this.provider = new firebase.auth.GoogleAuthProvider()
