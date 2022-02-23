@@ -116,18 +116,18 @@
 import { mapGetters, mapState } from 'vuex'
 import Selector from '~/components/Selector'
 
-// function beforeMount () {
-// 	this.$nextTick(() => {
-// 		this.$nuxt.$loading.start()
-// 	})
-// 	if (this.$auth.$state.loggedIn) {
-// 		this.loginLocal(this.$auth.$state)
-// 	} else {
-// 		this.$nextTick(() => {
-// 			setTimeout(() => this.$nuxt.$loading.finish(), 1000)
-// 		})
-// 	}
-// }
+function beforeMount () {
+	this.$nextTick(() => {
+		this.$nuxt.$loading.start()
+	})
+	if (this.$auth.$state.loggedIn) {
+		this.loginLocal(this.$auth.$state)
+	} else {
+		this.$nextTick(() => {
+			setTimeout(() => this.$nuxt.$loading.finish(), 1000)
+		})
+	}
+}
 
 async function loginLocal ({ user, strategy }) {
 	const {
@@ -220,7 +220,7 @@ export default {
 		]),
 		invalidForm
 	},
-	// beforeMount,
+	beforeMount,
 	methods: {
 		loginLocal,
 		reditectTo,
