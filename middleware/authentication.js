@@ -9,8 +9,9 @@ export default async (ctx) => {
 	// const flagGoal = getPropertysValue('$state.user.flag_goald', ctx.$auth)
 
 	if (ctx.$auth.$state.loggedIn) {
-		if (insidePage('/')) {
-			await loginLocal(ctx)
+		if (insidePage('/objetivos')) {
+			const toProfile = await loginLocal(ctx)
+			ctx.$auth.redirect(toProfile ? 'profile' : 'home')
 		}
 
 		if (insidePage('/') || insidePage(login)) {
@@ -22,41 +23,28 @@ export default async (ctx) => {
 }
 
 async function loginLocal (ctx) {
-	const {
-		email,
-		family_name: googleLastName,
-		first_name: name,
-		given_name: googleName,
-		id,
-		last_name: lastName,
-		sub
-	} = ctx.$auth.$state.user
-	const body = {
-		email,
-		last_name: googleLastName || lastName,
-		name: googleName || name,
+	const user = ctx.$auth.$state.user
+	const payload = {
+		email: user.email,
+		last_name: user.family_name || user.last_name,
+		name: user.given_name || user.first_name,
 		origin: ctx.$auth.$state.strategy,
-		password: sub ? window.btoa(sub) : window.btoa(id)
+		password: user.sub ? window.btoa(user.sub) : window.btoa(user.id)
 	}
-	const { data: response } = await ctx.$http.post('login-social', body)
+
+	const { data: response } = await ctx.$http.post('login-social', payload)
 	const { token, tokenMaki, user: userResponse } = response
+
 	ctx.$store.$auth.strategies.local.token.set(token)
 	ctx.$store.dispatch('setTokenMaki', tokenMaki)
+
 	if (userResponse) {
 		const { addittional_info: additionalInfo } = userResponse
 		if (additionalInfo) {
 			const { age, size, weight } = additionalInfo
-			if (age && size && weight) {
-				reditectTo(ctx)
-			}
+			return age && size && weight
 		}
 	}
-}
 
-function reditectTo (ctx) {
-	if (window.innerWidth < 1024) {
-		ctx.$router.push('/perfil')
-	} else {
-		ctx.$router.push('/perfil')
-	}
+	return false
 }
