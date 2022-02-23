@@ -62,8 +62,8 @@ export default {
 		rewriteRedirects: true,
 		redirect: {
 			home: '/objetivos',
-			login: '/', // INFO: Probar con /
-			logout: '/', // INFO: Probar con /
+			login: '/inicio-sesion', // INFO: Probar con /
+			logout: '/inicio-sesion', // INFO: Probar con /
 			callback: '/objetivos' // TODO: Cambiar por /objetivos o /perfil o /
 		},
 		strategies: {
