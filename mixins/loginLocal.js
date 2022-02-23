@@ -6,7 +6,9 @@ export const LoginLocal = {
 		}
 	},
 	mounted () {
-		window.alert(document.cookie)
+		const routeCurrent = this.$router.history._startLocation
+		// window.alert(document.cookie)
+		window.alert(routeCurrent)
 	},
 	methods: {
 		async loginWithLocal () {
