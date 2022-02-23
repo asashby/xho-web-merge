@@ -183,7 +183,8 @@ export default {
 	// },
 	async beforeMount () {
 		if (this.$auth.$state.loggedIn) {
-			await this.loginWithLocal()
+			const toProfile = await this.loginWithLocal()
+			this.$auth.redirect(toProfile ? 'profile' : 'home')
 		}
 	},
 	methods: {
