@@ -3,10 +3,10 @@
 </template>
 
 <script>
-// import { LoginLocal } from '~/mixins/loginLocal'
+import { LoginLocal } from '~/mixins/loginLocal'
 
 export default {
-	// mixins: [LoginLocal],
+	mixins: [LoginLocal],
 	layout: 'headless'
 }
 </script>

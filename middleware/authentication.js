@@ -9,7 +9,7 @@ export default (ctx) => {
 	// const flagGoal = getPropertysValue('$state.user.flag_goald', ctx.$auth)
 
 	if (ctx.$auth.$state.loggedIn) {
-		if (insidePage('/') || insidePage(login)) {
+		if (insidePage(login)) {
 			ctx.$auth.redirect('home')
 		}
 	} else {

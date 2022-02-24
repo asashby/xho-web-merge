@@ -5,6 +5,8 @@ export const LoginLocal = {
 			const toProfile = await this.loginWithLocal()
 			this.$router.replace(toProfile ? '/perfil' : '/objetivos')
 			// this.$auth.redirect(toProfile ? 'profile' : 'home')
+		} else if (!this.$auth.$state.loggedIn) {
+			this.$auth.redirect('home')
 		}
 	},
 	mounted () {
