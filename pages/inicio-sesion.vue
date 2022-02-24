@@ -135,7 +135,7 @@
 /* eslint-disable no-tabs */
 import { compose, getPropertysValue, setNewProperty } from 'functionallibrary'
 import { mapActions, mapGetters } from 'vuex'
-import { LoginLocal } from '~/mixins/loginLocal'
+// import { LoginLocal } from '~/mixins/loginLocal'
 // import VueToggleImage from '@ivahid/vue-toggle-image'
 import '@ivahid/vue-toggle-image/dist/vue-toggle-image.css'
 // import firebase from 'firebase'
@@ -144,7 +144,7 @@ import '@ivahid/vue-toggle-image/dist/vue-toggle-image.css'
 
 export default {
 	name: 'PaginaInicioSesion',
-	mixins: [LoginLocal],
+	// mixins: [LoginLocal],
 	layout: 'headless',
 	data: () => ({
 		userData: {
