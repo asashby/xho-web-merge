@@ -60,11 +60,11 @@ export default {
 	},
 	auth: {
 		redirect: {
-			home: '/objetivos',
+			home: '/perfil',
 			login: '/inicio-sesion', // INFO: Probar con /
 			logout: '/inicio-sesion', // INFO: Probar con /
-			profile: '/profile',
-			callback: '/inicio-sesion' // TODO: Cambiar por /objetivos o /perfil o /
+			profile: '/perfil',
+			callback: '/' // TODO: Cambiar por /objetivos o /perfil o /
 		},
 		strategies: {
 			local: {
@@ -79,7 +79,7 @@ export default {
 					logout: false,
 					user: { url: `${process.env.URL_BASE}current`, method: 'get' }
 				},
-				redirectUri: '/inicio-sesion'
+				redirectUri: '/'
 			},
 			facebook: {
 				clientId: process.env.FACEBOOK_CLIENT_ID,
