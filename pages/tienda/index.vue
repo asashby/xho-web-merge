@@ -253,50 +253,44 @@ export default defineComponent({
 		suscribeUserToChallenge,
 		add500gBasicOffer () {
 			this.$store.commit('addToCart', {
-				product: this._500gBasicChallenge,
-				quantity: 1
+				productData: this._500gBasicChallenge,
+				quantityData: 1
 			})
-			suscribeUserToChallenge('basico-en-casa')
 			this.$router.push('/tienda/cart')
 		},
 		add1kgBasicOffer () {
 			this.$store.commit('addToCart', {
-				product: this._1kgBasicChallenge,
-				quantity: 1
+				productData: this._1kgBasicChallenge,
+				quantityData: 1
 			})
-			suscribeUserToChallenge('basico-en-casa')
 			this.$router.push('/tienda/cart')
 		},
 		add500gIntermediateOffer () {
 			this.$store.commit('addToCart', {
-				product: this._500gIntermediateChallenge,
-				quantity: 1
+				productData: this._500gIntermediateChallenge,
+				quantityData: 1
 			})
-			suscribeUserToChallenge('intermedio-en-casa')
 			this.$router.push('/tienda/cart')
 		},
 		add1kgIntermediateOffer () {
 			this.$store.commit('addToCart', {
-				product: this._1kgIntermediateChallenge,
-				quantity: 1
+				productData: this._1kgIntermediateChallenge,
+				quantityData: 1
 			})
-			suscribeUserToChallenge('intermedio-en-casa')
 			this.$router.push('/tienda/cart')
 		},
 		add500gAdvancedOffer () {
 			this.$store.commit('addToCart', {
-				product: this._500gAdvancedChallenge,
-				quantity: 1
+				productData: this._500gAdvancedChallenge,
+				quantityData: 1
 			})
-			suscribeUserToChallenge('avanzado-en-gym')
 			this.$router.push('/tienda/cart')
 		},
 		add1kgAdvancedOffer () {
 			this.$store.commit('addToCart', {
-				product: this._1kgAdvancedChallenge,
-				quantity: 1
+				productData: this._1kgAdvancedChallenge,
+				quantityData: 1
 			})
-			suscribeUserToChallenge('avanzado-en-gym')
 			this.$router.push('/tienda/cart')
 		}
 	}

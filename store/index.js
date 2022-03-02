@@ -182,6 +182,7 @@ export const mutations = {
 		})
 	},
 	addToCart (state, { productData, quantityData }) {
+		console.log(productData)
 		let isNewitem = true
 		state.cart.forEach((value) => {
 			if (value.product.id === productData.id) {
