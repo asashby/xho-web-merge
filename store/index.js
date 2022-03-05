@@ -68,11 +68,15 @@ export const actions = {
 	},
 
 	async getMenuData ({ commit, state }) {
-		if (alreadyInTheState(state, 'menu')) {
-			commit('SET_MENU_DATA', state.menu)
-		} else {
-			const { data: menuData } = await this.$httpPublic.get('sections')
-			commit('SET_MENU_DATA', menuData)
+		try {
+			if (alreadyInTheState(state, 'menu')) {
+				commit('SET_MENU_DATA', state.menu)
+			} else {
+				const { data: menuData } = await this.$httpPublic.get('sections')
+				commit('SET_MENU_DATA', menuData)
+			}
+		} catch (error) {
+			console.log('Failed to load menu data! -> err:', error)
 		}
 	},
 	async companyData ({ commit, state }) {

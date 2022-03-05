@@ -1,6 +1,6 @@
 {
   "name": "dp6WebXimenaa",
-  "version": "1.0.0",
+  "version": "0.0.15",
   "private": true,
   "scripts": {
     "dev": "nuxt",

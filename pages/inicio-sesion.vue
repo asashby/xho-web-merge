@@ -155,7 +155,7 @@ export default {
 			password: '',
 			origin: ''
 		},
-		version: 'v0.0.14',
+		// version: 'v0.0.14',
 		redirectType: 'push2',
 		errorMessage: null
 	}),
@@ -163,7 +163,10 @@ export default {
 		...mapGetters([
 			'isGoogle',
 			'isFacebook'
-		])
+		]),
+		version () {
+			return 'v' + (this.$config.version || '')
+		}
 	},
 	// async mounted () {
 	// 	// Dejo esto como ayuda para que puedan revisar el objeto con toda la info

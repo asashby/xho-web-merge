@@ -1,6 +1,20 @@
 import path from 'path'
 import fs from 'fs'
 
+const isDev = process.env.NODE_ENV === 'development'
+
+const packageJson = require(path.join(process.cwd(), 'package.json'))
+const server = {}
+
+if (isDev) {
+	server.host = '0.0.0.0'
+} else {
+	server.https = {
+		key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
+		cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
+	}
+}
+
 export default {
 	// Target: https://go.nuxtjs.dev/config-target
 	target: 'server',
@@ -149,6 +163,10 @@ export default {
 		WEB_BASE_URL: process.env.WEB_BASE_URL
 	},
 
+	publicRuntimeConfig: {
+		version: packageJson.version
+	},
+
 	loading: '~/components/Loading.vue',
 
 	loadingIndicator: {
@@ -157,11 +175,13 @@ export default {
 		background: 'white'
 	},
 
-	server: {
-		// host: '0.0.0.0',
-		https: {
-			key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
-			cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
-		}
-	}
+	server
+
+	// server: {
+	// 	// host: '0.0.0.0'
+	// 	https: {
+	// 		key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
+	// 		cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
+	// 	}
+	// }
 }
