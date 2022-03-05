@@ -24,18 +24,22 @@ export const LoginLocal = {
 				password: user.sub ? window.btoa(user.sub) : window.btoa(user.id)
 			}
 
-			const { data: response } = await this.$http.post('login-social', payload)
-			const { token, tokenMaki, user: userResponse } = response
+			try {
+				const { data: response } = await this.$http.post('login-social', payload)
+				const { token, tokenMaki, user: userResponse } = response
 
-			this.$store.$auth.strategies.local.token.set(token)
-			this.$store.dispatch('setTokenMaki', tokenMaki)
+				this.$store.$auth.strategies.local.token.set(token)
+				this.$store.dispatch('setTokenMaki', tokenMaki)
 
-			if (userResponse) {
-				const { addittional_info: additionalInfo } = userResponse
-				if (additionalInfo) {
-					const { age, size, weight } = additionalInfo
-					return age && size && weight
+				if (userResponse) {
+					const { addittional_info: additionalInfo } = userResponse
+					if (additionalInfo) {
+						const { age, size, weight } = additionalInfo
+						return age && size && weight
+					}
 				}
+			} catch (error) {
+				console.log('Failed inside loginWithLocal! -> err:', error)
 			}
 
 			return false
