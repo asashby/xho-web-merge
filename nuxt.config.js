@@ -77,7 +77,7 @@ export default {
 			home: '/perfil',
 			login: '/inicio-sesion', // INFO: Probar con /
 			logout: '/inicio-sesion', // INFO: Probar con /
-			profile: '/perfil',
+			// profile: '/perfil',
 			// callback: '/inicio-sesion' // TODO: Cambiar por /objetivos o /perfil o /
 			callback: '/objetivos' // TODO: Cambiar por /objetivos o /perfil o /
 		},

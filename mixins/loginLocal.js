@@ -1,7 +1,5 @@
 export const LoginLocal = {
 	async beforeMount () {
-		console.log(this.$router)
-		debugger
 		const fromLocation = this.$router.history._startLocation
 		const includesAccessToken = fromLocation.includes('access_token')
 		alert(`[loginLocal]: includesAccessToken -> ${includesAccessToken}, loggedIn -> ${this.$auth.$state.loggedIn}, fromLocation -> ${fromLocation}`)
@@ -39,10 +37,10 @@ export const LoginLocal = {
 				const { data: response } = await this.$http.post('login-social', payload)
 				const { token, tokenMaki, user: userResponse } = response
 
-				alert(`[loginLocal]: userResponse -> ${JSON.stringify(userResponse)}`)
+				console.log(`[loginLocal]: userResponse -> ${JSON.stringify(userResponse)}`)
 
 				this.$store.$auth.strategies.local.token.set(token)
-				this.$store.dispatch('setTokenMaki', tokenMaki)
+				await this.$store.dispatch('setTokenMaki', tokenMaki)
 
 				if (userResponse) {
 					const { addittional_info: additionalInfo } = userResponse
@@ -52,7 +50,7 @@ export const LoginLocal = {
 					}
 				}
 			} catch (error) {
-				console.log('Failed inside loginWithLocal! -> err:', error)
+				console.log('[loginLocal]: Failed inside loginWithLocal! -> err:', error)
 			}
 
 			return false

@@ -223,11 +223,6 @@ export default {
 		invalidForm
 	},
 	// beforeMount,
-	mounted () {
-		this.$nextTick(function () {
-			window.app = this.$app
-		})
-	},
 	methods: {
 		// loginLocal,
 		reditectTo,
