@@ -173,7 +173,7 @@ async function beforeMount () {
 
 	if (includesAccessToken || isLoggedIn) {
 		const toProfile = await this.checkProfileData()
-		alert(`[objetivos]: toProfile -> ${toProfile}`)
+		console.log(`[objetivos]: toProfile -> ${toProfile}`)
 
 		// redirigir al profile si la data ya existe
 		if (toProfile) {
@@ -199,7 +199,7 @@ async function checkProfileData () {
 		const { data: response } = await this.$http.post('login-social', payload)
 		const { token, tokenMaki, user: userResponse } = response
 
-		alert(`[objetivos]: userResponse -> ${JSON.stringify(userResponse)}`)
+		console.log(`[objetivos]: userResponse -> ${JSON.stringify(userResponse)}`)
 
 		this.$store.$auth.strategies.local.token.set(token)
 		await this.$store.dispatch('setTokenMaki', tokenMaki)
@@ -212,8 +212,7 @@ async function checkProfileData () {
 			}
 		}
 	} catch (error) {
-		console.log('[objetivos]: Failed inside loginWithLocal! -> err:', error)
-		alert('error on loginWithLocal')
+		console.log('[objetivos]: Failed inside checkProfileData! -> err:', error)
 	}
 
 	return false
