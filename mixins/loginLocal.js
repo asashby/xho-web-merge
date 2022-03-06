@@ -1,5 +1,7 @@
 export const LoginLocal = {
 	async beforeMount () {
+		console.log(this.$router)
+		debugger
 		const fromLocation = this.$router.history._startLocation
 		const includesAccessToken = fromLocation.includes('access_token')
 		alert(`[loginLocal]: includesAccessToken -> ${includesAccessToken}, loggedIn -> ${this.$auth.$state.loggedIn}, fromLocation -> ${fromLocation}`)
