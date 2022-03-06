@@ -281,7 +281,7 @@ export default {
 	methods: {
 		// loginLocal,
 		checkProfileData,
-		reditectTo,
+		// reditectTo,
 		saveObjectives
 	}
 }
