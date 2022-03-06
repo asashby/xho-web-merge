@@ -7,6 +7,7 @@ export const LoginLocal = {
 		alert(`[loginLocal]: includesAccessToken -> ${includesAccessToken}, loggedIn -> ${this.$auth.$state.loggedIn}, fromLocation -> ${fromLocation}`)
 		if (includesAccessToken || this.$auth.$state.loggedIn) {
 			const toProfile = await this.loginWithLocal()
+			alert(`[loginLocal]: toProfile -> ${toProfile}`)
 
 			if (toProfile) {
 				this.$router.replace('/perfil')
@@ -14,6 +15,9 @@ export const LoginLocal = {
 			// this.$router.replace(toProfile ? '/perfil' : '/objetivos')
 			// this.$auth.redirect(toProfile ? 'profile' : 'home')
 		}
+		// else {
+		// 	this.$auth.redirect('login')
+		// }
 	},
 	// mounted () {
 	// const from = this.$router.history._startLocation

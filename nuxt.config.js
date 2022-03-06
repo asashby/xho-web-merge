@@ -125,7 +125,7 @@ export default {
 		// https://go.nuxtjs.dev/axios
 		'@nuxtjs/axios',
 		// https://go.nuxtjs.dev/pwa
-		'@nuxtjs/pwa',
+		// '@nuxtjs/pwa',
 		// https://github.com/nuxt-community/community-modules/tree/master/packages/toast
 		'@nuxtjs/toast',
 		'@nuxtjs/axios'
@@ -135,11 +135,11 @@ export default {
 	axios: {},
 
 	// PWA module configuration: https://go.nuxtjs.dev/pwa
-	pwa: {
-		manifest: {
-			lang: 'es'
-		}
-	},
+	// pwa: {
+	// 	manifest: {
+	// 		lang: 'es'
+	// 	}
+	// },
 
 	// Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
 	vuetify: {
