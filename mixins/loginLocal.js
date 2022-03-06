@@ -37,7 +37,7 @@ export const LoginLocal = {
 				const { data: response } = await this.$http.post('login-social', payload)
 				const { token, tokenMaki, user: userResponse } = response
 
-				console.log(`[loginLocal]: userResponse -> ${JSON.stringify(userResponse)}`)
+				alert(`[loginLocal]: userResponse -> ${JSON.stringify(userResponse)}`)
 
 				this.$store.$auth.strategies.local.token.set(token)
 				await this.$store.dispatch('setTokenMaki', tokenMaki)
@@ -51,6 +51,7 @@ export const LoginLocal = {
 				}
 			} catch (error) {
 				console.log('[loginLocal]: Failed inside loginWithLocal! -> err:', error)
+				alert('error on loginWithLocal')
 			}
 
 			return false
