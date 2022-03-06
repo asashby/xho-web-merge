@@ -186,9 +186,6 @@ export default {
 	// 		await this.checkLoginWithProviders()
 	// 	}
 	// },
-	beforeMount () {
-		alert(`[inicio-sesion]: loggedIn -> ${this.$auth.$state.loggedIn}`)
-	},
 	methods: {
 		...mapActions([
 			'logout'

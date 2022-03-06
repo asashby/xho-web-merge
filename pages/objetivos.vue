@@ -169,7 +169,7 @@ async function beforeMount () {
 	const fromLocation = this.$router.history._startLocation
 	const includesAccessToken = fromLocation.includes('access_token')
 	const isLoggedIn = this.$auth.$state.loggedIn
-	alert(`[objetivos]: includesAccessToken -> ${includesAccessToken}, loggedIn -> ${isLoggedIn}, fromLocation -> ${fromLocation}`)
+	// alert(`[objetivos]: includesAccessToken -> ${includesAccessToken}, loggedIn -> ${isLoggedIn}, fromLocation -> ${fromLocation}`)
 
 	if (includesAccessToken || isLoggedIn) {
 		const toProfile = await this.checkProfileData()
