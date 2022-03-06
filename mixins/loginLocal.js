@@ -1,8 +1,9 @@
 export const LoginLocal = {
 	async beforeMount () {
 		const fromLocation = this.$router.history._startLocation
-		alert(`[loginLocal]: fromLocation -> ${fromLocation}, loggedIn -> ${this.$auth.$state.loggedIn}`)
-		if (fromLocation.includes('access_token') || this.$auth.$state.loggedIn) {
+		const includesAccessToken = fromLocation.includes('access_token')
+		alert(`[loginLocal]: includesAccessToken -> ${includesAccessToken}, loggedIn -> ${this.$auth.$state.loggedIn}, fromLocation -> ${fromLocation}`)
+		if (includesAccessToken || this.$auth.$state.loggedIn) {
 			const toProfile = await this.loginWithLocal()
 
 			if (toProfile) {
@@ -31,6 +32,8 @@ export const LoginLocal = {
 			try {
 				const { data: response } = await this.$http.post('login-social', payload)
 				const { token, tokenMaki, user: userResponse } = response
+
+				alert(`[loginLocal]: userResponse -> ${JSON.stringify(userResponse)}`)
 
 				this.$store.$auth.strategies.local.token.set(token)
 				this.$store.dispatch('setTokenMaki', tokenMaki)
