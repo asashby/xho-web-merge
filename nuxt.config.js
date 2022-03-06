@@ -104,7 +104,7 @@ export default {
 			google: {
 				clientId: process.env.GOOGLE_CLIENT_ID,
 				scope: ['profile', 'email'],
-				codeChallengeMethod: '',
+				// codeChallengeMethod: '',
 				responseType: 'token id_token'
 			}
 		}
