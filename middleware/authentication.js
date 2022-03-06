@@ -8,6 +8,8 @@ export default (ctx) => {
 	const { login } = ctx.$auth.options.redirect
 	// const flagGoal = getPropertysValue('$state.user.flag_goald', ctx.$auth)
 
+	alert(`ctx path: ${normalizePath(ctx.route.path, ctx)}, incoming path: ${normalizePath(login, ctx)}`)
+
 	if (ctx.$auth.$state.loggedIn) {
 		if (insidePage(login)) {
 			ctx.$auth.redirect('home')

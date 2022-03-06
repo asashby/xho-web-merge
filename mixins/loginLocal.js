@@ -8,11 +8,11 @@ export const LoginLocal = {
 			// this.$auth.redirect(toProfile ? 'profile' : 'home')
 		}
 	},
-	mounted () {
-		// const from = this.$router.history._startLocation
-		// window.alert(document.cookie)
-		// window.alert(from)
-	},
+	// mounted () {
+	// const from = this.$router.history._startLocation
+	// window.alert(document.cookie)
+	// window.alert(from)
+	// },
 	methods: {
 		async loginWithLocal () {
 			const user = this.$auth.$state.user
