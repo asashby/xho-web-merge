@@ -186,16 +186,16 @@ async function beforeMount () {
 }
 
 async function checkProfileData () {
-	const user = this.$auth.$state.user
-	const payload = {
-		email: user.email,
-		last_name: user.family_name || user.last_name,
-		name: user.given_name || user.first_name,
-		origin: this.$auth.$state.strategy,
-		password: user.sub ? window.btoa(user.sub) : window.btoa(user.id)
-	}
-
 	try {
+		const user = this.$auth.$state.user
+		const payload = {
+			email: user.email,
+			last_name: user.family_name || user.last_name,
+			name: user.given_name || user.first_name,
+			origin: this.$auth.$state.strategy,
+			password: user.sub ? window.btoa(user.sub) : window.btoa(user.id)
+		}
+
 		const { data: response } = await this.$http.post('login-social', payload)
 		const { token, tokenMaki, user: userResponse } = response
 
