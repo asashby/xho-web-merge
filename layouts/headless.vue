@@ -6,7 +6,6 @@
 
 <script>
 export default {
-	name: 'HeadlessLayout',
-	middleware: 'auth'
+	name: 'HeadlessLayout'
 }
 </script>

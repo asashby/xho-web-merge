@@ -221,16 +221,16 @@ async function checkProfileData () {
 
 async function saveObjectives () {
 	await this.$store.dispatch('profile/updateObjectives', this.model)
-	this.reditectTo()
+	this.$router.push('/perfil')
 }
 
-function reditectTo () {
-	if (window.innerWidth < 1024) {
-		this.$router.push('/perfil')
-	} else {
-		this.$router.push('/perfil')
-	}
-}
+// function reditectTo () {
+// 	if (window.innerWidth < 1024) {
+// 		this.$router.push('/perfil')
+// 	} else {
+// 		this.$router.push('/perfil')
+// 	}
+// }
 
 function invalidForm () {
 	return [
