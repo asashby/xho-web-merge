@@ -24,6 +24,7 @@ function showData () {
 export default {
 	name: 'ProfileLayout',
 	components: { AppMenu, NavBarComponent },
+	middleware: 'auth',
 	computed: {
 		...mapState({
 			menu: state => state.menu

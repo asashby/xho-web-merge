@@ -1,10 +1,14 @@
 export const LoginLocal = {
 	async beforeMount () {
 		const fromLocation = this.$router.history._startLocation
-		alert(fromLocation)
+		alert(`[loginLocal]: fromLocation -> ${fromLocation}, loggedIn -> ${this.$auth.$state.loggedIn}`)
 		if (fromLocation.includes('access_token') || this.$auth.$state.loggedIn) {
 			const toProfile = await this.loginWithLocal()
-			this.$router.replace(toProfile ? '/perfil' : '/objetivos')
+
+			if (toProfile) {
+				this.$router.replace('/perfil')
+			}
+			// this.$router.replace(toProfile ? '/perfil' : '/objetivos')
 			// this.$auth.redirect(toProfile ? 'profile' : 'home')
 		}
 	},

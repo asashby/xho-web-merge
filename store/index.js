@@ -132,9 +132,9 @@ export const actions = {
 		commit('SET_AUTH_USER_DATA', userUpdated)
 	},
 	async logout ({ state }, $auth) {
-		if (state.auth.loggedIn) {
-			await $auth.logout()
-		}
+		// if (state.auth.loggedIn) {
+		await $auth.logout()
+		// }
 	},
 	sendShippingInformation ({ commit }) {
 		try {

@@ -14,8 +14,7 @@ export default (ctx) => {
 		if (insidePage(login)) {
 			ctx.$auth.redirect('home')
 		}
-	} 
-	// else {
-	// 	ctx.$auth.redirect('login')
-	// }
+	} else {
+		ctx.$auth.redirect('login')
+	}
 }
