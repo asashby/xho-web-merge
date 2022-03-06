@@ -79,7 +79,7 @@ export default {
 			logout: '/inicio-sesion', // INFO: Probar con /
 			// profile: '/perfil',
 			// callback: '/inicio-sesion' // TODO: Cambiar por /objetivos o /perfil o /
-			callback: '/objetivos' // TODO: Cambiar por /objetivos o /perfil o /
+			callback: '/oauth-callback' // TODO: Cambiar por /objetivos o /perfil o /
 		},
 		strategies: {
 			local: {
