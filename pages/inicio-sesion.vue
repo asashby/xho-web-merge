@@ -186,7 +186,7 @@ export default {
 	// 		await this.checkLoginWithProviders()
 	// 	}
 	// },
-	beforeMounted () {
+	beforeMount () {
 		console.log(`[inicio-sesion]: loggedIn -> ${this.$auth.$state.loggedIn}`)
 		if (this.$auth.$state.loggedIn) {
 			console.log('[inicio-sesion]: redirigiendo al "callback"')
