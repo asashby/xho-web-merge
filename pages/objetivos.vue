@@ -169,7 +169,7 @@ async function beforeMount () {
 	const fromLocation = this.$router.history._startLocation
 	const includesAccessToken = fromLocation.includes('access_token')
 	const isLoggedIn = this.$auth.$state.loggedIn
-	// alert(`[objetivos]: includesAccessToken -> ${includesAccessToken}, loggedIn -> ${isLoggedIn}, fromLocation -> ${fromLocation}`)
+	console.log(`[objetivos]: includesAccessToken -> ${includesAccessToken}, loggedIn -> ${isLoggedIn}, fromLocation -> ${fromLocation}`)
 
 	if (includesAccessToken || isLoggedIn) {
 		const toProfile = await this.checkProfileData()
@@ -177,10 +177,12 @@ async function beforeMount () {
 
 		// redirigir al profile si la data ya existe
 		if (toProfile) {
+			console.log('[objetivos]: redirigiendo al profile')
 			this.$router.push('/perfil')
 		}
 	} else {
 		// redirigir si no viene del oauth o no esta logueado
+		console.log('[objetivos]: redirigiendo al "login" si no viene del oauth o no esta logueado')
 		this.$auth.redirect('login')
 	}
 }
