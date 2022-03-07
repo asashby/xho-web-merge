@@ -186,6 +186,11 @@ export default {
 	// 		await this.checkLoginWithProviders()
 	// 	}
 	// },
+	beforeMounted () {
+		if (this.$auth.$state.loggedIn) {
+			this.$auth.redirect('callback')
+		}
+	},
 	methods: {
 		...mapActions([
 			'logout'
