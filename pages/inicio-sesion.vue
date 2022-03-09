@@ -146,6 +146,15 @@ export default {
 	name: 'PaginaInicioSesion',
 	// mixins: [LoginLocal],
 	layout: 'headless',
+	asyncData ({ $auth }) {
+		console.log(`[inicio-sesion]: loggedIn -> ${$auth.$state.loggedIn}`)
+		if ($auth.$state.loggedIn) {
+			console.log('[inicio-sesion]: redirigiendo al "callback"')
+			$auth.redirect('callback')
+		}
+
+		return {}
+	},
 	data: () => ({
 		userData: {
 			name: '',
@@ -186,13 +195,6 @@ export default {
 	// 		await this.checkLoginWithProviders()
 	// 	}
 	// },
-	beforeMount () {
-		console.log(`[inicio-sesion]: loggedIn -> ${this.$auth.$state.loggedIn}`)
-		if (this.$auth.$state.loggedIn) {
-			console.log('[inicio-sesion]: redirigiendo al "callback"')
-			this.$auth.redirect('callback')
-		}
-	},
 	methods: {
 		...mapActions([
 			'logout'
