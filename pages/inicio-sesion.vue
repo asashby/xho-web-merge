@@ -135,7 +135,6 @@
 /* eslint-disable no-tabs */
 import { compose, getPropertysValue, setNewProperty } from 'functionallibrary'
 import { mapActions, mapGetters } from 'vuex'
-// import { LoginLocal } from '~/mixins/loginLocal'
 // import VueToggleImage from '@ivahid/vue-toggle-image'
 import '@ivahid/vue-toggle-image/dist/vue-toggle-image.css'
 // import firebase from 'firebase'
@@ -144,30 +143,29 @@ import '@ivahid/vue-toggle-image/dist/vue-toggle-image.css'
 
 export default {
 	name: 'PaginaInicioSesion',
-	// mixins: [LoginLocal],
 	layout: 'headless',
-	asyncData ({ $auth }) {
+	data () {
+		return {
+			userData: {
+				name: '',
+				last_name: '',
+				email: '',
+				image: '',
+				password: '',
+				origin: ''
+			},
+			// version: 'v0.0.14',
+			redirectType: 'push2',
+			errorMessage: null
+		}
+	},
+	fetch ({ $auth }) {
 		console.log(`[inicio-sesion]: loggedIn -> ${$auth.$state.loggedIn}`)
 		if ($auth.$state.loggedIn) {
 			console.log('[inicio-sesion]: redirigiendo al "callback"')
 			$auth.redirect('callback')
 		}
-
-		return {}
 	},
-	data: () => ({
-		userData: {
-			name: '',
-			last_name: '',
-			email: '',
-			image: '',
-			password: '',
-			origin: ''
-		},
-		// version: 'v0.0.14',
-		redirectType: 'push2',
-		errorMessage: null
-	}),
 	computed: {
 		...mapGetters([
 			'isGoogle',

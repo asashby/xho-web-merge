@@ -165,61 +165,6 @@ import Selector from '~/components/Selector'
 // 	})
 // }
 
-// async function beforeMount () {
-// 	const fromLocation = this.$router.history._startLocation
-// 	const includesAccessToken = fromLocation.includes('access_token')
-// 	const isLoggedIn = this.$auth.$state.loggedIn
-// 	console.log(`[objetivos]: includesAccessToken -> ${includesAccessToken}, loggedIn -> ${isLoggedIn}, fromLocation -> ${fromLocation}`)
-
-// 	if (includesAccessToken || isLoggedIn) {
-// 		const toProfile = await this.checkProfileData()
-// 		console.log(`[objetivos]: toProfile -> ${toProfile}`)
-
-// 		// redirigir al profile si la data ya existe
-// 		if (toProfile) {
-// 			console.log('[objetivos]: redirigiendo al profile')
-// 			this.$router.push('/perfil')
-// 		}
-// 	} else {
-// 		// redirigir si no viene del oauth o no esta logueado
-// 		console.log('[objetivos]: redirigiendo al "login" si no viene del oauth o no esta logueado')
-// 		this.$auth.redirect('login')
-// 	}
-// }
-
-// async function checkProfileData () {
-// 	try {
-// 		const user = this.$auth.$state.user
-// 		const payload = {
-// 			email: user.email,
-// 			last_name: user.family_name || user.last_name,
-// 			name: user.given_name || user.first_name,
-// 			origin: this.$auth.$state.strategy,
-// 			password: user.sub ? window.btoa(user.sub) : window.btoa(user.id)
-// 		}
-
-// 		const { data: response } = await this.$http.post('login-social', payload)
-// 		const { token, tokenMaki, user: userResponse } = response
-
-// 		console.log(`[objetivos]: userResponse -> ${JSON.stringify(userResponse)}`)
-
-// 		this.$store.$auth.strategies.local.token.set(token)
-// 		await this.$store.dispatch('setTokenMaki', tokenMaki)
-
-// 		if (userResponse) {
-// 			const { addittional_info: additionalInfo } = userResponse
-// 			if (additionalInfo) {
-// 				const { age, size, weight } = additionalInfo
-// 				return age && size && weight
-// 			}
-// 		}
-// 	} catch (error) {
-// 		console.log('[objetivos]: Failed inside checkProfileData! -> err:', error)
-// 	}
-
-// 	return false
-// }
-
 async function saveObjectives () {
 	await this.$store.dispatch('profile/updateObjectives', this.model)
 	this.$router.push('/perfil')

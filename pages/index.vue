@@ -6,7 +6,7 @@
 
 export default {
 	layout: 'headless',
-	asyncData ({ redirect }) {
+	fetch ({ redirect }) {
 		redirect('inicio-sesion')
 	}
 }

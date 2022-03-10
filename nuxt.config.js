@@ -74,11 +74,9 @@ export default {
 	},
 	auth: {
 		redirect: {
-			home: '/perfil',
+			home: '/oauth-callback',
 			login: '/inicio-sesion', // INFO: Probar con /
 			logout: '/inicio-sesion', // INFO: Probar con /
-			// profile: '/perfil',
-			// callback: '/inicio-sesion' // TODO: Cambiar por /objetivos o /perfil o /
 			callback: '/oauth-callback'
 		},
 		strategies: {
