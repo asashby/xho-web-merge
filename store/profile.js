@@ -91,7 +91,7 @@ export const getters = {
 			getPropertysValue('auth.user.first_name', rootState)
 		const lastName = getPropertysValue('auth.user.family_name', rootState) ||
 			getPropertysValue('auth.user.last_name', rootState)
-		const name = `${firstName} ${lastName}`
+		const name = `${firstName} ${lastName}`.trim()
 		return name
 	},
 	isAccountData (state) {
