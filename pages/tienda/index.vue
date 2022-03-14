@@ -134,13 +134,14 @@ export default defineComponent({
 					{
 						name: 'PROTEINA'
 					}
-				]
+				],
+				plan_id: 1
 			}
 		},
 		_1kgBasicChallenge () {
 			return {
 				id: 15,
-				title: 'PACK ISOXIPRO Whey protein isolate + Entrenamiento básico (1 mes)',
+				name: 'PACK ISOXIPRO Whey protein isolate + Entrenamiento básico (1 mes)',
 				price: 238.00,
 				short_description: 'Oferta proteína 1 kilogramo más entrenamiento básico por un mes',
 				images: [
@@ -156,13 +157,14 @@ export default defineComponent({
 					{
 						name: 'PROTEINA'
 					}
-				]
+				],
+				plan_id: 2
 			}
 		},
 		_500gIntermediateChallenge () {
 			return {
 				id: 109,
-				title: 'PACK ISOXIPRO Whey protein 500g + Entrenamiento intermedio (1 mes)',
+				name: 'PACK ISOXIPRO Whey protein 500g + Entrenamiento intermedio (1 mes)',
 				price: 199.00,
 				short_description: 'Oferta proteína 500 gramos más entrenamiento intermedio por un mes',
 				images: [
@@ -178,13 +180,14 @@ export default defineComponent({
 					{
 						name: 'PROTEINA'
 					}
-				]
+				],
+				plan_id: 3
 			}
 		},
 		_1kgIntermediateChallenge () {
 			return {
 				id: 15,
-				title: 'PACK ISOXIPRO Whey protein isolate + Entrenamiento intermedio (1 mes)',
+				name: 'PACK ISOXIPRO Whey protein isolate + Entrenamiento intermedio (1 mes)',
 				price: 238.00,
 				short_description: 'Oferta proteína 1 kilogramo más entrenamiento intermedio por un mes',
 				images: [
@@ -200,13 +203,14 @@ export default defineComponent({
 					{
 						name: 'PROTEINA'
 					}
-				]
+				],
+				plan_id: 4
 			}
 		},
 		_500gAdvancedChallenge () {
 			return {
 				id: 109,
-				title: 'PACK ISOXIPRO Whey protein 500g + Entrenamiento avanzado (1 mes)',
+				name: 'PACK ISOXIPRO Whey protein 500g + Entrenamiento avanzado (1 mes)',
 				price: 199.00,
 				description: 'Oferta proteína 500 gramos más entrenamiento avanzado por un mes',
 				images: [
@@ -222,13 +226,14 @@ export default defineComponent({
 					{
 						name: 'PROTEINA'
 					}
-				]
+				],
+				plan_id: 5
 			}
 		},
 		_1kgAdvancedChallenge () {
 			return {
 				id: 15,
-				title: 'PACK ISOXIPRO Whey protein isolate + Entrenamiento avanzado (1 mes)',
+				name: 'PACK ISOXIPRO Whey protein isolate + Entrenamiento avanzado (1 mes)',
 				price: 238.00,
 				description: 'Oferta proteína 1 kilogramo más entrenamiento avanzado por un mes',
 				images: [
@@ -244,7 +249,8 @@ export default defineComponent({
 					{
 						name: 'PROTEINA'
 					}
-				]
+				],
+				plan_id: 6
 			}
 		}
 	},
