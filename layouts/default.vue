@@ -32,6 +32,7 @@ export default {
 	components: {
 		NavBarComponent
 	},
+	middleware: 'auth',
 	computed: {
 		isMenuOptions
 	},

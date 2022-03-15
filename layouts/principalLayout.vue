@@ -38,6 +38,7 @@ import NavBarComponent from '~/components/Nav'
 export default {
 	name: 'LayoutPantallaPrincipal',
 	components: { NavBarComponent },
+	middleware: 'auth',
 	computed: {
 		...mapGetters('profile', [
 			'userPhoto',

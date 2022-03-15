@@ -20,7 +20,7 @@
         :key="profileIndex"
         :to="profile.route"
         :name="profile.name"
-		:image="profile.image"
+        :image="profile.image"
       />
     </div>
 
@@ -33,7 +33,7 @@
         <v-icon left>
           mdi-logout
         </v-icon>
-        Cerrar sesion
+        Cerrar sesion..
       </v-btn>
     </div>
   </div>

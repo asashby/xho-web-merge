@@ -1,9 +1,24 @@
 import path from 'path'
 import fs from 'fs'
 
+const isDev = process.env.NODE_ENV === 'development'
+
+const packageJson = require(path.join(process.cwd(), 'package.json'))
+const server = {}
+
+if (isDev) {
+	server.host = '0.0.0.0'
+} else {
+	server.https = {
+		key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
+		cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
+	}
+}
+
 export default {
 	// Target: https://go.nuxtjs.dev/config-target
 	target: 'server',
+	ssr: false,
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	head: {
 		titleTemplate: '%s - X & H',
@@ -49,21 +64,20 @@ export default {
 		'@nuxtjs/google-fonts',
 		'@nuxtjs/auth-next'
 	],
-
 	router: {
 		middleware: [
-			'auth',
+			// 'authentication',
 			'detectingDevice',
-			'firstDataToLoad',
-			'redirectTo'
+			'firstDataToLoad'
+			// 'redirectTo'
 		]
 	},
 	auth: {
 		redirect: {
-			callback: '/inicio-sesion',
-			home: '/inicio-sesion',
-			login: '/inicio-sesion',
-			logout: '/inicio-sesion'
+			home: '/oauth-callback',
+			login: '/inicio-sesion', // INFO: Probar con /
+			logout: '/inicio-sesion', // INFO: Probar con /
+			callback: '/oauth-callback'
 		},
 		strategies: {
 			local: {
@@ -109,7 +123,7 @@ export default {
 		// https://go.nuxtjs.dev/axios
 		'@nuxtjs/axios',
 		// https://go.nuxtjs.dev/pwa
-		'@nuxtjs/pwa',
+		// '@nuxtjs/pwa',
 		// https://github.com/nuxt-community/community-modules/tree/master/packages/toast
 		'@nuxtjs/toast',
 		'@nuxtjs/axios'
@@ -119,11 +133,11 @@ export default {
 	axios: {},
 
 	// PWA module configuration: https://go.nuxtjs.dev/pwa
-	pwa: {
-		manifest: {
-			lang: 'es'
-		}
-	},
+	// pwa: {
+	// 	manifest: {
+	// 		lang: 'es'
+	// 	}
+	// },
 
 	// Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
 	vuetify: {
@@ -144,7 +158,12 @@ export default {
 		URL_TIENDA: process.env.URL_TIENDA,
 		URL_BASE: process.env.URL_BASE,
 		FACEBOOK_CLIENT_ID: process.env.FACEBOOK_CLIENT_ID,
-		GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID
+		GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+		WEB_BASE_URL: process.env.WEB_BASE_URL
+	},
+
+	publicRuntimeConfig: {
+		version: packageJson.version
 	},
 
 	loading: '~/components/Loading.vue',
@@ -155,10 +174,13 @@ export default {
 		background: 'white'
 	},
 
-	server: {
-		https: {
-			key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
-			cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
-		}
-	}
+	server
+
+	// server: {
+	// 	// host: '0.0.0.0'
+	// 	https: {
+	// 		key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
+	// 		cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
+	// 	}
+	// }
 }

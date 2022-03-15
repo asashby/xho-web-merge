@@ -30,101 +30,105 @@
       </picture>
     </div>
     <div class="login-wrapper">
-		<div class="login-middle">
-			<div class="login-row">
-				<div class="login-column">
-					<picture>
-						<img
-						class="login-cover"
-						src="~/assets/images/login/ximena.png"
-						alt="Logo_Ximena_Hoyos"
-						>
-					</picture>
-				</div>
-				<div class="login-column">
-					<div>
-						<p class="login-title-text">
-							El app incluye:
-						</p>
-					</div>
-					<div class="login-grid">
-						<div class="login-op1">
-							<picture>
-								<img
-									class="login-card"
-									src="~/assets/images/login/OP01.jpg"
-									alt="Logo_Ximena_Hoyos"
-								>
-							</picture>
-						</div>
-						<div class="login-op2">
-							<picture>
-								<img
-								class="login-card"
-								src="~/assets/images/login/OP02.jpg"
-								alt="Logo_Ximena_Hoyos"
-								>
-							</picture>
-						</div>
-						<div class="login-op3">
-							<picture>
-								<img
-								class="login-card"
-								src="~/assets/images/login/OP03.jpg"
-								alt="Logo_Ximena_Hoyos"
-								>
-							</picture>
-						</div>
-						<div class="login-op4">
-							<picture>
-								<img
-								class="login-card"
-								src="~/assets/images/login/OP04.jpg"
-								alt="Logo_Ximena_Hoyos"
-								>
-							</picture>
-						</div>
-					</div>
-					<div class="login-social-selector">
-						<div class="login-selector-grid">
-							<button
-								type="button"
-								class="login-facebook"
-								@click="setFacebookProvider">
-								<picture>
-									<img
-										class="login-selector-icon"
-										src="~/assets/icons/facebook.svg"
-										alt="facebook"
-										>
-								</picture>
-							</button>
-							<button
-								type="button"
-								class="login-google"
-								@click="setGoogleProvider">
-								<picture>
-									<img
-										class="login-selector-icon"
-										src="~/assets/icons/google.svg"
-										alt="google"
-										>
-								</picture>
-							</button>
-						</div>
-						<button
-							type="button"
-							class="login-enter-button"
-							@click="signIn"
-						>
-							<p class="login-enter-text-button">ENTRAR</p>
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+      <div class="login-middle">
+        <div class="login-row">
+          <div class="login-column">
+            <picture>
+              <img
+                class="login-cover"
+                src="~/assets/images/login/ximena.png"
+                alt="Logo_Ximena_Hoyos"
+              >
+            </picture>
+          </div>
+          <div class="login-column">
+            <div>
+              <p class="login-title-text">
+                El app incluye: {{ version }}
+              </p>
+            </div>
+            <div class="login-grid">
+              <div class="login-op1">
+                <picture>
+                  <img
+                    class="login-card"
+                    src="~/assets/images/login/OP01.jpg"
+                    alt="Logo_Ximena_Hoyos"
+                  >
+                </picture>
+              </div>
+              <div class="login-op2">
+                <picture>
+                  <img
+                    class="login-card"
+                    src="~/assets/images/login/OP02.jpg"
+                    alt="Logo_Ximena_Hoyos"
+                  >
+                </picture>
+              </div>
+              <div class="login-op3">
+                <picture>
+                  <img
+                    class="login-card"
+                    src="~/assets/images/login/OP03.jpg"
+                    alt="Logo_Ximena_Hoyos"
+                  >
+                </picture>
+              </div>
+              <div class="login-op4">
+                <picture>
+                  <img
+                    class="login-card"
+                    src="~/assets/images/login/OP04.jpg"
+                    alt="Logo_Ximena_Hoyos"
+                  >
+                </picture>
+              </div>
+            </div>
+            <div class="login-social-selector">
+              <div class="login-selector-grid">
+                <button
+                  type="button"
+                  class="login-facebook"
+                  @click="setFacebookProvider"
+                >
+                  <picture>
+                    <img
+                      class="login-selector-icon"
+                      src="~/assets/icons/facebook.svg"
+                      alt="facebook"
+                    >
+                  </picture>
+                </button>
+                <button
+                  type="button"
+                  class="login-google"
+                  @click="setGoogleProvider"
+                >
+                  <picture>
+                    <img
+                      class="login-selector-icon"
+                      src="~/assets/icons/google.svg"
+                      alt="google"
+                    >
+                  </picture>
+                </button>
+              </div>
+              <button
+                type="button"
+                class="login-enter-button"
+                @click="signIn"
+              >
+                <p class="login-enter-text-button">
+                  ENTRAR
+                </p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -139,82 +143,128 @@ import '@ivahid/vue-toggle-image/dist/vue-toggle-image.css'
 
 export default {
 	name: 'PaginaInicioSesion',
-	auth: false,
 	layout: 'headless',
-	data: () => ({
-		userData: {
-			name: '',
-			last_name: '',
-			email: '',
-			image: '',
-			password: '',
-			origin: ''
+	data () {
+		return {
+			userData: {
+				name: '',
+				last_name: '',
+				email: '',
+				image: '',
+				password: '',
+				origin: ''
+			},
+			// version: 'v0.0.14',
+			redirectType: 'push2',
+			errorMessage: null
 		}
-	}),
+	},
+	fetch ({ $auth }) {
+		console.log(`[inicio-sesion]: loggedIn -> ${$auth.$state.loggedIn}`)
+		if ($auth.$state.loggedIn) {
+			console.log('[inicio-sesion]: redirigiendo al "callback"')
+			$auth.redirect('callback')
+		}
+	},
 	computed: {
 		...mapGetters([
 			'isGoogle',
 			'isFacebook'
-		])
-	},
-	async mounted () {
-		// Dejo esto como ayuda para que puedan revisar el objeto con toda la info
-		// del provider
-		// console.log('AUTH NUXT INFO', this.$auth)
-		this.$nextTick(() => {
-			this.$nuxt.$loading.start()
-		})
-		if (this.$auth.$state.loggedIn) {
-			this.$router.push('/perfil')
-			this.$nextTick(() => {
-				this.$nuxt.$loading.finish()
-			})
-		} else {
-			await this.checkLoginWithProviders()
+		]),
+		version () {
+			return 'v' + (this.$config.version || '')
 		}
 	},
+	// async mounted () {
+	// 	// Dejo esto como ayuda para que puedan revisar el objeto con toda la info
+	// 	// del provider
+	// 	// console.log('AUTH NUXT INFO', this.$auth)
+	// 	this.$nextTick(() => {
+	// 		this.$nuxt.$loading.start()
+	// 	})
+	// 	if (this.$auth.$state.loggedIn) {
+	// 	// this.$router.push({ path: '/perfil' })
+	// 		this.onGoPage('/perfil')
+	// 		this.errorMessage = 'mounted: go perfil'
+	// 		this.$nextTick(() => {
+	// 			this.$nuxt.$loading.finish()
+	// 		})
+	// 	} else {
+	// 		await this.checkLoginWithProviders()
+	// 	}
+	// },
 	methods: {
 		...mapActions([
 			'logout'
 		]),
-		async checkLoginWithProviders () {
-			if (location) {
-				const hash = new URLSearchParams(location.hash)
-				if (hash && this.isFacebook) {
-					await this.loginWithFacebook(hash)
-				} else if (hash && this.isGoogle) {
-					await this.loginWithGoogle(hash)
-				} else {
-					this.$nextTick(() => {
-						this.$nuxt.$loading.finish()
-					})
-				}
-			} else {
-				this.$nextTick(() => {
-					this.$nuxt.$loading.finish()
-				})
-			}
-		},
-		loginWithFacebook (hash) {
-			const facebookToken = hash.get('#access_token')
-			if (facebookToken) {
-				this.$router.push('/objetivos')
-				this.$nextTick(() => {
-					this.$nuxt.$loading.finish()
-				})
-			} else {
-				this.$nextTick(() => {
-					this.$nuxt.$loading.finish()
-				})
-				console.log('No hay token de facebook')
-			}
-		},
-		loginWithGoogle () {
-			this.$router.push('/objetivos')
-			this.$nextTick(() => {
-				this.$nuxt.$loading.finish()
-			})
-		},
+		// onGoPage (path) {
+		// 	const routeCurrent = this.$router.history._startLocation
+		// 	const loginPath = '/inicio-sesion'
+		// 	const objTemp = {
+		// 		auth: {
+		// 			logIn: this.$auth.$state.loggedIn,
+		// 			strategy: this.$auth.$state.strategy,
+		// 			user: this.$auth.$state.user
+		// 		},
+		// 		auth_after: '____________s_______________',
+		// 		location: document.location,
+		// 		location_after: 'xxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		// 		localstorage: JSON.stringify(localStorage)
+		// 	}
+		// 	const messageInfo = JSON.stringify(objTemp)
+		// 	alert(messageInfo)
+		// 	if (routeCurrent !== loginPath) {
+		// 		// document.location = `${this.$nuxt.context.env.WEB_BASE_URL}${path}`
+		// 		if (routeCurrent.includes('access_token')) {
+		// 			document.location = `${this.$nuxt.context.env.WEB_BASE_URL}${path}`
+		// 		} else {
+		// 			this.$router.push({ path })
+		// 		}
+		// 	}
+		// },
+		// async checkLoginWithProviders () {
+		// 	if (location) {
+		// 		const hash = new URLSearchParams(location.hash)
+		// 		if (hash && this.isFacebook) {
+		// 			await this.loginWithFacebook(hash)
+		// 		} else if (hash && this.isGoogle) {
+		// 			await this.loginWithGoogle(hash)
+		// 		} else {
+		// 			this.$nextTick(() => {
+		// 				this.$nuxt.$loading.finish()
+		// 			})
+		// 		}
+		// 	} else {
+		// 		this.errorMessage = 'check providers: default'
+		// 		this.$nextTick(() => {
+		// 			this.$nuxt.$loading.finish()
+		// 		})
+		// 	}
+		// },
+		// loginWithFacebook (hash) {
+		// 	const facebookToken = hash.get('#access_token')
+		// 	if (facebookToken) {
+		// 		this.errorMessage = 'facebook: go objetivos'
+		// 		// this.$router.push({ path: '/objetivos' })
+		// 		this.onGoPage('/objetivos')
+		// 		this.$nextTick(() => {
+		// 			this.$nuxt.$loading.finish()
+		// 		})
+		// 	} else {
+		// 		this.errorMessage = 'facebook: no hay token de facebook'
+		// 		this.$nextTick(() => {
+		// 			this.$nuxt.$loading.finish()
+		// 		})
+		// 	}
+		// },
+		// loginWithGoogle () {
+		// 	this.errorMessage = 'google: go objetivos'
+		// 	// this.$router.push({ path: '/objetivos' })
+		// 	this.onGoPage('/objetivos')
+		// 	this.$nextTick(() => {
+		// 		this.$nuxt.$loading.finish()
+		// 	})
+		// },
 		updateUserData (newUserData) {
 			if (this.isFacebook) {
 				this.userData = this.updateUserDataFromFacebook(newUserData)
@@ -222,6 +272,7 @@ export default {
 		},
 		updateUserDataFromFacebook (facebookData) {
 			const userImage = getPropertysValue('picture.data.url', facebookData)
+
 			return compose(
 				setNewProperty('name', facebookData.name),
 				setNewProperty('last_name', facebookData.lastname),
@@ -244,7 +295,11 @@ export default {
 			this.$router.push('/tips')
 		},
 		async signIn () {
-			await this.$auth.loginWith(this.$store.state.loginButtonProvider)
+			try {
+				await this.$auth.loginWith(this.$store.state.loginButtonProvider)
+			} catch (e) {
+				this.errorMessage = e.message
+			}
 		},
 		setGoogleProvider () {
 			this.$store.commit('SET_LOGIN_BUTTON_PROVIDER', 'google')

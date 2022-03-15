@@ -60,7 +60,7 @@ export const state = () => ({
 
 export const actions = {
 	async nuxtServerInit ({ dispatch }) {
-		await dispatch('getProducts')
+		// await dispatch('getProducts')
 	},
 
 	addProductToCart ({ commit }, product, count) {
@@ -68,11 +68,15 @@ export const actions = {
 	},
 
 	async getMenuData ({ commit, state }) {
-		if (alreadyInTheState(state, 'menu')) {
-			commit('SET_MENU_DATA', state.menu)
-		} else {
-			const { data: menuData } = await this.$httpPublic.get('sections')
-			commit('SET_MENU_DATA', menuData)
+		try {
+			if (alreadyInTheState(state, 'menu')) {
+				commit('SET_MENU_DATA', state.menu)
+			} else {
+				const { data: menuData } = await this.$httpPublic.get('sections')
+				commit('SET_MENU_DATA', menuData)
+			}
+		} catch (error) {
+			console.log('Failed to load menu data! -> err:', error)
 		}
 	},
 	async companyData ({ commit, state }) {
@@ -128,9 +132,9 @@ export const actions = {
 		commit('SET_AUTH_USER_DATA', userUpdated)
 	},
 	async logout ({ state }, $auth) {
-		if (state.auth.loggedIn) {
-			await $auth.logout()
-		}
+		// if (state.auth.loggedIn) {
+		await $auth.logout()
+		// }
 	},
 	sendShippingInformation ({ commit }) {
 		try {

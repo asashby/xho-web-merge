@@ -43,6 +43,8 @@ export default (context) => {
 			])
 		}
 	}
-
+	console.log('______________________')
+	console.log('SET_IS_MOVIL', device.isMovile(userAgent))
+	console.log('______________________')
 	context.store.commit('SET_IS_MOVIL', device.isMovile(userAgent))
 }

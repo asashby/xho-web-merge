@@ -114,68 +114,69 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
+// import { LoginLocal } from '~/mixins/loginLocal'
 import Selector from '~/components/Selector'
 
-function mounted () {
-	this.$nextTick(() => {
-		this.$nuxt.$loading.start()
-	})
-	if (this.$auth.$state.loggedIn) {
-		this.loginLocal(this.$auth.$state)
-	} else {
-		this.$nextTick(() => {
-			setTimeout(() => this.$nuxt.$loading.finish(), 1000)
-		})
-	}
-}
+// function beforeMount () {
+// 	this.$nextTick(() => {
+// 		this.$nuxt.$loading.start()
+// 	})
+// 	if (this.$auth.$state.loggedIn) {
+// 		this.loginLocal(this.$auth.$state)
+// 	} else {
+// 		this.$nextTick(() => {
+// 			setTimeout(() => this.$nuxt.$loading.finish(), 1000)
+// 		})
+// 	}
+// }
 
-async function loginLocal ({ user, strategy }) {
-	const {
-		email,
-		family_name: googleLastName,
-		first_name: name,
-		given_name: googleName,
-		id,
-		last_name: lastName,
-		sub
-	} = user
-	const body = {
-		email,
-		last_name: googleLastName || lastName,
-		name: googleName || name,
-		origin: strategy,
-		password: sub ? window.btoa(sub) : window.btoa(id)
-	}
-	const { data: response } = await this.$http.post('login-social', body)
-	const { token, tokenMaki, user: userResponse } = response
-	this.$store.$auth.strategies.local.token.set(token)
-	this.$store.dispatch('setTokenMaki', tokenMaki)
-	if (userResponse) {
-		const { addittional_info: additionalInfo } = userResponse
-		if (additionalInfo) {
-			const { age, size, weight } = additionalInfo
-			if (age && size && weight) {
-				this.reditectTo()
-			}
-		}
-	}
-	this.$nextTick(() => {
-		this.$nuxt.$loading.finish()
-	})
-}
+// async function loginLocal ({ user, strategy }) {
+// 	const {
+// 		email,
+// 		family_name: googleLastName,
+// 		first_name: name,
+// 		given_name: googleName,
+// 		id,
+// 		last_name: lastName,
+// 		sub
+// 	} = user
+// 	const body = {
+// 		email,
+// 		last_name: googleLastName || lastName,
+// 		name: googleName || name,
+// 		origin: strategy,
+// 		password: sub ? window.btoa(sub) : window.btoa(id)
+// 	}
+// 	const { data: response } = await this.$http.post('login-social', body)
+// 	const { token, tokenMaki, user: userResponse } = response
+// 	this.$store.$auth.strategies.local.token.set(token)
+// 	this.$store.dispatch('setTokenMaki', tokenMaki)
+// 	if (userResponse) {
+// 		const { addittional_info: additionalInfo } = userResponse
+// 		if (additionalInfo) {
+// 			const { age, size, weight } = additionalInfo
+// 			if (age && size && weight) {
+// 				this.reditectTo()
+// 			}
+// 		}
+// 	}
+// 	this.$nextTick(() => {
+// 		this.$nuxt.$loading.finish()
+// 	})
+// }
 
 async function saveObjectives () {
 	await this.$store.dispatch('profile/updateObjectives', this.model)
-	this.reditectTo()
+	this.$router.push('/perfil')
 }
 
-function reditectTo () {
-	if (window.innerWidth < 1024) {
-		this.$router.push('/perfil')
-	} else {
-		this.$router.push('/perfil')
-	}
-}
+// function reditectTo () {
+// 	if (window.innerWidth < 1024) {
+// 		this.$router.push('/perfil')
+// 	} else {
+// 		this.$router.push('/perfil')
+// 	}
+// }
 
 function invalidForm () {
 	return [
@@ -207,7 +208,9 @@ export default {
 	components: {
 		Selector
 	},
+	// mixins: [LoginLocal],
 	layout: 'headless',
+	middleware: 'auth',
 	data,
 	computed: {
 		...mapState({
@@ -220,10 +223,11 @@ export default {
 		]),
 		invalidForm
 	},
-	mounted,
+	// beforeMount,
 	methods: {
-		loginLocal,
-		reditectTo,
+		// loginLocal,
+		// checkProfileData,
+		// reditectTo,
 		saveObjectives
 	}
 }
