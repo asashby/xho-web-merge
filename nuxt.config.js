@@ -174,13 +174,13 @@ export default {
 		background: 'white'
 	},
 
-	server
+	// server
 
-	// server: {
-	// 	// host: '0.0.0.0'
-	// 	https: {
-	// 		key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
-	// 		cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
-	// 	}
-	// }
+	server: {
+		host: '0.0.0.0',
+		https: {
+			key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
+			cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
+		}
+	}
 }
