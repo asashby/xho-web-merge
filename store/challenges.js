@@ -33,7 +33,7 @@ export const actions = {
 	async getMyChallenges ({ commit, state }) {
 		try {
 			const { myChallengesParams: params } = state
-			const { data: myChallenges } = await this.$http.get('courses-by-user', { params })
+			const { data: myChallenges } = await this.$axios.get('courses-by-user', { params })
 			commit('SET_MY_CHALLENGES', myChallenges)
 		} catch (err) {
 			console.log('error al cargar retos', err)

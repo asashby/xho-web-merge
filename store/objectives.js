@@ -22,8 +22,10 @@ export const actions = {
 
 			console.log('[store: objectives]: login with local strategy!')
 			const { data: response } = await this.$auth.loginWith('local', { data: payload })
-			const { tokenMaki } = response
+			const { tokenMaki, token } = response
 
+			await this.$auth.setUserToken(token)
+			await this.$auth.fetchUser()
 			await dispatch('setTokenMaki', tokenMaki, { root: true })
 
 			if (this.$auth.user) {
