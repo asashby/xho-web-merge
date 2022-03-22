@@ -69,7 +69,7 @@ export const actions = {
 	async getDetailsByUser ({ commit }, slug) {
 		try {
 			const { params } = state
-			const { data: response } = await this.$http.get(`/courses/${slug}/detail-user`, { params })
+			const { data: response } = await this.$axios.get(`/courses/${slug}/detail-user`, { params })
 			commit('SET_CHALLENGES_DETAILS_BY_USER', response)
 		} catch (err) {
 			console.log('error al cargar detalle de reto', err)

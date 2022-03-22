@@ -12,6 +12,7 @@
       </div>
     </div>
 
+	<!--
     <div class="my-challenges--items-container">
       <h2>{{ title }}</h2>
 
@@ -35,7 +36,7 @@
       >
         Ver mas +
       </button>
-    </div>
+    </div>-->
 
     <div v-if="existChallenges" class="all-challenges--items-container">
       <h2>Todos</h2>
