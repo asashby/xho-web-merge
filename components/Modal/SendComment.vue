@@ -76,7 +76,7 @@ export default {
 			}
 			const { slugRetos } = this.$route.params
 			console.log(this.userName)
-			const { data: response } = this.$http.post(`rating/course/${slugRetos}`, body)
+			const { data: response } = this.$axios.post(`rating/course/${slugRetos}`, body)
 			if (response) {
 				console.log('enviar comment')
 			}

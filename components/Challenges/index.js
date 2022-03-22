@@ -242,7 +242,7 @@ export const IntroductionChallengeDetails = Vue.component('IntroductionChallenge
 				orderId: '',
 				link: ''
 			}
-			const { data: response } = await this.$http.patch(`courses/${this.slug}/payment`, body)
+			const { data: response } = await this.$axios.patch(`courses/${this.slug}/payment`, body)
 			const extId = response.external_id
 			window.location.href = `${this.$auth.ctx.env.URL_TIENDA}${this.slug}/detalle-producto?shoper=true&token=${token}&orderExternalId=${extId}` */
 		}

@@ -34,6 +34,7 @@ export const actions = {
 		try {
 			const { myChallengesParams: params } = state
 			const { data: myChallenges } = await this.$axios.get('courses-by-user', { params })
+			console.log(myChallenges)
 			commit('SET_MY_CHALLENGES', myChallenges)
 		} catch (err) {
 			console.log('error al cargar retos', err)
@@ -42,7 +43,7 @@ export const actions = {
 	async getChallenges ({ commit, state }, flagReset) {
 		try {
 			const { params } = state
-			const { data: challenges } = await this.$http.get('courses', { params })
+			const { data: challenges } = await this.$axios.get('courses', { params })
 			const finalList = flagReset ? challenges.data : state.challenges.concat(challenges.data)
 			commit('SET_CHALLENGES', finalList)
 		} catch (err) {
@@ -53,14 +54,14 @@ export const actions = {
 	async getDataPage ({ commit, state }) {
 		if (isEmpty(state.challengesDataPage)) {
 			const [responsePageData] = await Promise.all([
-				this.$http.get('sections/courses')
+				this.$axios.get('sections/courses')
 			])
 			commit('SET_CHALLENGES_DATA_PAGE', responsePageData.data)
 		}
 	},
 	async getDetails ({ commit }, id) {
 		try {
-			const { data: response } = await this.$http.get(`/courses/${id}/detail`)
+			const { data: response } = await this.$axios.get(`/courses/${id}/detail`)
 			commit('SET_CHALLENGES_DETAILS', response)
 		} catch (err) {
 			console.log('error al cargar detalle de reto', err)
@@ -69,7 +70,7 @@ export const actions = {
 	async getDetailsByUser ({ commit }, slug) {
 		try {
 			const { params } = state
-			const { data: response } = await this.$http.get(`/courses/${slug}/detail-user`, { params })
+			const { data: response } = await this.$axios.get(`/courses/${slug}/detail-user`, { params })
 			commit('SET_CHALLENGES_DETAILS_BY_USER', response)
 		} catch (err) {
 			console.log('error al cargar detalle de reto', err)
@@ -78,9 +79,9 @@ export const actions = {
 	async getChallengesCoursePaid ({ commit }) {
 		try {
 			const { params } = state
-			const { data: response1 } = await this.$http.get('/courses/basico-en-casa/detail-user', { params })
-			const { data: response2 } = await this.$http.get('/courses/intermedio-en-casa/detail-user', { params })
-			const { data: response3 } = await this.$http.get('/courses/avanzado-en-gym/detail-user', { params })
+			const { data: response1 } = await this.$axios.get('/courses/basico-en-casa/detail-user', { params })
+			const { data: response2 } = await this.$axios.get('/courses/intermedio-en-casa/detail-user', { params })
+			const { data: response3 } = await this.$axios.get('/courses/avanzado-en-gym/detail-user', { params })
 
 			if (response1.course_paid === 1 && response2.course_paid === 1 && response3.course_paid === 1) {
 				commit('SET_SHOW_RECIPES', true)
@@ -115,7 +116,7 @@ export const actions = {
 			}
 			const localSet = [...state.sets.series]
 			const [updateSet] = localSet.splice(index, 1)
-			const { data: response } = await this.$http.post('/questions/final', body)
+			const { data: response } = await this.$axios.post('/questions/final', body)
 			if (response.code === 'SET_FINISH_SUCCESS') {
 				console.log('SET_FINISH_SUCCESS')
 				localSet.splice(
@@ -158,7 +159,7 @@ export const actions = {
 				},
 				data: body
 			})
-			// const { data: response } = await this.$http.patch(`/courses/${slug}/payment`, { params, data: body })
+			// const { data: response } = await this.$axios.patch(`/courses/${slug}/payment`, { params, data: body })
 			console.log('funciona la suscripcion')
 			console.log(response)
 		} catch (err) {
@@ -167,7 +168,7 @@ export const actions = {
 	},
 	async getCoursePlans ({ commit }, slug) {
 		try {
-			const { data: response } = await this.$http.get(`/course/${slug}/plans-list`)
+			const { data: response } = await this.$axios.get(`/course/${slug}/plans-list`)
 			commit('SET_CHALLENGE_PLANS', response)
 		} catch (err) {
 			console.log('error al cargar planes del reto', err)
@@ -175,7 +176,7 @@ export const actions = {
 	},
 	async getDetailsWorkout ({ commit }, slug) {
 		try {
-			const { data: response } = await this.$http.get(`/courses/${slug}/units`)
+			const { data: response } = await this.$axios.get(`/courses/${slug}/units`)
 			const sortResponse = response.sort((a, b) => a.day - b.day)
 
 			commit('SET_CHALLENGES_WORKOUT', sortResponse)
@@ -188,7 +189,7 @@ export const actions = {
 			const body = {
 				course_id: Number(idDetail)
 			}
-			const { data: response } = await this.$http.get(`/units/${slugRutina}/detail`, { params: body })
+			const { data: response } = await this.$axios.get(`/units/${slugRutina}/detail`, { params: body })
 			commit('SET_ROUTINE_DETAIL', response)
 		} catch (err) {
 			console.log('error al cargar detalle de reto', err)
@@ -196,7 +197,7 @@ export const actions = {
 	},
 	async getRoutineExcercises ({ commit }, id) {
 		try {
-			const { data: response } = await this.$http.get(`/units/${id}/questions`)
+			const { data: response } = await this.$axios.get(`/units/${id}/questions`)
 			commit('SET_ROUTINE_EXCERCISES', response)
 		} catch (err) {
 			console.log('error al cargar detalle de reto', err)
@@ -207,7 +208,7 @@ export const actions = {
 			/* 		const body = {
 				unit_id: Number(id)
 			} */
-			const { data: response } = await this.$http.get(`/questions/${slugExercises}/detail`)
+			const { data: response } = await this.$axios.get(`/questions/${slugExercises}/detail`)
 			commit('SET_EXCERCISES_DETAIL', response)
 		} catch (err) {
 			console.log('error al cargar detalle de reto', err)

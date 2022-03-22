@@ -72,7 +72,7 @@ export const actions = {
 			if (alreadyInTheState(state, 'menu')) {
 				commit('SET_MENU_DATA', state.menu)
 			} else {
-				const { data: menuData } = await this.$httpPublic.get('sections')
+				const { data: menuData } = await this.$axios.get('sections')
 				commit('SET_MENU_DATA', menuData)
 			}
 		} catch (error) {
@@ -83,14 +83,14 @@ export const actions = {
 		const noCompanyData = isEmpty(state.company)
 
 		if (noCompanyData) {
-			const { data: response } = await this.$http.get('company/public')
+			const { data: response } = await this.$axios.get('company/public')
 			commit('SET_COMPANY_DATA', response)
 		}
 	},
 	async getXimenaData ({ commit, state }) {
 		if (isEmpty(state.ximena)) {
 			try {
-				const { data: response } = await this.$http.get('/about/sobre-ximena')
+				const { data: response } = await this.$axios.get('/about/sobre-ximena')
 				commit('SET_XIMENA_DATA', response)
 			} catch (err) {
 				console.log('ocurrio un error al cargar datos sobre Ximena', err)
@@ -116,7 +116,7 @@ export const actions = {
 		if (isEmpty(state.ximena)) {
 			try {
 				const url = '/culqui/create-charge'
-				const { data: response } = await this.$http.post(url, body)
+				const { data: response } = await this.$axios.post(url, body)
 				console.log('RESPONSE', response)
 			} catch (err) {
 				commit('SET_SHOW_PAYMENT_FAILED_MODAL', true)

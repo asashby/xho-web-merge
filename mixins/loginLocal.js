@@ -34,12 +34,12 @@ export const LoginLocal = {
 			}
 
 			try {
-				const { data: response } = await this.$http.post('login-social', payload)
+				const { data: response } = await this.$axios.post('login-social', payload)
 				const { token, tokenMaki, user: userResponse } = response
 
 				alert(`[loginLocal]: userResponse -> ${JSON.stringify(userResponse)}`)
 
-				this.$store.$auth.strategies.local.token.set(token)
+				this.$auth.strategies.local.token.set(token)
 				await this.$store.dispatch('setTokenMaki', tokenMaki)
 
 				if (userResponse) {

@@ -26,7 +26,7 @@
 
 async function fetch () {
 	const { id } = this.$route.params
-	const response = await this.$http.get(`article/${Number(id)}`)
+	const response = await this.$axios.get(`article/${Number(id)}`)
 
 	this.articleContent = response.data.content
 	this.title = response.data.title
