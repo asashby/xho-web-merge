@@ -62,8 +62,8 @@ import ArticleComponent from '~/components/Article'
 
 async function fetch () {
 	const response = await Promise.all([
-		this.$http.get('section/articulos'),
-		this.$http.get('sections/articulos/articles')
+		this.$axios.get('section/articulos'),
+		this.$axios.get('sections/articulos/articles')
 	])
 
 	this.title = response[0].data.name

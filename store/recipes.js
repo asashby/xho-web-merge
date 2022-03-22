@@ -21,9 +21,10 @@ export const actions = {
 	},
 	async getList ({ commit, state }, flagReset) {
 		const { params } = state
+		console.log('params', params)
 		try {
 			const [response] = await Promise.all([
-				this.$http.get('recipes', { params })
+				this.$axios.get('recipes', { params })
 			])
 
 			const finalList = flagReset ? response.data.data : state.list.concat(response.data.data)
@@ -44,7 +45,7 @@ export const actions = {
 	},
 	async getDetails ({ commit }, slug) {
 		try {
-			const { data: response } = await this.$http.get(`recipes/${slug}`)
+			const { data: response } = await this.$axios.get(`recipes/${slug}`)
 			commit('SET_RECIPES_DETAILS', response)
 		} catch (err) {
 			console.log('error al cargar detalle de receta', err)
@@ -53,9 +54,9 @@ export const actions = {
 	async getChallengesCoursePaid ({ commit }) {
 		try {
 			const { params } = state
-			const { data: response1 } = await this.$http.get('/courses/basico-en-casa/detail-user', { params })
-			const { data: response2 } = await this.$http.get('/courses/intermedio-en-casa/detail-user', { params })
-			const { data: response3 } = await this.$http.get('/courses/avanzado-en-gym/detail-user', { params })
+			const { data: response1 } = await this.$axios.get('/courses/basico-en-casa/detail-user', { params })
+			const { data: response2 } = await this.$axios.get('/courses/intermedio-en-casa/detail-user', { params })
+			const { data: response3 } = await this.$axios.get('/courses/avanzado-en-gym/detail-user', { params })
 
 			if (response1.course_paid === 1 || response2.course_paid === 1 || response3.course_paid === 1) {
 				commit('SET_SHOW_RECIPES', true)

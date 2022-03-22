@@ -147,7 +147,7 @@ import Selector from '~/components/Selector'
 // 		origin: strategy,
 // 		password: sub ? window.btoa(sub) : window.btoa(id)
 // 	}
-// 	const { data: response } = await this.$http.post('login-social', body)
+// 	const { data: response } = await this.$axios.post('login-social', body)
 // 	const { token, tokenMaki, user: userResponse } = response
 // 	this.$store.$auth.strategies.local.token.set(token)
 // 	this.$store.dispatch('setTokenMaki', tokenMaki)

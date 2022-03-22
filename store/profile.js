@@ -51,7 +51,7 @@ export const actions = {
 			addittional_info: { ...rest }
 		}
 		try {
-			const { data: response } = await this.$http.post(url, body)
+			const { data: response } = await this.$axios.post(url, body)
 			console.log('RESPONSE', response)
 			commit('SET_ACCCOUNT_DATA', body)
 		} catch (err) {
@@ -63,7 +63,7 @@ export const actions = {
 		const body = { ...user }
 		delete body.email
 		try {
-			const { data: response } = await this.$http.post(url, body)
+			const { data: response } = await this.$axios.post(url, body)
 			console.log('RESPONSE', response)
 			const dataAccount = {
 				goal: body.goal,

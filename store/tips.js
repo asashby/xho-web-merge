@@ -15,7 +15,7 @@ export const actions = {
 	async getDataPage ({ commit, state }) {
 		if (isEmpty(state.tipsDataPage)) {
 			const [responsePageData] = await Promise.all([
-				this.$http.get('sections/tips')
+				this.$axios.get('sections/tips')
 			])
 			commit('SET_TIPS_DATA_PAGE', responsePageData.data)
 		}
@@ -23,7 +23,7 @@ export const actions = {
 	async getList ({ commit, state }, flagReset) {
 		const { params } = state
 		const [responseTips] = await Promise.all([
-			this.$http.get('tips', { params })
+			this.$axios.get('tips', { params })
 		])
 
 		const finalList = flagReset ? responseTips.data.data : state.list.concat(responseTips.data.data)
@@ -40,7 +40,7 @@ export const actions = {
 	},
 	async getDetails ({ commit }, slug) {
 		try {
-			const { data: response } = await this.$http.get(`tips/${slug}`)
+			const { data: response } = await this.$axios.get(`tips/${slug}`)
 			commit('SET_TIPS_DETAILS', response)
 		} catch (err) {
 			console.log('error al cargar detalle de tips', err)
