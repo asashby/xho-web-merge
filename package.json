@@ -17,7 +17,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/toast": "^3.3.1",
     "@vue/composition-api": "^1.4.1",
-    "axios": "^0.24.0",
+    "axios": "^1.2.4",
     "core-js": "^3.9.1",
     "firebase": "^9.6.0",
     "functionallibrary": "^2.1.0",
